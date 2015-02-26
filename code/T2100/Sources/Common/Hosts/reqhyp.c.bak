@@ -1,0 +1,1307 @@
+
+//=============================================================================
+//                       Hypercom Inc
+//                      (c) Copyright 2002
+//=============================================================================
+//
+// Module overview:             reqhyp.c
+//      Hypercom Request Building Routines.
+//
+//=============================================================================
+
+#include "string.h"
+
+#include "basictyp.h"
+#include "sdkos.h"
+#include "sdk.h"
+#include "sdkmem.h"
+#include "fixdata.h"
+
+#include "utllib.h"
+#include "defines.h"
+#include "struct.h"
+#include "transdef.h"
+#include "appdata.h"
+#include "bit8583.h"
+#include "tables.h"
+#include "findtran.h"
+#include "pinpad.h"
+#include "comm.h"
+#include "msgfunc.h"
+#include "reqhyp.h"
+#include "comdata.h"
+//=============================================================================
+// External variables / declarations
+//=============================================================================
+extern Bool MovCurrency(void);		
+
+//=============================================================================
+// Private defines and typedefs
+//=============================================================================
+
+
+//=============================================================================
+// Private function declarations
+//=============================================================================
+
+static struct bitmap_rec *FindBitMapHyp( enum transactions Trans );
+static Bool MovProcHyp( void );
+static Bool MovB60Hyp( void );
+static void B60_OrigHyp( void );
+static Bool MovInv( void );
+static Bool MovB63Hyp( void );
+static Bool MovMAC( void );
+static void SetReversalMessageType( UBYTE *pData, UBYTE transID );
+		
+
+//=============================================================================
+// Public data definitions
+//=============================================================================
+
+// Table of Move Entries.                     
+// Each entry respresents a single move item. 
+// All items are saved in the Send Buffer.    
+const struct move_rec Move_Tab[] = {
+	{2, MovPan},				// Primary Account Number           
+	{3, MovProcHyp},			// Processing Code                  
+	{4, MovTotAm},				// Amount, Transaction              
+	{11, MovStan},				// Systems Trace Audit Number       
+	{12, MovTime},				// Time, Transaction                
+	{13, MovDate},				// Date, Transaction                
+	{14, MovExpdYYMM},			// Date, Expiry                     
+#ifdef MAKE_EMV
+       {18, MovMerchCCode},		// Merchant Category Code                     
+       {20, MovCountryCode},		// Country code, transaction                     
+#endif	
+	{22, MovPose},				// POS Entry Mode                   
+	{24, MovNII},				// Network International Identifier 
+	{25, MovPocc},				// POS Condition Code               
+	{35, MovTrk2},				// Track 2 Data                     
+	{37, MovRRN},				// Retrieval Reference Number       
+	{38, MovAuth},				// Auth Id Response code  (Approval code)           
+	{39, MovResp},				// Response code            
+	{41, MovTID},				// Terminal Id                      
+	{42, MovAccID},				// Acceptor Id                      
+	{43, MovAcqName},			// Acceptor Name	//@AZH
+	{45, MovTrk1},				// Track 1 Data		//@AZH
+	{48, MovCVV2},				// Move Card Verification Value		//@AZH
+	{49, MovCurrency},			//  @brk1208
+	{52, MovPin},				// PIN number                       
+	{54, MovTip},				// Tip Amount                       
+#ifdef MAKE_EMV
+	{55, MovICC},				// ICC data
+	{56, MovIsScriptRes},       // Move Issuer Script Result
+        {57, MovIssuerAppData},     // Move Issuer Application Data
+#endif
+	{60, MovB60Hyp},			// Private Field 60                 
+	{61, MovDesc},				// Descriptors                      
+	{62, MovInv},				// Invoice Number                   
+	{63, MovB63Hyp},			// Private Field 63                 
+	{64, MovMAC},				// MAC
+	{0, NULL}					// Table End                        
+};
+
+
+//=============================================================================
+// Private data definitions
+//=============================================================================
+
+static struct bitmap_rec *pBitMap_rec;
+static struct bitmap_rec *pBitMap_org;
+
+// Table of Transaction Bitmap Entries.     
+// Each entry respresents a single bit map. 
+static const struct bitmap_rec BitMap_Tab[] = {
+	{
+	 SALE,
+	 {0x02, 0x00},				// MESSAGE TYPE    
+	 0x00,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN + B26_EXPD,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2,
+	 B61_TID + B62_ACCID,
+	 B74_PIN,
+	 B86_BIT62 
+#ifdef MAKE_KIB
+        + B87_BIT63
+#endif 
+      }},
+
+	{
+	 CRDVER,
+	 {0x01, 0x00},				// MESSAGE TYPE    
+	 0x38,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN + B24_TIME + B25_DATE + B26_EXPD,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2 + B56_AUTH,
+	 B61_TID + B62_ACCID,
+	 B76_TIP,
+	 B85_BIT61 + B86_BIT62 + B87_BIT63
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+	{
+	 DEBIT,
+	{0x02, 0x00},				// MESSAGE TYPE    
+	 0x00,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN + B26_EXPD,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2,
+	 B61_TID + B62_ACCID,
+	 B71_CURCODE + B74_PIN,
+	 B86_BIT62 
+#ifdef MAKE_KIB
+        //+ B87_BIT63
+#endif 
+      }},
+
+	{
+	 REFDEBIT,
+	 {0x02, 0x00},				// MESSAGE TYPE    
+	 0x20,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2,
+	 B61_TID + B62_ACCID + B63_ACCNAME,
+	 B71_CURCODE,
+	 B86_BIT62
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+	{
+	 SALCASH,
+	 {0x02, 0x00},				// MESSAGE TYPE    
+	 0x09,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN + B24_TIME + B25_DATE + B26_EXPD,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2 + B56_AUTH,
+	 B61_TID + B62_ACCID,
+	 B74_PIN + B76_TIP,
+	 B84_BIT60 + B85_BIT61 + B86_BIT62 + B87_BIT63
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+	{
+	 DBCASH,
+	 {0x02, 0x00},				// MESSAGE TYPE    
+	 0x01,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN + B24_TIME + B25_DATE + B26_EXPD,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2 + B56_AUTH,
+	 B61_TID + B62_ACCID,
+	 B74_PIN + B76_TIP,
+	 B84_BIT60 + B85_BIT61 + B86_BIT62 + B87_BIT63
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+	{
+	 VOIDTRAN,					// Defined as VOID_ONLINE. VOID WAS NEVER USED 
+	 {0x02, 0x00},				// MESSAGE TYPE    
+	 0x02,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2 + B55_RRN ,
+	 B61_TID + B62_ACCID,
+	 B74_PIN,
+	 B86_BIT62
+     }},
+     {
+	 PREAUTHCANCEL,                  // PreAuth Cancel
+	 {0x01, 0x00},
+	 0x30,
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2 + B55_RRN + B56_AUTH, 
+	 B61_TID + B62_ACCID,
+	 B74_PIN,
+	 B84_BIT60 + B86_BIT62, 
+     }},
+      {
+	 CLOSEDPAUTHCANCEL,                  // ClosedPreAuth Cancel
+	 {0x02, 0x00},
+	 0x62,
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN + B26_EXPD,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B55_RRN + B56_AUTH, 
+	 B61_TID + B62_ACCID,
+	 B74_PIN,
+	 B84_BIT60 + B86_BIT62, 
+     }},
+	{
+	 TESTTRAN,
+	 {0x08, 0x00},				// MESSAGE TYPE    
+	 0x99,						// PROCESSING CODE 
+	 {B13_PROC,
+	 B23_STAN,
+	 B38_NII,
+	 0,
+	 0,
+	 B61_TID,
+	 0,
+	 B87_BIT63
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+	{
+	 AUTH,
+	 {0x01, 0x00},				// MESSAGE TYPE    
+	 0x00,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN + B24_TIME + B25_DATE + B26_EXPD,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2 + B56_AUTH,
+	 B61_TID + B62_ACCID + B63_ACCNAME,
+	 B71_CURCODE,
+	 B86_BIT62
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+	
+
+	{
+	 ADJSALE,
+	 {0x02, 0x20},				// MESSAGE TYPE    
+	 0x02,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN + B24_TIME + B25_DATE + B26_EXPD,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B55_RRN + B56_AUTH + B57_RESP,
+	 B61_TID + B62_ACCID,
+	 B74_PIN + B76_TIP,
+	 B84_BIT60 + B85_BIT61 + B86_BIT62 + B87_BIT63
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+	{
+	 ADJREFUND,
+	 {0x02, 0x20},				// MESSAGE TYPE    
+	 0x22,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN + B24_TIME + B25_DATE + B26_EXPD,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B55_RRN + B56_AUTH + B57_RESP,
+	 B61_TID + B62_ACCID,
+	 B74_PIN,
+	 B84_BIT60 + B85_BIT61 + B86_BIT62 + B87_BIT63
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+	{
+	 SALOFFL,
+	 {0x02, 0x20},				// MESSAGE TYPE    
+	 0x00,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN + B24_TIME + B25_DATE + B26_EXPD,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B56_AUTH,
+	 B61_TID + B62_ACCID + B63_ACCNAME,
+	 B71_CURCODE,
+	 B86_BIT62
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+	{
+	 CLBATCH,
+	 {0x05, 0x00},				// MESSAGE TYPE    
+	 0x92,						// PROCESSING CODE 
+	 {B13_PROC,
+	 B23_STAN,
+	 B38_NII,
+	 0,
+	 0,
+	 B61_TID + B62_ACCID,// + B63_ACCNAME,
+	 0,//B71_CURCODE,
+	 B84_BIT60 + B87_BIT63
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+	{
+	 CLBATCHA,
+	 {0x05, 0x00},				// MESSAGE TYPE    
+	 0x92,						// PROCESSING CODE 
+	 {B13_PROC,
+	 B23_STAN,
+	 B38_NII,
+	 0,
+	 0,
+	 B61_TID + B62_ACCID + B63_ACCNAME,
+	 B71_CURCODE,
+	 B84_BIT60 + B87_BIT63
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+	{
+	 CLBATCHE,
+	 {0x05, 0x00},				// MESSAGE TYPE    
+	 0x96,						// PROCESSING CODE 
+	 {B13_PROC,
+	 B23_STAN,
+	 B38_NII,
+	 0,
+	 0,
+	 B61_TID + B62_ACCID + B63_ACCNAME,
+	 B71_CURCODE,
+	 B84_BIT60 + B87_BIT63
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+	{
+	 RUPLOAD,
+	 {0x03, 0x20},				// MESSAGE TYPE    
+	 0x00,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN + B24_TIME + B25_DATE + B26_EXPD,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B55_RRN + B56_AUTH,
+	 B61_TID + B62_ACCID + + B63_ACCNAME,
+	 B71_CURCODE,
+	 B84_BIT60 + B85_BIT61 + B86_BIT62 + B87_BIT63
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+	{
+	 OPENTAB,
+	 {0x02, 0x00},				// MESSAGE TYPE    
+	 0x00,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN + B24_TIME + B25_DATE + B26_EXPD,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2 + B56_AUTH,
+	 B61_TID + B62_ACCID,
+	 B76_TIP,
+	 B84_BIT60 + B85_BIT61 + B86_BIT62 + B87_BIT63
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+	{
+	 BALINQ,
+	 {0x01, 0x00},				// MESSAGE TYPE    
+	 0x31,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC,
+	 B23_STAN ,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2,
+	 B61_TID + B62_ACCID, //0,
+	 B74_PIN,
+	 0
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+	{
+	 LOGON,
+	 {0x08, 0x00},				// MESSAGE TYPE    
+	 0x00,						// PROCESSING CODE 
+	 {B13_PROC,
+	 B23_STAN,
+	 B38_NII,
+	 0,
+	 0,
+	 B61_TID + B62_ACCID,
+	 0,
+	 0
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+	{
+	 MAIL_ORDER,
+	 {0x02, 0x00},				// MESSAGE TYPE    
+	 0x40,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN + B26_EXPD,
+	 B34_CNTRYCODE + B36_POSE + B38_NII,
+	 B41_POCC,
+	 0,
+	 B61_TID + B62_ACCID + B63_ACCNAME,
+	 B71_CURCODE,
+	 B86_BIT62 + B87_BIT63
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+#ifdef MAKE_EMV
+	{
+	 EMV_SALE,
+	 {0x02, 0x00},				// MESSAGE TYPE
+	 0x00,						// PROCESSING CODE
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN + B24_TIME + B25_DATE + B26_EXPD,
+	 B34_CNTRYCODE + B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2 + B55_RRN + B56_AUTH,
+	 B61_TID + B62_ACCID + B63_ACCNAME,
+	 B71_CURCODE + B74_PIN + B77_ICC + B78_MOVISS,
+	 B81_MOVAPPDT + B84_BIT60 + B86_BIT62
+#ifdef MAKE_KIB
+     + B87_BIT63
+#endif   
+     }},
+    
+    // @Aydeniz -- BC -- {
+    	{
+	 EMV_INSTALLMENT,
+	 {0x02, 0x00},				// MESSAGE TYPE
+	 0x55,						// PROCESSING CODE
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN + + B24_TIME + B25_DATE + B26_EXPD,
+	 B34_CNTRYCODE + B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2 + B55_RRN + B56_AUTH,
+	 B61_TID + B62_ACCID + B63_ACCNAME,
+	 B71_CURCODE + B74_PIN + B77_ICC + B78_MOVISS,
+	 B81_MOVAPPDT + B84_BIT60 + B86_BIT62 
+#ifdef MAKE_KIB
+     + B87_BIT63
+#endif    
+         }},
+      
+
+#endif
+
+// @Aydeniz -- BC -- {
+    	{
+	 INSTALLMENT,
+	 {0x02, 0x00},				// MESSAGE TYPE
+	 0x55,						// PROCESSING CODE
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN + B26_EXPD,
+	 B34_CNTRYCODE + B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2,
+	 B61_TID + B62_ACCID + B63_ACCNAME,
+	 B71_CURCODE,
+	 B86_BIT62 
+#ifdef MAKE_KIB
+     + B87_BIT63
+#endif 
+         }},
+
+
+         {
+	 REFUND,
+	 {0x02, 0x00},				// MESSAGE TYPE    
+	 0x20,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2,
+	 B61_TID + B62_ACCID,
+	 B74_PIN,
+	 B86_BIT62
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+       {
+	 INSTAL_REFUND,
+	 {0x02, 0x00},				// MESSAGE TYPE    
+	 0x56,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2,
+	 B61_TID + B62_ACCID + B63_ACCNAME,
+	 B71_CURCODE,
+	 B86_BIT62 + B87_BIT63,
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+     }},
+
+      {
+	 PREAUTH,
+	 {0x01, 0x00},				// MESSAGE TYPE    
+	 0x30,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN ,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2 ,
+	 B61_TID + B62_ACCID ,
+	 B74_PIN,
+	 B86_BIT62
+      }},
+
+
+      {
+	 CLOSED_PREAUTH,
+	 {0x02, 0x00},				// MESSAGE TYPE    
+	 0x60,                                  // PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN ,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2 + B56_AUTH,
+	 B61_TID + B62_ACCID ,
+	 B74_PIN,
+	 B86_BIT62  
+      }},
+
+      {
+	 STATISTICS,
+	 {0x08, 0x00},				// MESSAGE TYPE
+	 0x91,						// PROCESSING CODE
+	 {B13_PROC,
+	 B23_STAN,
+	 B38_NII,
+	 0,
+	 0,
+	 B61_TID + B62_ACCID + B63_ACCNAME,
+	 B71_CURCODE,
+	 B84_BIT60 + B87_BIT63
+#ifdef MAKE_ISOMAC
+     + B88_MAC
+#endif // MAKE_ISOMAC
+         }},
+
+#ifdef MAKE_KIB 
+    {
+	 LOYALTY_INQ,
+	 {0x08, 0x00},				// MESSAGE TYPE
+	 0x68,						// PROCESSING CODE	  
+	 {B12_PAN + B13_PROC, 
+	 B23_STAN ,
+	 B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2,
+	 B61_TID + B62_ACCID + B63_ACCNAME,
+	 B71_CURCODE ,
+	 B86_BIT62 
+     }},
+
+     {
+	 DISCOUNT_SALE,
+	 {0x02, 0x00},				// MESSAGE TYPE    
+	 0x00,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN ,
+	 B34_CNTRYCODE + B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2,
+	 B61_TID + B62_ACCID + B63_ACCNAME,
+	 B71_CURCODE + B74_PIN,
+	 B86_BIT62 + B87_BIT63
+      }},
+
+      {
+	 DISCOUNT_INSTALLMENT,
+	 {0x02, 0x00},				// MESSAGE TYPE    
+	 0x00,						// PROCESSING CODE 
+	 {B12_PAN + B13_PROC + B14_TOTAM,
+	 B23_STAN ,
+	 B34_CNTRYCODE + B36_POSE + B38_NII,
+	 B41_POCC,
+	 B53_TRK2,
+	 B61_TID + B62_ACCID + B63_ACCNAME,
+	 B71_CURCODE + B74_PIN,
+	 B86_BIT62 + B87_BIT63
+      }},
+
+#endif
+
+
+// }
+};
+
+//=============================================================================
+// Public function definitions
+//=============================================================================
+
+//-----------------------------------------------------------------------------
+//  ReqHyper        Format Hypercom Request packet.
+//
+//  Parameters:     None.
+//
+//  Global Inputs:  None.
+//
+//  Returns:        OS_RETURN_VALS      Comm Status of Request send if Request
+//                                      Packet was built orvINVDATA if Request
+//                                      Packet not built.
+//
+//  Notes:          MsgComFlag is updated.
+//
+//-----------------------------------------------------------------------------
+
+extern OS_RETURN_VALS ReqHyper( void )
+{
+	OS_RETURN_VALS CommStatus;	// Comm Status of Request send  
+
+	Move_Table = ( struct move_rec * ) Move_Tab;	// Set Hypercom Bit table 
+
+	// Reset Comm status 
+	CommStatus = orvINVDATA;
+
+	// Reset Request Packet built okay flag 
+	MsgComFlag &= ~REQUEST_BUILT;
+
+	// Find the transaction in the Bitmap Table 
+	pBitMap_rec = FindBitMapHyp( TRREQ.TRKEY );
+
+	// See if transaction in the Bitmap Table 
+	if ( NULL != pBitMap_rec )
+	{
+		// Yes; clear out Transmit Buffer 
+		memset( SENDBUF, 0,sizeof( SENDBUF ) );
+
+		// Set for Application Messages 
+		SENDBUF[0] = TPDUID_APP;
+		
+		{
+			// No; see if a Reversal 
+			if ( TRREQ.TRSTATUS[0] & TS1_REV )
+			{                               
+                            SetReversalMessageType( &SENDBUF[TPDU_SZE], TRREQ.TRKEY );
+                                  
+			}
+			else
+			{				
+				
+					// No; make it a normal request 
+					SENDBUF[TPDU_SZE] = pBitMap_rec->TRNMSG[0];
+					SENDBUF[TPDU_SZE + 1] = pBitMap_rec->TRNMSG[1];
+				
+			}
+		}
+                
+                // Preauth Void iþleminin mesaj type'i 100 olmalý .. 
+                if ( VOIDTRAN == TRREQ.TRKEY ) 
+                {
+                  if ( TRREQ.TRORIGKEY == PREAUTH ) 
+                  {
+                    SENDBUF[TPDU_SZE] = 0x01;
+                  }
+                }
+		// Move it into Request Area 
+		memcpy( TRREQ.TRMTYPE, SENDBUF + TPDU_SZE, S_TRMTYPE );
+
+		// Set up the data pointer 
+		pSendData = SENDBUF + TPDU_SZE + 10;
+
+		// Pack the Message Request into the Send Buffer 
+		if ( ReqPackMsg( pBitMap_rec->bitmap ) )
+		{
+			// Okay; indicate that the Request was built okay 
+			MsgComFlag |= REQUEST_BUILT;
+
+			// Calculate the length 
+			SendMsgLen = pSendData - SENDBUF;
+
+
+			// Send the Message Request to the Host 
+			SendMessage ();
+
+			// Get the Comm status 
+			CommStatus = HostOSRetval;
+		}
+	}
+
+	// Return the Comm status 
+	return ( CommStatus );
+}
+
+
+//=============================================================================
+// Private function definitions
+//=============================================================================
+
+//-----------------------------------------------------------------------------
+//  FindBitMapHyp   Find the Bitmap Table Entry for the transaction.
+//
+//  Parameters:     enum transactions Trans     Transaction ID.
+//
+//  Global Inputs:  None.
+//
+//  Returns:        struct bitmap_rec *     NULL  - Transaction not found,
+//                                          other - Pointer to Transaction 
+//                                                  Bitmap record 
+//
+//  Notes:          None.
+//
+//-----------------------------------------------------------------------------
+
+static struct bitmap_rec *FindBitMapHyp( enum transactions Trans )
+{
+	struct bitmap_rec *Found;
+	UBYTE i;
+
+	// Reset pointer to record 
+	Found = NULL;
+
+	// Search the Bitmap Table for the transaction 
+	for ( i = 0; i < ( sizeof( BitMap_Tab ) / sizeof( struct bitmap_rec ) );
+		  i++ )
+	{
+		// Check if transaction found 
+		if ( BitMap_Tab[i].trans == Trans )
+		{
+			// Yes; save pointer to record 
+			Found = ( struct bitmap_rec * ) &BitMap_Tab[i];
+
+			// Break out of the loop 
+			break;
+		}
+	}
+
+	// Return pointer to record 
+	return ( Found );
+}
+
+
+//-----------------------------------------------------------------------------
+//  MovProcHyp      Move the Processing Code.
+//
+//  Parameters:     None.
+//
+//  Global Inputs:  None.
+//
+//  Returns:        Bool            True  - Data moved,
+//                                  False - otherwise.
+//
+//  Notes:          None.
+//
+//-----------------------------------------------------------------------------
+
+static Bool MovProcHyp( void )
+{
+		// Clear the Processing Code 
+	memset( TRREQ.TRPROC, 0,S_TRPROC );
+
+    // Batch Upload ise orjinal Processing code 
+	if ( TRREQ.TRKEY == RUPLOAD )
+	{
+		pBitMap_org = FindBitMapHyp( TRREQ.TRORIGKEY );
+		TRREQ.TRPROC[0] = pBitMap_org->TRNPROC;
+	}
+        else if ( TRREQ.TRSTATUS[0] & TS1_REV )// reversal ise özel p.c. 
+	{       
+        switch (TRREQ.TRKEY)
+        {
+        case REFUND:
+        case INSTAL_REFUND:
+            TRREQ.TRPROC[0] = 0x22;
+            break;
+
+        case PREAUTH:
+            TRREQ.TRPROC[0] = 0x32;
+            break;
+
+        case CLOSED_PREAUTH:
+            TRREQ.TRPROC[0] = 0x62;
+            break;
+
+        default:
+            TRREQ.TRPROC[0] = pBitMap_rec->TRNPROC;
+            break;
+        }         
+	}
+	else if ( VOIDTRAN == TRREQ.TRKEY ) // iptal iþlemi ise özel p.c 
+	{   
+        switch (TRREQ.TRORIGKEY)
+        {
+        case SALE:
+        case INSTALLMENT:
+        case MAIL_ORDER:
+            TRREQ.TRPROC[0] = 0x02;
+            break;
+
+        case REFUND:
+        case INSTAL_REFUND:
+            TRREQ.TRPROC[0] = 0x22;
+            break;
+
+        case PREAUTH:
+            TRREQ.TRPROC[0] = 0x32;
+            break;
+
+        case CLOSED_PREAUTH:
+            TRREQ.TRPROC[0] = 0x62;
+            break;
+        default:
+            TRREQ.TRPROC[0] += 0x02;
+            break;
+        }
+		
+	}	
+	else // geri kalan iþlemler
+	{
+	     TRREQ.TRPROC[0] = pBitMap_rec->TRNPROC;
+	}
+
+
+
+ 	// Modification to get TRNOPT1 that goes with the   
+	// transaction being processed.                     
+	// Get the Transaction from the Request 
+	if ( RUPLOAD == TRREQ.TRKEY )
+	{
+		HostEvent.TRNKEY = TRREQ.TRORIGKEY;
+	}
+	else
+	{
+		HostEvent.TRNKEY = TRREQ.TRKEY;
+	}
+
+	// Locate the Transaction - will be in HostEvent 
+	HostFindTran ();
+
+    // Check if account required
+    if (  !( HostEvent.TRNOPT1 & T1_NOACCT )  &&  // no T1_NOACCT transaction attribute 
+           ( 0x31 != TRREQ.TRPROC[0] ) )          // not Balance Inquiry transaction 
+    {
+        // Set default account from issuer table
+        TRREQ.TRPROC[1] = TRREQ.TRISPTR->ISDEFAC;
+    }
+
+	
+
+	// Call the Generic Move routine 
+	MovGen( TRREQ.TRPROC, prs8583->IS8583_LEN );
+
+	// Data moved; return True 
+	return ( True );
+}
+
+
+//-----------------------------------------------------------------------------
+//  MovB60Hyp       Move bit 60 data.
+//
+//  Parameters:     None.
+//
+//  Global Inputs:  None.
+//
+//  Returns:        Bool            True  - Data moved,
+//                                  False - otherwise.
+//
+//  Notes:          This function needs updating whenever a new
+//                  transaction is added to the application.
+//
+//-----------------------------------------------------------------------------
+
+static Bool MovB60Hyp( void )
+{
+	Bool MoveFlag;
+
+	// Reset move data flag 
+	MoveFlag = False;
+
+	// Check the type of Transaction 
+	switch ( TRREQ.TRKEY )
+	{       		
+		case RUPLOAD:			// Unconditionaly send bit 60 
+			B60_OrigHyp(  );
+
+			// Data moved 
+			MoveFlag = True;
+
+			break;
+		
+		case CLBATCH:			// CLOSE BATCH   
+		case CLBATCHE:			// CLOSE BATCH END 
+			// Move with length field for batch number. 
+			MovGen( TRREQ.TRBATNO, S_TRBATNO );
+
+			// Data moved 
+			MoveFlag = True;
+			break;
+		case STATISTICS:
+			memset( TmpBuf, 0, 11 );			
+			
+			memcpy( &TmpBuf[0], VERSION, 10);		// Default 
+			TmpBuf[10] = 0x30;
+			MovGen( TmpBuf, 11 );
+
+			MoveFlag = True;
+			break;
+	}
+
+	// Return move data flag 
+	return ( MoveFlag );
+}
+
+
+//-----------------------------------------------------------------------------
+//  B60_OrigHyp     Move original data from a Transaction.
+//
+//  Parameters:     None.
+//
+//  Global Inputs:  None.
+//
+//  Returns:        Nothing.
+//
+//  Notes:          None.
+//
+//-----------------------------------------------------------------------------
+
+static void B60_OrigHyp( void )
+{
+	// Get the original message type using the original key 
+	pBitMap_org = FindBitMapHyp( TRREQ.TRORIGKEY );
+
+	// Hardcode size of 22  
+	memset( ( char * ) TmpBuf, ' ',22 );
+	BfAscii( ( char * ) &TmpBuf[0], pBitMap_org->TRNMSG, 2 );
+	BfAscii( ( char * ) &TmpBuf[4], TRREQ.TROSTAN, 3 );
+
+	// Call the Generic Move routine 
+	MovGen( TmpBuf, 22 );
+}
+
+
+//-----------------------------------------------------------------------------
+//  MovInv          Move the Invoice Number.
+//
+//  Parameters:     None.
+//
+//  Global Inputs:  None.
+//
+//  Returns:        Bool            True  - Data moved,
+//                                  False - otherwise.
+//
+//  Notes:          None.
+//
+//-----------------------------------------------------------------------------
+// fill the field to Parsian 
+static Bool MovInv( void )
+{         
+    
+    UBYTE index = 0;
+    UBYTE retval = False;
+    memset(( char * ) TmpBuf, 0x20, 8);
+
+    TmpBuf[index++] = 0x00;		
+    TmpBuf[index++] = 0x06;       
+
+    
+    switch (TRINP.TRKEY)
+    {
+    // PARSIAN @@ 
+    case SALE : 
+          // TODO 
+          break;
+
+    case CLBATCH:
+    case CLBATCHA:
+    case CLBATCHE:
+    case RUPLOAD:
+        pBitMap_org = FindBitMapHyp( TRREQ.TRORIGKEY );
+        BfAscii(&TmpBuf[index], TRREQ.TROSTAN, S_TRSTAN );	
+        memcpy( pSendData, TmpBuf, 8 );
+        pSendData += 8;
+        retval = True;
+        break;
+
+    case VOIDTRAN:
+    // PARSIAN @@ 
+
+        if ( IfThere(TRINP.TRSTAN, S_TRSTAN) )
+        {
+            BfAscii(&TmpBuf[index],TRINP.TRSTAN, S_TRSTAN );
+            memcpy( pSendData, TmpBuf, 8 );
+            pSendData += 8;
+            retval = True;
+        }        
+         
+
+    default:         
+         if ( IfThere(TRREQ.TRSTAN, S_TRSTAN) )
+         {         
+             BfAscii(&TmpBuf[index],TRREQ.TRSTAN, S_TRSTAN );
+             memcpy( pSendData, TmpBuf, 8 );
+             pSendData += 8;
+             retval = True;    
+         }
+         break;
+    }   
+
+    return retval;
+}
+
+
+//-----------------------------------------------------------------------------
+//  MovB63Hyp       Format Bit 63 Hypercom data.
+//
+//  Parameters:     None.
+//
+//  Global Inputs:  None.
+//
+//  Returns:        Bool            True  - Data exists,
+//                                  False - no data in buffer.
+//
+//  Notes:          Destination buffer pointed by pSendData. To be completed.
+//
+//-----------------------------------------------------------------------------
+
+static Bool MovB63Hyp( void )
+{
+	Bool retval = False;
+    UWORD statlen, lenght;        
+  	
+	pB63Len = pSendData;		// init pointer to Bit 63 length bytes  
+	B63_Len = 0;				// init bit 63 total length  
+
+    switch(  TRREQ.TRKEY )
+    {
+
+    case CLBATCH:
+    case CLBATCHA:
+    case CLBATCHE:
+        retval = B63_MoveStdTotals(  );
+        return ( retval );
+
+    case TESTTRAN:
+        return ( retval );
+
+    case STATISTICS:
+        statlen = BinBcdW( ( UWORD )( ( UWORD )(&NMSDAT.NMTSer) - ( UWORD )(&NMSDAT.NMStatus) + 1 ) );
+        lenght = BinBcdW( ( UWORD )( ( UWORD )(&NMSDAT.NMTSer) - ( UWORD )(&NMSDAT.NMStatus) + 1 + 6 ) );                               
+        memcpy( pSendData, &lenght, 2 );
+		
+	// Skip the two-byte total length field 
+        pSendData += 2;
+		
+        // Move to message term status response
+	*pSendData++ = 0x0f;
+		
+	statlen = ( UWORD )(&NMSDAT.NMTSer) - ( UWORD )(&NMSDAT.NMStatus);
+
+	memcpy( pSendData, ( UBYTE* )&NMSDAT.NMStatus, statlen );
+                
+	// Update pointer
+	pSendData += statlen;
+        pSendData += 3;
+                
+        memcpy(pSendData, LastInitDate, 3);
+        pSendData += 3;
+
+        retval = True;
+	return ( retval );
+
+    default:
+        break;
+    }
+
+	pSendData += 2;				// Skip the two-byte total length field  
+		// Skip the two-byte total length field  	
+
+#ifdef	MAKE_KIB	
+
+        retval |= B63_MoveTableId90( );
+
+        retval |= B63_MoveTableId95( );
+#endif
+
+	retval |= B63_CVV2(  );
+
+        retval |= B63_BatchUpload( );
+
+	retval |= B63_Hostref(  );	
+
+	retval |= B63_Addprmpt(  );
+
+	retval |= B63_BatNum(  );			
+        
+        retval |= B63_InstalRefund( );
+
+	if ( B63_Len )
+	{
+		if ( 100 > B63_Len )
+		{
+			*pB63Len = 0;
+			*( pB63Len + 1 ) = BinBcdB( ( UBYTE ) B63_Len );
+		}
+		else
+		{
+			*( pB63Len ) = BinBcdB( ( UBYTE ) ( B63_Len / 100 ) );
+			*( pB63Len + 1 ) = BinBcdB( ( UBYTE ) ( B63_Len % 100 ) );
+		}
+	}
+	else
+	{
+		// Set the pointer back since no Bit 63 data 
+		pSendData -= 2;
+	}
+
+	return retval;
+}
+//-----------------------------------------------------------------------------
+//  MovMAC			Format Bit 64 Hypercom data.
+//  Parameters:
+//  Global Inputs:
+//  Returns:        Bool            True  - Data exists,
+//                                  False - no data in buffer.
+//  Notes:          Destination buffer pointed by pSendData
+//-----------------------------------------------------------------------------
+static Bool MovMAC( void )
+{
+#ifdef MAKE_ISOMAC
+	int i;
+
+	UBYTE PinMacId;					// Mac index.
+	UBYTE *pMacKeyPtr;				// Pointer to MAC key.
+	UBYTE *pMacDataPtr;				// Pointer to data to be MAC'ed.
+	UWORD MacDataLength;			// Length of data to be MAC'ed.
+	UBYTE PinData[8];				// Used for passing data to/from pinpad.
+
+    // Check if MAC calculation enabled
+    if ( !( ( TRREQ.TRAQPTR->AQOPT4 ) & AQ4_MAC ) )
+        return False;
+
+	// Set data pointer
+	pMacDataPtr = SENDBUF + TPDU_SZE;
+
+	// Data length
+	MacDataLength = pSendData - SENDBUF - TPDU_SZE;
+
+	// update bitmap before mac calculation, or it will be WRONG!
+	*( pMacDataPtr + 9 ) |= B88_MAC;
+
+	// Set Master Key ID
+	PinMacId = TRREQ.TRAQPTR -> AQMACID;
+
+    // Pointer to encrypted MAC key
+	pMacKeyPtr = TRREQ.TRAQPTR -> AQMACKEY;
+	
+    // Display info message.
+	ShowInfoMsg ( PleaseWait, N_Pinpad );
+	
+    // Calculate MAC
+	if( !PinGenMac( PinMacId, pMacKeyPtr, pMacDataPtr, MacDataLength, PinData ) )
+	{
+        // calculation was unsuccessful
+        memset(pSendData, 'E', 8);
+        pSendData += 8;
+	} 
+    else 
+    {
+        for (i = 0; i < 4; i++) 
+        {
+            unsigned char n = (PinData[i] >> 4) & 15;
+            *pSendData++ = n + (n < 10 ? '0' : 'A' - 10);
+            n = PinData[i] & 15;
+            *pSendData++ = n + (n < 10 ? '0' : 'A' - 10);
+        }
+	}
+
+    // Restore Cancel allowed 
+//    FlagHostCntl = tmpFlagHostCntl;
+
+	return True;
+
+#else // MAKE_ISOMAC
+
+    // no MAC in any conditions
+	return False;
+
+#endif	// MAKE_ISOMAC
+}
+
+
+// @@AA Onemli hata .. Duzeltildi.. 14-03-06
+extern Bool MovCurrency(void)		
+{
+    UBYTE tmp[3], temp2[4];
+
+    memset(tmp, 0x00, 3);
+    memset(temp2, 0x00, 4);
+
+    if(!NullComp((char *)TCONF.TCCURRCODE, 3)) 
+    {	
+                   
+      memcpy(tmp, TCONF.TCCURRCODE, 2); 
+      /*temp2[0] = '0';
+      MoveIt(&temp2[1], TCONF.TCCURRCODE, 3);
+      AscHex(tmp, (char *)temp2, 2);*/ 
+      MovGen(tmp, 2);
+      return True;
+    } 
+    else 
+      return False; 
+    		
+   
+}
+
+static void SetReversalMessageType( UBYTE *pData, UBYTE transID )
+{      
+   switch( transID ) 
+   {
+   case REFUND:
+   case INSTAL_REFUND:
+   case CLOSED_PREAUTH:
+       pData[0] = 0x02;
+       pData[1] = 0x00;
+       break;
+
+   case PREAUTH:
+       pData[0] = 0x01;
+       pData[1] = 0x00;
+       break;
+
+   default:
+       pData[0] = 0x04;
+       pData[1] = 0x00;
+       break;
+   }
+}
+
+
+

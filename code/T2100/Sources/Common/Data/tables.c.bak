@@ -1,0 +1,394 @@
+
+//=============================================================================
+//                      Hypercom Inc
+//                      (c) Copyright 2002
+//=============================================================================
+//
+// Module overview:             tables.c
+//      Validate for Tables
+//
+//=============================================================================
+
+#include "string.h"
+
+#include "basictyp.h"
+#include "sdk.h"
+#include "sdkos.h"
+#include "sdkio.h"
+#include "sdkmem.h"
+#include "sdktime.h"
+
+#include "utllib.h"
+
+#include "defines.h"
+#include "transdef.h"
+#include "struct.h"
+#include "appdata.h"
+#include "comdata.h"
+#include "fixdata.h"
+#include "SIM_Init.h"
+#include "rs232tab.h"
+#include "perfutil.h"
+#include "tabutil.h"
+#include "text.h"
+
+#ifdef MAKE_EMV
+#include "emv_l2.h"
+#include "emv2_pk.h"
+#include "emvtabs2.h"
+#endif // MAKE_EMV
+
+#include "tables.h"
+
+//=============================================================================
+// External variables / declarations
+//=============================================================================
+
+// Public functions defined in this module
+
+// Public from other modules
+#ifdef	MAKE_EMV
+extern void Val_EMVTabs1( void );
+#endif	//MAKE_EMV
+
+//=============================================================================
+// Private defines and typedefs
+//=============================================================================
+
+
+
+//=============================================================================
+// Private function declarations
+//=============================================================================
+
+static void CheckNMS( void );
+
+//=============================================================================
+// Public data definitions
+//=============================================================================
+
+
+//=============================================================================
+// Private data definitions
+//=============================================================================
+
+
+//=============================================================================
+// Public function definitions
+//=============================================================================
+
+//-----------------------------------------------------------------------------
+//  CheckTables     Check all Data Tables for consistency, 
+//                  and format them if necessary
+//
+//  Parameters:     None.
+//
+//  Global Inputs:  None.
+//
+//  Returns:        Nothing.
+//
+//  Notes:          None.
+//
+//-----------------------------------------------------------------------------
+
+void CheckTables( void )
+{
+//============================================================================
+//
+// Validate tables and force "init required" if anybody is bad
+//
+//============================================================================
+
+	// NMS Table 
+	CheckNMS(  );
+
+	// Validate Terminal Table 
+	if ( !ValidateTable( (UBYTE *)&TERMFMT, (UBYTE *)&TERM,
+                            SZTERM, (UBYTE *)&TERMLRC ) )
+	{
+		// Bad; so initialize the Terminal Table 
+		InitTermTab(  );
+	}
+
+	// Validate Dial Backup Table 
+	if ( !ValidateTable( &DialBackupFMT, &DBInitPrefferedService,
+                            sizeof(DBInitPrefferedService)+ sizeof(DBNmsPrefferedService)+ 
+                            sizeof(DBInitTel)+ sizeof(DBNmsTel)+ 
+                            sizeof(DBModem)+ sizeof(DBCon)+  
+			    sizeof(DBPPPMode)+ sizeof(DBModemATCommand)+
+                            sizeof(DBLogonUsername)+ sizeof(DBLogonPassword)
+			    , &DialBackupLRC ) )
+	{
+		// Bad; so initialize the Dial backup Table 
+		memset ( &DBInitPrefferedService, 0, 1 );
+		memset ( &DBNmsPrefferedService, 0, sizeof(DBNmsPrefferedService) );
+		memset ( &DBInitTel, 0, sizeof(DBInitTel) );
+		memset ( &DBNmsTel, 0, sizeof(DBNmsTel) );
+		memset ( &DBModem, 0, sizeof(DBModem) );
+		memset ( &DBCon, 0, sizeof(DBCon) );
+		memset ( &DBPPPMode, 0, sizeof(DBPPPMode) );
+		memset ( &DBModemATCommand, 0, sizeof(DBModemATCommand) );
+		memset ( &DBLogonUsername, 0, sizeof(DBLogonUsername) );
+		memset ( &DBLogonPassword, 0, sizeof(DBLogonPassword) );
+	}
+
+//-----------------------------------------------------------------------------
+// TNMS downloaded tables
+//-----------------------------------------------------------------------------
+	// Terminal Configuration table 
+	if ( !ValidateTable( &TCFMT, ( UBYTE * ) & TCONF, TCSZE, &TCLRC ) )
+        {
+#ifdef MAKE_SMARTINIT
+        memset ( TCONF_HASH, 0, SM_HASH_LEN );
+        memset ( MAIN_HASH, 0, SM_HASH_LEN );
+#endif // MAKE_SMARTINIT
+        }
+
+        if ( !ValidateTable( &TCAPFMT, ( UBYTE * ) & TCAP, TCAPSZE, &TCAPLRC ) )
+        {
+        
+        }
+      
+
+    // Card Issuer Tables
+	if ( !ValidateTable( &ISFMT, ( UBYTE * ) ISTAB, ISSZE * ISMAX, &ISLRC ) )
+    {
+#ifdef MAKE_SMARTINIT
+        memset ( ISS_HASH, 0, SM_HASH_LEN );
+        memset ( MAIN_HASH, 0, SM_HASH_LEN );
+#endif // MAKE_SMARTINIT
+    }
+
+  	// Card Acquirer Tables
+	if ( !ValidateTable( &AQFMT, ( UBYTE * ) AQTAB, AQSZE * AQMAX, &AQLRC ) )
+    {
+#ifdef MAKE_SMARTINIT
+        memset ( ACQ_HASH, 0, SM_HASH_LEN );
+        memset ( MAIN_HASH, 0, SM_HASH_LEN );
+#endif // MAKE_SMARTINIT
+    }
+
+  	// Visa 2 Tables
+	if ( !ValidateTable( &V2FMT, ( UBYTE * ) V2TAB, V2SZE * V2MAX, &V2LRC ) )
+    {
+#ifdef MAKE_SMARTINIT
+        memset ( V2_HASH, 0, SM_HASH_LEN );
+        memset ( MAIN_HASH, 0, SM_HASH_LEN );
+#endif // MAKE_SMARTINIT
+    }
+
+	// Descriptor Tables 
+	if ( !ValidateTable( &DSFMT, ( UBYTE * ) DSTAB, DSSZE * DSMAX, &DSLRC ) )
+    {
+#ifdef MAKE_SMARTINIT
+        memset ( DESC_HASH, 0, SM_HASH_LEN );
+        memset ( MAIN_HASH, 0, SM_HASH_LEN );
+#endif // MAKE_SMARTINIT
+    }
+
+    // Card Range Tables
+  	if ( !ValidateTable( &CRFMT, ( UBYTE * ) CRTAB, CRSZE * CRMAX, &CRLRC ) )    
+    {
+#ifdef MAKE_SMARTINIT
+        memset ( CARD_HASH, 0, SM_HASH_LEN );
+        memset ( MAIN_HASH, 0, SM_HASH_LEN );
+#endif // MAKE_SMARTINIT
+    }
+
+	// Idle Screen Button Table
+    if ( !Val_IBtab () )
+    {
+#ifdef MAKE_SMARTINIT
+        memset ( IDLB_HASH, 0, SM_HASH_LEN );
+        memset ( MAIN_HASH, 0, SM_HASH_LEN );
+#endif // MAKE_SMARTINIT
+    }
+
+	// IcePak Configuration Table 
+	if ( !ValidateTable( &IPFMT, ( UBYTE * ) & IPTAB, IPSZE, &IPLRC ) )
+    {
+#ifdef MAKE_SMARTINIT
+        memset ( IPAK_HASH, 0, SM_HASH_LEN );
+        memset ( MAIN_HASH, 0, SM_HASH_LEN );
+#endif // MAKE_SMARTINIT
+    }
+
+	// Additional prompt Tables  
+	if ( !ValidateTable( &APFMT, ( UBYTE * ) APTAB, APSZE * APMAXENT, &APLRC ) )
+    {
+#ifdef MAKE_SMARTINIT
+        memset ( ADPR_HASH, 0, SM_HASH_LEN );
+        memset ( MAIN_HASH, 0, SM_HASH_LEN );
+#endif // MAKE_SMARTINIT
+    }
+
+  	// PDN Table
+  	if ( !ValidateTable( &PDNFMT, ( UBYTE * ) PDNTAB, PDNSZE * PDNMAX, &PDNLRC ) )    
+    {
+#ifdef MAKE_SMARTINIT
+        memset ( PDN_HASH, 0, SM_HASH_LEN );
+        memset ( MAIN_HASH, 0, SM_HASH_LEN );
+#endif // MAKE_SMARTINIT
+    }
+
+  	// Receipt footers Table
+  	if ( !ValidateTable( &FTFMT, ( UBYTE * ) & FTTAB, FTSZE, &FTLRC ) )    
+    {
+#ifdef MAKE_SMARTINIT
+        memset ( FOOT_HASH, 0, SM_HASH_LEN );
+        memset ( MAIN_HASH, 0, SM_HASH_LEN );
+#endif // MAKE_SMARTINIT
+    }
+
+	// IP Connect Table
+	if ( !ValidateTable( &IPCFMT, ( UBYTE *) & IPCTAB, IPCMAX * IPCSZE, &IPCLRC ) )
+    {
+#ifdef MAKE_SMARTINIT
+        memset ( IPC_HASH, 0, SM_HASH_LEN );
+        memset ( MAIN_HASH, 0, SM_HASH_LEN );
+#endif // MAKE_SMARTINIT
+    }
+
+
+//-----------------------------------------------------------------------------
+// EMV tables
+//-----------------------------------------------------------------------------
+#ifdef MAKE_EMV
+
+    // Validate EMV key storage
+	EMVL2_ValidateKeyStore( );
+    
+    // CA Public Key table
+  	if ( !ValidateTable( &PKFMT, (UBYTE *)&PublicKeyStore, KEYSZE*KEYMAX, &PKLRC ) )    
+    {
+#ifdef MAKE_SMARTINIT
+        memset ( CAPK_HASH, 0, SM_HASH_LEN );
+        memset ( MAIN_HASH, 0, SM_HASH_LEN );
+#endif // MAKE_SMARTINIT
+    }
+
+    // Revocation key table
+  	if ( !ValidateTable( &RKFMT, (UBYTE *)&RevocationTable, REVSZE, &RKLRC ) )    
+    {
+#ifdef MAKE_SMARTINIT
+        memset ( REVC_HASH, 0, SM_HASH_LEN );
+        memset ( MAIN_HASH, 0, SM_HASH_LEN );
+#endif // MAKE_SMARTINIT
+    }
+
+    // Key expiry table
+  	if ( !ValidateTable( &KEFMT, (UBYTE *)&KeyExpiryTable,  KEYMAX*KEYEXPSZE, &KELRC ) )    
+    {
+#ifdef MAKE_SMARTINIT
+        memset ( KEXP_HASH, 0, SM_HASH_LEN );
+        memset ( MAIN_HASH, 0, SM_HASH_LEN );
+#endif // MAKE_SMARTINIT
+    }
+
+	// ICC Table 
+  	if ( !ValidateTable( &ICCFMT, (UBYTE *)ICCTAB, ICCSZE*ICCMAX, &ICCLRC ) )
+    {
+#ifdef MAKE_SMARTINIT
+        memset ( ICC_HASH, 0, SM_HASH_LEN );
+        memset ( MAIN_HASH, 0, SM_HASH_LEN );
+#endif // MAKE_SMARTINIT
+    }
+
+    // TAID Table
+    if ( !ValidateTable( &TAIDFMT, (UBYTE *)TAIDTAB, TAIDSZE*TAIDMAX, &TAIDLRC ) )
+    {
+#ifdef MAKE_SMARTINIT
+        memset ( TAID_HASH, 0, SM_HASH_LEN );
+        memset ( MAIN_HASH, 0, SM_HASH_LEN );
+#endif // MAKE_SMARTINIT
+    }
+
+    // Additional Tags Table
+#ifdef SUPP_ADDICCTAGS
+  	if ( !ValidateTable( &ADTFMT, (UBYTE * ) ADTData, EMVL2_ADT_MAX * sizeof(ADTRecType), &ADTLRC ) )
+    {
+#ifdef MAKE_SMARTINIT
+        memset ( ADTG_HASH, 0, SM_HASH_LEN );
+        memset ( MAIN_HASH, 0, SM_HASH_LEN );
+#endif // MAKE_SMARTINIT
+    }
+#endif // SUPP_ADDICCTAGS
+
+    
+#endif // MAKE_EMV
+
+
+//-----------------------------------------------------------------------------
+// Internal tables (no TNMS downloaded)
+//-----------------------------------------------------------------------------
+
+    // Text on 4th line of  receipt/report header (Fun_26) 
+	ValidateTable( &USRDFMT, ( UBYTE * ) USRDTAB, USRDSZE, &USRDLRC );
+
+	// Batch Control Tables 
+	ValidateTable( &BATFMT, ( UBYTE * ) & BATTAB, BATSZE * AQMAX, &BATLRC );
+
+	// Terminal Flag Indicator Table 
+	ValidateTable( &TFFMT, ( UBYTE * ) & TFTAB, TFSZE, &TFLRC );	
+
+        // Local Parameters Table
+	if (!ValidateTable ( &LOCFMT, ( UBYTE * ) & LOCTAB, LOCSZE, &LOCLRC  ))  
+	{
+		// Set Idle Button initialization to Enable 
+		LOCTAB.IBTAB_INIT = True;
+
+		// Set default language to LOCTAB.LANGID
+        SetLanguageDefault ( ); 
+
+		SetLOCTabLRC(  );
+	}
+
+//============================================================================
+//
+// Validate local tables using ValidateTable_NC method -
+//  DO NOT force "init required" if anything is bad
+//
+//============================================================================
+
+    // RS232 configuration table
+	if ( !ValidateTable_NC( &RSFMT, (UBYTE *)&RSTAB, RSSZE, &RSLRC ) )
+	{
+		TableInitRS232 ();
+	}
+	
+    // History/Performance Report Tables
+    Valrptab ();	
+
+}
+
+//=============================================================================
+// Private function definitions
+//=============================================================================
+
+//-----------------------------------------------------------------------------
+//  CheckNMS        Check the NMS Table and format if required.
+//
+//  Parameters:     None.
+//
+//  Global Inputs:  None.
+//
+//  Returns:        Nothing.
+//
+//  Notes:          None.
+//
+//-----------------------------------------------------------------------------
+
+static void CheckNMS( void )
+{
+	// Check if the NMS Table needs formatting 
+	if ( 0x55 != NMSFMT )
+	{
+		// Yes; clear the NMS Table 
+		memset( ( UBYTE * ) & NMSDAT, 0, NMSZE );
+
+		// Mark as formatted 
+		NMSFMT = 0x55;
+	}
+}
+
+

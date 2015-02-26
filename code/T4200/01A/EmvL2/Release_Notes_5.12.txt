@@ -1,0 +1,7 @@
+5.12 - Release notes ARM 9 x4xxx optimum family
+=======================================================
+
+1. New function added - EMVL2_DeleteCandidates()
+2. New Kernel config bitmap added
+   EMVL2_RESEL - reselect parent directory 
+   EMVL2_DOPSE - do PSE processing or not

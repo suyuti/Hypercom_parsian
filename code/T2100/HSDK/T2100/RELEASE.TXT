@@ -1,0 +1,1057 @@
+Version I38
+
+Corrected error handling in case of failure on MSR tracks.
+
+Version H38
+
+Updated Doxygen comments.
+
+Version G38
+
+Added read buffer clenup code for HEMS protocol. Should fix some cases when
+ HEMS based transports hanged in idle state.
+Fixed bug in journal processing introduced by mistype in F38.
+
+Version F38
+
+Replaced patch set with latest release from Conexant.
+hwLoadPatchV90.cpp is now copied to release folder to control patches
+ required in build. Default build contains all patches.
+Added HW_LoadPatchV22CPP, HW_LoadPatchV22, and HW_GetPatchTypeV22 calls.
+Removed loading patch from default Conexant modems init.
+
+Version E38
+
+It is now possible to request Ethernet status during communications.
+Removed latest patches to save space.
+
+Version D38
+
+Removed US version of latest patch to save space. The patch itself kept in
+ library for use by applications if required.
+
+Version C38
+
+Handle HC_ConexantPatchID more accurately.
+
+Version B38
+
+Added HW_LoadPatchV90CPP call. Normally it is used internally.
+
+Version A38
+
+Added TERMModemPatch field to TERM table.
+Added support for the multiple V90 modem patches (see enum patchV90ID,
+ HW_LoadPatchV90, and HW_GetPatchTypeV90 in hwconexant.h).
+Added support for the new HC_ConexantPatchID V90 modem configuration parameter.
+Added country code and modem patch ID to the HEMS protocol.
+Default V90 modem patch is set to the one used in version 125.
+
+Version 137
+
+Added support for canceling write requests.
+Added modem mode 46 (transparent Bell212a).
+
+Version H37
+
+Corrected broken packets handling in PPL protocol.
+
+Version G37
+
+Changed CRC16 algorithm to CCITT version for PPL protocol as it must be.
+crc16_ccit and crc16_ccit_r renamed to crc16_ccitt and crc16_ccitt_r
+ correspondingly. Added macroses for backward compatibility.
+
+Version F37
+
+SCR#22901: Added support for SAM slots connected to ARM on P2100.
+SCR#22433: Added support for the RAW sockets. Incoming UDP, TCP and ICMP
+ requests could not be received by design (it is not a bug).
+Changed timer 2 value to 5 sec. for GS1/HFT protocols (it was uninitialized
+ before).
+Once again corrected clock() routine return value (now it is interrupt safe).
+Made some corrections to PPL protocol implementation (by EMEA team request).
+
+Version E37
+
+Added Hong Kong modem patches by default:
+ Patch_EIS_2C_3B_RAM_HK_2cycbusy_1secintrdelay.ptc and
+ PatchC20206_HK_2cycbusy_1secintrdelay.S37.
+SCR#22629: Added logic to generate new HEMS socket address for each connection.
+Reduced number of retries on patch loading/baud rate setup to 3 on each speed.
+SCR#22822: Added return values for the HW_LoadPatch, HW_LoadPatchCPP,
+ HW_SetFixedBaudRateCPP and HW_SetFixedBaudRate functions.
+SCR#22715: Increased delay for DCD drop waiting for GSM modem to 10 sec.
+SCR#22791: Changed default retry value for Ethernet packets from 5 to 3.
+Added protection against misuse of HypCTcpIp class with zero IP.
+
+Version D37
+
+Corrected RI signal reading.
+
+Version C37
+
+SCR#20730: Corrected file allocation algorithm on SRAM.
+SCR#22642: Fallback patch loading speed not after first OK not received but
+ after retry exceed only.
+Added ring indicator monitoring for RS1 port on T/M/D2100.
+Copy proper binaries to H2200 Release build.
+
+Version B37
+
+Corrected algorithm of patch loading to not only try to get "Download
+ initiated.." message multiple times but also try to load patch multiple
+ times.
+
+Version A37
+
+SCR#22224: More corrections to processing of FDR protocol. Added Doxygen
+ comments.
+SCR#21433: Added Nevada SPDH protocol.
+SCR#22337: Fixed problem with opening serial port via Z80-compatible API.
+
+Version N25
+
+SCR#22224: Corrected processing of FDR protocol.
+SCR#22276: Corrected SSL without hex length handling in case of handling
+ through the HypCTcpIp class.
+Standard patches (from K25) for V22/V90 modems returned back.
+
+Version M25
+
+Added experimental patch for V22 modem.
+Corrected family type return value in the TCP/IP stack.
+Corrected detach sequence for the select() in case communications dropped.
+SCR#22145: Text data pending in the buffer before printing graphics and closing
+ port are now sent to the firmware. This should prevent losing of ESC
+ sequencies sent to the firmware in case they not followed with line feed /
+ paper cut.
+
+Version L25
+
+SCR#21806: Added tag Serial Line Mode to HEMS protocol with D2100.
+Added experimental patch for V90 modem that fixes some V29 issues.
+Added enumeration PatchType and variables CX84100patchType and CX86500patchType
+ to hwconexant.h. These two variables should be used as parameter to
+ HC_LoadConexantPatch for default patches, the custom patches should specify
+ proper value from PatchType to make proper recalculation for HC_ToneWaitTime.
+
+Version K25
+
+Corrected DHCP initial time on P2100 to not use TERM table.
+Corrected internal definitions for the data declared in fixdata_app.h.
+SCR#21887: Removed check for "T" value must be equal to 1 for all TDn ATR bytes
+ (where n > 2).  Newer cards are using the TA4 byte to indicate their class (A
+ or B) for multi-voltage terminals.  When this byte is present in the ATR, the
+ TD3 byte must contain a "T" value of 15 (F), which was causing the terminal to
+ reject the card.
+
+Version J25
+
+Changed prototype for inet_ntoa() to conform IEEE Std 1003.1.
+Error numbers without WSA prefix was removed from sockets.h in favour of
+ standard errno.h.
+Corrected value returned by clock(). It was 10 times less than it should.
+Enabled sending of unknown ESC commands to the printer firmware directly when
+ opened in graphical mode.
+Added limited version of select() call for use with sockets.
+Added few typedefs to better match Winsock API.
+Added netinet/in.h include.
+
+Version I25
+
+When PPP packetizing mode is selected, return incomplete packets on upper level
+ on intercharacter timeout. This prevents garbaging log with "len=0" RX
+ message.
+Corrected sending of 0x00 through the CAT33 protocol (does not start working
+ in F25).
+
+Version H25
+
+SCR#21151: Added X.509 parser.
+Added missed brackets into SSL incoming buffer handling code.
+
+Version G25
+
+SCR#20358: Corrected initialization of variable used during uncompression
+ image.
+SCR#21136: Reverted back to +++ATH0 disconnect scheme since dropping DTR cause
+ modem to disconnect longer.
+
+Version F25
+
+Corrected error values for SOCKET type. Corrected sign in SOCKET_ERROR
+ definition.
+On PIN and PRT devices changed setting for HC_ErrorChar to 0x80, so it is
+ possible to transmit binary zeroes through the CAT33 and like protocols in
+ 7E1 mode.
+SCR#21018: Improved stability of V.29 implementation.
+
+Version 125
+
+Version bump only. No changes.
+
+Version E25
+
+Fixed SCR#20390, SCR#20933: EMV compliance flag is now properly sent to
+ SCR controller. Modified prototype to the ScrdPowerOn() to contain EMV
+ compliance flag.
+
+Version D25
+
+Fixed SCR#20910: Statuses are now properly reported for ACS multiconnection
+ mode.
+Corrected return value for sockets in case socket subsystem is not initialized.
+
+Version C25
+
+Fixed big problem in free space verification procedure. When the filesystem
+ become full the free space returned by fspaceavail() was reported as -1, so
+ there was big chance to lost all data on the SRAM file system.
+Increased delay between calls to 250 ms.
+
+Version B25
+
+Fixed SCR#20204. The data received before FIN should now be preserved for
+ application (not tested).
+Fixed SCR#20559. Time to hold DTR low is increased to 150 ms, while BlueTooth
+ modem is configured to require DTR be low for 100 ms.
+Fixed SCR#20599. ENQ is now not mandatory before second auth transaction in
+ Euroconex modem modes.
+Fixed SCR#20505. The socket is now closed and recreated before reuse when
+ two IP addresses specified to HSDK for connect and first one is not available
+ (also requires fix to the D2100 application).
+SCR#21205: Removed check of HC_ModemProto in HypCModemBTTDK, so it now can be
+ passed to D2100.
+
+Version A25
+
+Added protection against formatting or opening FFS in supervisor mode.
+Corrected flow control setting (disable) for HEMS modules.
+Added TERMMKAutoErase field to TERM table.
+Finally removed all __packed definitions from all HSDK header files. It is
+ obsolete definition for compatibility with ADS and since ADS is no longer
+ supported it was cleaned out. The application receiving error/warnings can
+ safely define __packed to empty or just remove it from application source
+ code.
+
+Version 124
+
+Corrected release build of H2200 HSDK (the P2100 was released instead).
+Fixed SCR#20153: Increased delay for retransmit on POS MiniNac to 3 secs.
+Fixed disconnect message in HEMS reliable/multiconnection mode.
+HSDK merged with Optimum X tree.
+Removed +++ATH0 sending before disconnect and added &D2 to the initialization
+ line before connect for the GSM modem with DTR signal.
+Fixed problem with quick doing of write requests to APACS protocol.
+Fixed releasing of sending of single byte Hypercom Visa protocol.
+Corrected sendig of DLE-EOT/EOT in Visa-inherited protocols (Visa, CAT33,
+ APACS).
+
+Version G21
+
+More #ifdef's added to sdkio.h to better match with implemented devices.
+SCR#19812: GSM now faster disconnects when using modem modes with parity.
+SCR#18846: Added transparent transport class with parity verification / parity
+ bit stripping.
+Corrected order in the COMSCCMODE enum to match with
+ HypCSerialPort.hpp.
+
+Version F21
+
+SCR#19585: Voice dialing algorithm changed to ICE-like processing
+ with the HANDSETUP status.
+SCR#19095: Increased TCP window size to MTU-40.
+SCR#17585: Added configuration option to CAT33 to include STX in LRC (IECI
+ protocol).
+SCR#17585: Added SIBS key GUN protocol.
+Permanently added test case for RSAEncrypt_Ext() in SSL library (see
+ SSLInitMutual description).
+SCR#19607: Added MODE command to chat script. The possible values are 8N1,
+ 7E1 and 7O1. The rest of the script till the next MODE command will be
+ processed in corresponding mode (there's no need to switch mode for PAUSE,
+ DELAY, etc.).
+SCR#19628: Added pinpad mode of CAT33 to PIN driver.
+SCR#19606: Added possibility to send 1-byte length control characters as is
+ when communication is in Hypercom Visa mode.
+
+Version E21
+
+Increased delay for the Ethernet/POS LAN modules to the value used in 120.
+Fixed SCR#19077. Long TCP/IP packets are now splitted into multiple
+ parts according to MTU/MRU of the link.
+SDKLib corrected to not set error if port is rewound during I/O.
+SDKLib corrected to reset error condition for PIN and PRT devices
+ on close.
+Fixed SCR#19502. Improved chat script synchronization.
+Improved stability of PPP in case of frames with bad CRC.
+Added possibility to read firmware version of HEMS module.
+Added COM_PREINIT command to COM device interface in IOCS emulation layer
+ (alike to dial commands it requires DIALDATA to be passed, but only some
+ fields will be taken to consideration).
+keys.h converted to enums from defines.
+Increased SSL buffer size.
+
+Version D21
+
+Fixed Ethernet/POS LAN initialization broken since A21 (SCR#19354, SCR#19355).
+Added test case for RSAEncrypt_Ext() in SSL library (will be removed in next
+ version, it is for testing purposes only).
+
+Version C21
+
+Fixed module type in resetting GSM modem HW1 if DCD was not dropped after ATH0.
+Rewritten Visa (all flavours), Apacs, FDR, POS MiniNAK, CAT33, DUKPT, SPDH,
+ PPL, GS1, HFT and HEMS-based protocols to prevent hanging (SCR#18850,
+ SCR#19110).
+Added support for modem preinitializaton.
+Fixed redial statistics calculation.
+Added Doxygen friendly comments to SDK Library.
+
+Version B21
+
+Hash function calls in SslLib replaced with corresponding EFTOS Cryptolib
+ calls.
+SSL mutual authentication added to SslLib and HPOSFC.
+Removed HypCPosTransPad class files (was not used). 
+SSLLib is temporary disabled on P2100 and H2200.
+
+Version A21
+
+Fixed ICMP processing and IP checksum calculation
+Removed HypCTransparent class files.
+Added support for GSM/V90 dial backup module.
+
+Version 120
+
+Re-release of M20 with version change to production.
+
+Version M20
+
+Fixed source for the PRT_PROTOPT command.
+
+Version L20
+
+Added ACS status support.
+
+Version K20
+
+Moved all supported functionality of pindev.inc to pindev.h and made pindev.inc
+ wrapper.
+Fixed statistic counters updating.
+Removed external keyboard support code to reduce size (was not supported
+ at protocol level anyway).
+Corrected missed definitions in some headers.
+More Doxygen friendly comments has been added.
+
+Version J20
+
+Moved all supported functionality of prtdev.inc, siodev.inc, comdev.inc,
+ drivdef.inc, osopts.inc, sccdev.inc to corresponding .h files and made .inc
+ files simple wrappers. Removed hyptypes.h, devopts.h and scrdev.inc as
+ useless/not supported stuff.
+Fixed hang of PPP session while the terminal not send packets and media is
+ disconnected (SCR#18598).
+Added TM1_HIDE_LOGO bit definition.
+Cleaned up header files from obsolete stuff. More Doxygen friendly comments
+ has been added.
+Fixed setting of HEMS mode in D2100 communication.
+
+Version I20
+
+Removed paddev.inc, rs2dev.inc, rs3dev.inc, tgidev.inc, tgiodev.inc, z8idev.inc
+ as not supported stuff.
+Enabled processing of incoming broadcast ARP messages on P2100.
+Fixed memory leak on sending ARP packets.
+Call to HW_InitTimers is removed from InitTimers since it done from HW_Start as
+ well.
+Corrected termination of HEMS reliable mode implementation to prevent
+ hanging.
+
+Version H20
+
+Removed image.h as not supported signature capture related header.
+Added Hypercom helper layer for flash file system.
+Tune of FFS code to reduce memory footprint.
+Added protection for simultaneous write to FFS from different threads.
+Headers for UtilLib, vTlib and ScrdLib are now better documented with Doxygen.
+Some code was cleaned up from obsolete functions: in particular, SDK_RTC* and
+ SDK_PrintImage are now more clear and stright-forward.
+Use "journal.jrn" as default journal name.
+Removed signature related functions from vTLib.
+Fixed _gettimeofday call which is used as base of ANSI C time related
+ functions.
+Set the deprecated attribute to the deprecated functions. If you do not want to
+ receive warning - add DEPRECATED= to your project file preprocessor
+ definitions.
+
+Version G20
+
+Removed relative path to the shrdconf.h from the TFFS includes.
+
+Version F20
+
+Added flash file system from Tevero.
+Fixed SCR#16831: SDLC now can handle information frames that not acknowledge
+ sent frame.
+Fixed problem with V.29 hosts which not understand RD: after 3 sec. timeout
+ connection will be dropped from terminal side.
+Added missed tags to D2100 Control Link packet.
+Fixed memory leak in TCP/IP top level class.
+
+Version E20
+
+Increased buffer sizes in HSDK to 4096 bytes for PIN and PRT devices.
+
+Version D20
+
+Fixdata compiled without optimization, so order of variables matches to the
+ original.
+
+Version C20
+
+EFTOS dynamic timers now used by HSDK instead of hardcoded TIMER1 and TIMER2.
+Minor optimizations by size.
+HSDK is now build with optimization by size in Release build.
+
+Version B20
+
+Fixed uninitialized command status in ScrdSendCmd.
+Added modem modes 21 and 22 (FDR protocol).
+Reworked code that switched modem to 8N1 mode during
+ AT command sending / PAD logon.
+
+Version A20
+
+For GSM and Bluetooth modules force 8N1 mode for modem while sending AT
+ commands/PAD logon since modems does not properly handle 7E1.
+Fixed SDK_ComVoiceDial operation.
+Static variables was removed from some PPP and TCP/IP code where possible.
+Fixed problem with timeouts on new SEC on P2100.
+Added support for incoming TCP connections.
+Fixed bug in closing of PRT and PIN devices.
+Fixed incorrect processing of write complete event of SDK_PinWrite.
+Do not transfer nul-strings through the ACS link.
+Added multiconnection support for ACS.
+Fix busy detection in blind dialing.
+
+Version 11S
+
+Fixed SCR#17281: It is now possible to print either 192 or 384 dot width
+ images.
+It should be possible to display and print images padded with spaces now.
+Added support for non-blocking write operation on PRT and PIN devices.
+Fixed SCR#17422: All ESC-sequences of form ESC <letter> <parameter> not
+ processed by HSDK are now passed to printer firmware.
+Conexant patch for V90 modem is replaced with release version (no functionality
+ changes).
+Fixed SCR#17396: Incorrect processing of PPP frame separated by single flag
+ 0x7E.
+
+Version 11R
+
+Added new modem patch from Conexant for V90 modem.
+
+For better stability of V.29 the extra 200 ms delay is added before first
+ transmission.
+
+Version 11Q
+
+Modem commands split into parts as workaround to Conexant problem when modem
+ ignores end of long command line.
+Added modem modes 31 (SDLC, V22), 32 (SDLC, Bell212a), F1 (SDLC, V22, with
+ Total Control Fix).
+Removed modem mode F0 as useless.
+If SDK_ComConfig passed 0xff as country code the AT+GCI command will not be
+ sent to modem.
+
+Version 11P
+
+Filesystem not use handles 0, 1 and 2 any more, any access to them will return
+ error. This is done to prevent problems with stdin, stdout and stderr streams.
+remove() and unlink() functions now return good status if called with
+ nonexisted filename as argument.
+The order and format of AT commands was changed to be exactly the same as in
+ version 113.
+
+Version 114
+
+Cosmetic: EFTOS version was not properly reported by previous release, it
+ was built with EFTOS 9.25 and showed 9.24.
+Set up country code right after ATZ because of conflict with other parameters.
+It is now possible to disable setting pulse ratio using SDK interface to COM
+ device by setting PulseRatio field to invalid value (not 0 or 1).
+Some particular modems do not understand long command lines.
+Initialization string now splitted in multiple shorter AT commands.
+Added CountryCode field to TERM table.
+
+Version 113
+
+Added support for the country mode in analog modems on SDKLib and HWLib level
+ (SDK_ComConfig, Type = cc_COUNTRYCODE, Data.Val = country code).
+Added support for ISDN parameters for ACS (D2100).
+
+Version 11O
+
+Added support for the country mode in analog modems (HC_CountryCode).
+Delay before flush in the analog modems changed from 300 ms delay to 600 ms.
+ This will allow to not to lose some dial attempts.
+Fixed problem with disconnect delay of PPP link when disconnect is originated
+ on terminal side.
+Modem mode 00 now again include AT%C0 command.
+Added modem mode F0. It is analog of 00 but without AT%C0 command.
+
+Version 11N
+
+Added modem mode F6.
+Removed modem mode F0.
+F6 and F2 modem modes now should ignore up to 3 RR/RNR/I frames with counters
+ requesting retransmission before sending request for retransmittion. This
+ should improve stability on bad phone lines.
+
+Version 112
+
+Added more debug info from HypCModem for SerialTrace.
+Added modem mode 0xBD (voice dialing)
+Added VoiceDial modem protocol (HC_ModemProto) to HypCModem, HypCmodemV90,
+ HypCModemV22b classes.
+Added mode modes D2 and D3 (transparent with connect chat script over RS0 or
+ RS2).
+Fixed bug in the HW_TerminateTask(). This bug caused hangs in some cases (e.g.
+ SCR#16507)
+
+Version 11M
+
+Added check of used retries for CAT33.
+Removed EMV library from HSDK distribution.
+Fixed length truncation in messages to SEC on P2100.
+SDKLib now allow to do simultaneous read and write to PIN device.
+Fixed configuration of PIN device.
+Added RD support for V29 modem modes.
+
+Version 111
+
+Added modem mode F2 with TotalControl fix (modem mode 02 clone).
+Added SDLC_ENFORCE_HALFDUPLEX feature and configuration.
+Fixed missed configuration name in trace for HYP_V80HD configuration.
+Added better diagnostics for discarding frames out of order in V80HD mode.
+Fixed closing of PRT device (events was not completed).
+
+Version 11L
+
+Speed up PPP disconnect.
+Added special workaround to SDLC protocol for TotalControl, so frames received
+ during transmittion are dropped.
+Added modem mode F0 which utilize TotalControl fix for Bell212a Fast Connect.
+The text and images now not clear the area under it when drawn on the screen.
+Slightly optimized SDK library to link less code in some cases.
+Fixed reset command in graphics printing mode (SCR#16325).
+Added possibility to pass character properties commands to Hypercom firmware.
+Added font reset to the default 8x7 before each receipt (workaround for
+ SCR#16321).
+
+Version 11K
+
+Fix for Bell212a/FC in syncroneous mode.
+
+Version 110
+
+Fixed SCR#16254 in the HW_CovertPrefix()
+Fixed SPDH base24 protocol (HypCSPDHBase24 class)
+Fixed SCR#16210 (reset command to printer defaults).
+
+Version 11J
+
+Made Bell103 fast connect mode as on T7Plus.
+Added modem mode 0x01 (Visa Capture + Bell212a)
+Removed retransmit by time from SDLC code at all.
+Fixed configuration conflict in PPP (automatic vs manual if IP address is set
+ for automatic configuration).
+Fixed hang after incorrect configuration.
+Function HW_GetPrinterFirmwareRevision() made public.
+Fixed GUI_SetCustomFont call.
+Added HW_InitCommModuleType() call.
+
+Version 11I
+
+Fixed burning of 16x16 font on XFont firmware.
+Added new modem patch.
+Fixed lockup of serial driver in some cases.
+
+Version 11H
+
+Added support for H2200.
+Added Bell103, V32, V32bis, V34, K56flex enumerations.
+Added modem modes 0x03, 0x04, 0x05, 0x09 (Visa data capture link level protocol)
+Added GetActiveConnectionNo method for HypCCommunication class.
+Fixed graphics printing.
+Added reset to printer defaults at the receipt beginning.
+Fixed hang on serial port closure.
+Fixed hang on PPP closure.
+
+Version 11G
+
+Return track 3 in BCD (SCR#15325).
+Fixed losing character after printer font switching.
+Retransmit time in SDLC was set to 3 sec instead of 30 sec. Normally,
+ retransmit should never happens unless the frames are lost on the phone line
+ and remote equipment respond timely.
+
+Version 11F
+
+Fixed bypass printer escape sequences to XFont firmware.
+Fixed problem with cancelling I/O during rewind and close.
+
+Version 11E
+
+Modified chat script for GSM modem to send AT before flushing buffer. This
+ should help resolve some problems when there are unfinished AT command left in
+ the buffer.
+Added code to bypass printer character update and font selection on XFont
+ firmware.
+
+Version 11D
+
+Fixed small inconsistency in the filename size parameter which cause improper
+ return of data from findfirst/findnext.
+Fixed seeking beyond the end of file.
+Do not perform disconnect on class deletion when communication class is in IDLE
+ state.
+Removed ATS505=99 for the BlueTooth module.
+Fix problem of writing block to deeply fragmented file system.
+Fixed small problems in EuroConex authorization protocol.
+Fixed SCR#15703 (reset V90 modem before V29)
+Added HW_LoadPatchCPP and HW_SetFixedBaudRateCPP C++ functions to HWLib.
+Yena and pound symbols copied to 0x9d and 0x9c positions in EA* fonts.
+Occasionally UDP and ICMP fixes was lost in 11B, they are now included.
+Added GetConfig method to transport classes.
+Fixed transparent BlueTooth mode.
+
+Version 11C
+
+Fixed PPP terminate request sending.
+Fixed SDK variant truncation.
+Fixed HEMS protocol implementation for POS LAN module.
+Added ffixsize function that need to be called by application after finit call
+ to set proper value for HFS_PHYSICAL_PAGE_SIZE variable. It is recommended to
+ verify file system integrity with fverify first. The application manager and
+ standalone software (which runs without application manager) should not call
+ this function. They should set this variable to predefined value (0x04080000).
+Fixed memory leak in some C++ classes when they deleted before disconnect
+ request complete.
+Added command ATS505=99 to the Bluetooth module initialization
+ string for all network configurations.
+
+Version 11B
+
+Fixed SCR #145458: Bluetooth connection now accepts AT-command and PAD Logon
+ Script only in transparent mode with Ethernet gate type and SPP UID.
+Added DHCP client for P2100.
+Fixed UDP and ICMP support.
+
+Version 11A
+
+Removed delay from SerialClose().
+Added LoadPatch and SetFixedBaudRate functions to hw lib.
+Fixed small bugs in the VisaAuth and VisaCapture protocols.
+Added FDR protocol (modem mode not assigned yet).
+Added ARP support for P2100.
+
+Version 101
+
+Fixed disconnect issue where internal HSDK tasks could be deleted before
+ disconect finished that cause memory leak in some cases.
+SCR#15313: For modem modes 90 and 91 on GSM modem V32 mode will be set by
+ default unless overriden by user.
+Removed code that set fixed baud rate for V22 modem.
+Fixed hang when serial port was used with flow control but no devices attached.
+Keyboard driver now start consume keys only after it is being opened thus user
+ can use direct calls to EFTOS while driver is closed.
+Modified resets for the boards so now DSR line direction set explicitly.
+Removed unused code from GSM reset procedure.
+
+Version 049
+
+Added V22 Australian patch.
+Improved performance of SDK_DisplayGrphText function.
+Declared national fonts in the osgui.h header.
+Fixed possible hang during modem reset with incorrect module setting.
+
+Version 048
+
+Fixed printer status returned by SDK library.
+Increased HEMS intercharacter timeout to 3 sec. for interaction with D2100.
+Fixed hang of HypCVisaCommon object in case it was connected and then it was
+ deleted.
+Small fixes in HypCVisaAuth.
+Since new OS does not do hardware reset for printer now the code has been
+ copied to HSDK where HW reset is required.
+
+Version 047
+
+Added buffer flushing for all modem scripts.
+Fixed order of user supplied AT command and forced AT+CBST command.
+Fixed SCR#14557 (PPP not reporting status properly when configured improperly).
+Increased buffer size for parsing in printer code.
+If printer revision is 0HK or higher HSDK will not return from printer close
+ routine before printer finished printing or it get out of paper.
+Increased S_PRINTBUF to 375 bytes for compatibility with ICE.
+Added support for printer overheat reporting (prt_OVERHEAT, prti_OVERHEAT,
+ orvOVERHEAT).
+Fixed LAN support according to HEMS 1.6 specification. Now only one structure
+ at time required and processed by SDK_ComConfig (cc_POSLANDEST) and only one
+ destination can be passed by configuration to HPOSFC POS LAN class.
+Fixed some problems in Ethernet HEMS 1.6 support.
+Cosmetic: changed trace start line to fit on printed receipt.
+
+Version 046
+
+EFTOS9.183 is replaced with EFTOS9.191.
+Communication module return error status from the last attempt instead of fixed
+ error.
+
+Version 045
+
+Fixed disconnect for CAT33, DUKPT and GS1 protocols (all sent DLE EOT though
+ should not according to specification).
+Fixed bug in SDLC that cause permanent reconnection to the line in case of
+ no answer.
+Fixed memory leak in modem script parser.
+Fixed purging of serial driver input queue.
+Fixed problem with double call to Start method in HypCTimer class without
+ calling for Stop or waiting for expiration in the middle.
+Fixed incorrect setting of serial drvier parameters in BlueTooth transparent
+ mode.
+
+Version 044
+
+Added support for Hypercom PRT, ECR and CAT33 protocols on PRT device (not
+ tested).
+Optimized SimpleVector template
+Made HypCModem non-abstract class, fixed GetLineStatus and GetSignalLevel
+ hangs.
+Fixed printing problem.
+Fixed statuses in BlueTooth transparent mode.
+
+Version 043
+
+Fixed TCP/IP retries timeout to be set in 100 ms (was in 128 ms).
+Added support for BlueTooth transparent mode (not throughly tested yet).
+Fixed GS1 protocol (SCR #14598).
+Fixed problem in TCP/IP startup procedure which cause silence on the line.
+Fixed SmartCard Library for P2100 (SCR #14572).
+Added support for 38400, 57600 and 115200 on PIN and PRT devices through the
+ SDK protocol (SCR #14599).
+Added few improvements for printer paper out handling (not throughly tested)
+ (SCR #14675).
+Fixed printer firmware printing (SCR #14673).
+Removed infinite loop if patch to V90 modem was not loaded successfully and
+ fixed baud rate was not set. That cause terminal to mulfunction if module
+ type was improperly configured.
+Fixed minor bug in PPP code.
+Removed extra recoding call from GUI_Text, GUI_TextP calls on P2100.
+Increased timeout in SEC handling procedure to 30 seconds.
+
+Version 042
+
+Special release for Brasil without patching V90 modem!
+
+Version 041
+
+Fixed serial driver: Completion of write request happens after all data is
+ transmited from eftos buffer to serial port.
+
+Version 040
+
+Added printer autoreset on error.
+Fixed stack overflow during tracing.
+Modem mode 68 now uses V.110 protocol in GSM networks by default.
+Shipped with EFTOS 9.182 (see memory map changes).
+Added layer for the BlueTooth transparent mode. Not integrated yet.
+
+Version 039
+
+Added function HW_OutputCommDebugN.
+Fixed HW timers.
+SDLC protocol supports retransmitions.
+Fine tuning V29 protocol.
+Redesigned serial port class.
+Added more configuration of D2100 dial parameters.
+Added more V90 modem fixes.
+Fixed PPP-only connection mode.
+Added better support for Transaction Systems printer firmware.
+
+Version 038
+
+Fixed problem with V90 modem serial port speed.
+Updated Ethernet protocols to HEMS 1.6 specification.
+In PPP modem modes number of TCP retries limited to 3 for automatically opened
+ connection.
+
+Version 037
+
+Fixed bug in the HypCCommunication introduced in 036.
+Fixed incorrect length in commands sent to P2100 SEC.
+The patch from Conexant is loaded after resetting V90 modem.
+Added function SerialTraceStartOnePass.
+IP stack is now initialized if none IP addresses is passed to
+ HypCCommunication/HypCTcpIP.
+Fixed few memory leaks in serial driver.
+Fixed lost disconnect event in COM driver emulation.
+Added possibility to configure TCPIP retries and timeout via ioctlsocket call.
+ It is per socket configurable:
+  SIOTCPTRIES - number of retries
+  SIOTCPSTARTTIMER - start value for the timer (in 100ms)
+Removed workarounds for V90 modem before dialing.
+Added new constructor to HypCBuffer class (HypCBuffer(const char * str))
+Added SendStr() function
+
+Version 036
+
+Fixed bug that caused HypCCommunication to hang under some circumstances.
+Default speed for V90 module is 57600 now.
+
+Version 035
+
+Added support for Transaction Systems printer firmware.
+Reworked serial trace (used cyclical buffer)
+Fixed minor problem in EuroConex authorization protocol.
+If IP addresses set to zero HypCTcpIp will not try to make IP connection. This
+ is a special feature to be used by application: permanent link connection with
+ the active sockets.
+Fixed problem with Timer C in APACS protocol.
+
+Version 034
+
+Fixed problem with setting time via SDK call if structure is less than RTCLEN
+ (i.e. 14) bytes.
+Added D2100 support.
+Synchronous mode modes generate LOST CARRIER error.
+Fixed problem with alignment in EMV library.
+Fixed minor problem in APACS protocol.
+
+Version 033
+
+Reduced number of unused files in P2100 libraries.
+Added STATUS_GATECONNECTING for communication classes which will be reported
+ during D2100 connection.
+
+Version 032
+
+Added ISDN modem (HypCModemISDN class)
+Fixed name of SDK platform for P2100.
+
+Version 031
+
+Added function randomnumstr() - null-terminated numeric random string
+Added PAGING status for BlueTooth module.
+
+Version 030
+
+Cosmetic: Do not invert button border on button inversion.
+Added ACS version of HEMS protocol and ACS communication class.
+Increased username and password size to 32 bytes. The applications will be
+ completely source code compatible (old 16 bytes fields renamed with prefix
+ OLD_), but not be able to run on old AM.
+
+Version 029
+
+Fixed APACS PAD logon.
+Fixed ATZ command sending and cancellation during connect on V90 modem.
+Fixed cancellation during connect on POS LAN.
+Added 5 seconds timeout during closure of TCPIP connection.
+Fixed serious bug in filesystem handling.
+
+Version 028
+
+AT commands are always sent in the 8N1 mode for 56K modem (56K modem bug
+ workaround)
+Fixed HFT PINPAD mode.
+Fixed transmit level parameter handling for analog modems.
+Fixed 8-bit with parity serial driver modes. Not tested with bad parity, may
+ need some workarounds.
+PIN device no longer closed when opening RS232.
+Serial trace will display dots for characters greater than 0x80 instead of
+ characters with stripped high bit unless in 7-bit with parity mode.
+Fixed data returned from track 1 (each byte was 0x20 greater than required).
+Baud rate now should be properly extracted from PINPAD configuration structure.
+
+Version 027
+
+Added HC_ prefix before (enum HypEConfigKeys) config keys.
+Added function hex2ascii
+Fixed bug in TCPIP stack.
+Added GS1 and HFT protocol. Not tested.
+Added possibility to use DUKPT protocol without ACK/NAK in PIN device (GS1
+ protocol). Not tested.
+ 
+
+Version 026
+
+Fixed receiving of local ip address in ethernet reliable mode.
+Fixed ip address formatting function.
+
+Version 025
+
+Fixed problem with old-HW GSM modem introduced in previous release.
+Added configuration option for operating with or without hex length in TCP/IP
+ modem modes.
+Fixed baude rate command is used for 56K modem before proccesing chat script
+ (modem hardware problem workaround)
+EFTOS 15.5 (set serial baud rate more accurately, RTS control works in any
+ conditions: as result V29 should works without errors )
+Added SIM PIN code to fixdata2 region.
+Added Unicode support.
+
+Version 024
+
+Fix for hanging application with non-functional module.
+
+Version 023
+
+Fixed SmartCard reader status reading.
+Fixed old (w/o DTR) GSM modem operation.
+Added screen capturing.
+Changed interfece to transport classes in the HPOSFC library. Pointers to 
+ underlaying objects are used in the constructors insted of references usage.
+Reworked HypCCommunication class(inreface is not changed)
+Reworked HypCConfig class(inreface is not changed)
+Added collecting common communication statistics, and specific statistics for
+ SDLC protocol. Added HypCMap, HypCPair, and HypCStatistics classes.
+
+
+Version 022
+
+Fixed backlite support.
+Some changes in SCard lib for compatibility with P2100.
+Fixed high font printing.
+Fixed HypercomVisa protocol (comm mode 68).
+Fixed some problems with paper out status.
+Please fix the values for the changing font to DOUBLE (now defined as
+ prt_FONT_DOUBLE) and to NORMAL (prt_FONT_NORMAL) constants in the application.
+
+Version 021
+
+Added support for COM_DIRECT mode in communication driver. The same behaviour
+ can be obtained by setting modem mode 0xe9.
+Fixed terminate message number and sending magic number in PPP.
+Fixed problem with the garbage in the beginning of GSM/GPRS session.
+Fixed problem with incorrect status on unsuccessful connect in TCPIP modes.
+
+Version 020
+
+Added custom fonts loading. Removed default font identifiers for non-standard
+ languages.
+Support of 2048 bit RSA public keys was added to SSL library.
+Fixed incompatibility with ARM compiler.
+
+Version 019
+
+Added VISA authorization link level protocol (VISA II). Comm modes 12-17, 93
+SerialTrace reworked: user determines trace buffer size, serial trace code is
+ not linked if SerialTrace() is not used by application
+
+Version 018
+
+Added packets assembling in TCPIP modem modes.
+Tuning TCPIP stack.
+
+Version 017
+
+Added 'FLUSH' command into chat script processor
+Added support for GSM hardware with DTR support. Old hardware now have postfix
+ _OLD.
+Added serial trace capability to release version of the HPOSFC library.
+HW_OutputCommDebug transmits trace data from internal serial port (RS_1) to
+ serial port RS_2 (115200, 8N1)
+
+Version 016
+
+The symbols '-' and ' ' in AT-commands are now properly escaped during
+ conversion to chat script.
+Added BlueTooth modem support.
+Added POS LAN support.
+Rewritten support for Ethernet and PPP.
+
+Version 015
+
+Updated eftos to R14.1 version
+Fixed phone line treshold value for dialind (was 24V, 18V now).
+Changed default PRT and PIN port assignment to match PIN to RS422 (RS_0) and
+ PRT to RS232 (RS_2).
+
+Version 014
+
+Added PPPCONNECTING and TCPCONNECTING statuses.
+Fixed PAD logon operation.
+Added signal level and line status.
+Fixed status from chat script on timeout.
+Fixed bug in JournalPreviousW function.
+
+Version 013
+
+Added htons, htonl, ntohs, ntohl functions to HPOSFC lib
+Fixed bug in GUI library when redrawing image not aligned to 8 bytes
+in Y coordinate.
+Fixed redial bug in HPOSFC lib
+Added comm modes D0 and D1 - PosMiniNak over serial port 0/serial port 2.
+Fixed Hypercom Visa protocol (modem mode 0x68)
+Improved GSM modem stability on dial failure.
+Removed registration awaiting for GSM modem before dialing.
+HW_SwapSerialPorts replaced with HW_RS0GetDevice and HW_RS0SetDevice.
+Added HYP_TX_FC flow control mode (RTS signal is not used)
+Swapped default PIN and PRT ports assignment for RS_2 capable terminals.
+Added backlight support for RS_2 capable terminals.
+EMV library updated to 4.20b.
+
+Version 012
+
+Fixed Siemens GSM modem operation.
+ADS version compiled with ADS 1.2 build 848
+Disconnect during modem dialing fixed
+
+Version 011
+
+Use HookWaitTime instead of ToneWaitTime for blind dialing.
+Fix PABX pause detection algorithm.
+Reworked configuration system of modem modes. It is possible now to assign comm
+ modes without use modem. Look CommConfig.cpp
+Added ForceJournalFileName function to vTlib. It sets the journal file name to
+ the given value (if it is not called the default name is used). This function
+ should be called before JrnSetupW.
+Added HW_SwapSerialPorts function to HW library. It swaps the default PIN and
+ PRT ports assignment. It should be called before PIN and/or PRT devices are
+ open.
+Added configuration interface for COM driver, see SDK_ComConf.
+Added more variables for fixdata memory. Application should add them as region
+ fixdata2 after RS232data region.
+Added various CRC-16 functions to HPOSFC library(hyputils.h)
+Added HypercomVisa protocol (modem mode 68)
+Added PPL protocol (modem mode A2)
+
+Version 010
+
+Added hems.a library.
+PosMiniNak protocol message size is increased to 2099 bytes
+Fixed blind dialing feature.
+Added redialing, check and wait line statuses.
+Added LRC to the journal linked list entries.
+Fixed serious bug in journal processing routine which cause memory corruption
+ in case of journal grow close to the 32Kb.
+Fixed improper implementation of cs_SENDING status and removed obsolete
+ cs_LOGON status.
+Added CommConfig.cpp configuration file for HypCCommunication class
+Added TCP/IP over PPP over modem protocol
+Added VISA DATA CAPTURE LINK LEVEL PROTOCOL
+Added 58 (Visa Data capture/2400) and 59 (Euroconex authorization/1200) modem
+ modes
+
+
+Version 009
+
+Removed build.inc file. Application should use its own.
+HSDK release version is compiled with '-O2 -Ospace' on ADS compiler
+Improved stability of GSM modem operation in V32/V110.
+Fixed Timeout/Delay/Pause keywords operation in chat script.
+Added comments to headers of HPOSFC library.
+Receving serial buffer is purged while opening serial port.

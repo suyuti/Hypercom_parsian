@@ -1,0 +1,71 @@
+#include <stdlib.h>
+#include <malloc.h>
+#include "basictyp.h"
+#include "struct.h"
+#include "appdata.h"
+#include "comdata.h"
+
+
+
+/*-----------------------------------------------------------------------
+ * Name:           StaticCollection
+ * Description:    Collect transaction statistic data for MIB 
+ *
+ * Parameters:     None
+ * Return Value:   None.
+ * Notes:          
+ *-----------------------------------------------------------------------*/
+extern struct mallinfo __malloc_current_mallinfo;
+
+extern void StatisticCollection ()
+{
+
+	// Check if transaction is reversal (Do not count reversal)
+	if ( TS1_REV & TRREQ.TRSTATUS[0])
+		return;
+
+	// Increment total transaction
+	MIBTRANSTAB.mibTotalTrans++;
+	// Check for manuel entry
+	if ( TRINP.TRPOSE[1] == 0x12 )
+		MIBTRANSTAB.mibManualEntrys++;
+	// Check for transaction type
+	switch (TRINP.TRKEY)
+	{
+	case REFUND:
+	
+	case AUTH:
+		MIBTRANSTAB.mibTotalAuth++;
+		break;
+
+	case SALE:
+	case SALCASH:
+	case ADJUST:
+	case SALOFFL:
+	case EMV_SALE:
+        case EMV_INSTALLMENT:
+		if ( TS1_ADV & TRREQ.TRSTATUS[0] )
+		{
+			MIBTRANSTAB.mibTotalOfflineSale++;
+			break;
+		}
+		if ( TS1_ADJ & TRREQ.TRSTATUS[0] )
+		{
+			MIBTRANSTAB.mibTotalAdjSale++;
+			break;
+		}
+		MIBTRANSTAB.mibTotalOnlineSale++;
+		break;
+	}
+
+	// Calculate LRC for this data
+	MIBTRANSLRC = CalcLrc ( (UBYTE *) &MIBTRANSTAB, sizeof(MIBTRANSTAB));
+}
+
+int IsMIBWriteble()
+{
+	if ( TCONF.TCSNMPOPT & TCSNMP_ACCESS )
+		return 1;
+	else
+		return  0;
+}

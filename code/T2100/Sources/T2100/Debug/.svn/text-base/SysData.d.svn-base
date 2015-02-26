@@ -1,0 +1,28 @@
+Debug/SysData.o:  \
+ F:/Firmalar/Parsian/SourceCode/Parsian/Sources/T2100/../Common/_Main/SysData.c \
+  ../../HSDK/T2100/Debug/include/eftos.h \
+  ../../HSDK/T2100/Debug/include/eftos9.h \
+  ../../HSDK/T2100/Debug/include/SswDef.h \
+  ../../HSDK/T2100/Debug/include/44b.h \
+  ../../HSDK/T2100/Debug/include/Buz.h \
+  ../../HSDK/T2100/Debug/include/Ch.h \
+  ../../HSDK/T2100/Debug/include/PrsHw.h \
+  ../../HSDK/T2100/Debug/include/Dsp.h \
+  ../../HSDK/T2100/Debug/include/Kbd.h \
+  ../../HSDK/T2100/Debug/include/Key.h \
+  ../../HSDK/T2100/Debug/include/Msr.h \
+  ../../HSDK/T2100/Debug/include/Os.h \
+  ../../HSDK/T2100/Debug/include/Printer.h \
+  ../../HSDK/T2100/Debug/include/PrsAp.h \
+  ../../HSDK/T2100/Debug/include/PrsSc.h \
+  ../../HSDK/T2100/Debug/include/Raut.h \
+  ../../HSDK/T2100/Debug/include/Res.h \
+  ../../HSDK/T2100/Debug/include/Rtc.h \
+  ../../HSDK/T2100/Debug/include/Sec.h \
+  ../../HSDK/T2100/Debug/include/Spb.h \
+  ../../HSDK/T2100/Debug/include/Scr.h \
+  ../../HSDK/T2100/Debug/include/Th.h \
+  ../../HSDK/T2100/Debug/include/G1s.h \
+  ../../HSDK/T2100/Debug/include/SysData.h \
+  ../../HSDK/T2100/Debug/include/kbddev.inc \
+  ../../HSDK/T2100/Debug/include/kbddev.h

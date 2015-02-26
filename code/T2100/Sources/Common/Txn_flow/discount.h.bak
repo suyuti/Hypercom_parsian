@@ -1,0 +1,7 @@
+#ifndef DISCOUNT_H
+#define DISCOUNT_H
+
+extern void DiscountSale( void );
+extern void DiscountInst( void );
+
+#endif

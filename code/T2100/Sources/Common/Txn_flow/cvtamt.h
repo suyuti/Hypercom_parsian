@@ -1,0 +1,17 @@
+
+//=============================================================================
+//                       Hypercom Inc
+//                      (c) Copyright 2005
+//=============================================================================
+//
+// Module overview:             cvtamt.h
+//      Convert BCD amount to ASCII
+//
+//=============================================================================
+
+// Public functions defined in this module
+extern void CvtAmt( char *pAscAmt, UBYTE * pBcdAmt );
+extern void CvtAmtYTL( char *pAscAmt, UBYTE * pBcdAmt );
+void CvtAmtPrint( char *pAscAmt, UBYTE *pBcdAmt );
+extern void FormAmt( int cnt, char *pDest, const char *pBuf, char *CrrCode);
+

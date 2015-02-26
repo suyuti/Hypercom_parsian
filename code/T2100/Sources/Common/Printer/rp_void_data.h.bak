@@ -1,0 +1,22 @@
+#ifndef RP_VOID_DATA_H
+#define RP_VOID_DATA_H
+
+#include "pcltext.h"
+#include "prtdef.h"
+#include "prtdef_defines.h"
+#include "rp_common_data.h"
+
+//
+//--------------------------------------------------------------------
+//       LOYALTY INQUIRY TRANSACTION REPORT
+//--------------------------------------------------------------------
+//
+
+const UBYTE RP_TRANS_LOYALTYINQ_DATA[] =
+{
+	'A', 'B', 'C', 
+        LINE, 
+        FORM, 
+};
+
+#endif

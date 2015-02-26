@@ -1,0 +1,105 @@
+[Global]
+CurrentProject=BaseApp.vpj
+[ProjectDates]
+BaseApp.vpj=20071209211900000
+[TreeExpansion2]
+- BaseApp.vpj
+  - Source Files
+    + _Main
+    + Batch
+    + Comms
+    + Data
+    + EMV
+    + EmvL2
+    + Hosts
+    + HostUtil
+    + Images
+    + PinPad
+    + Printer
+    + T4200
+      + Main
+      + Comm
+      + UI
+      + Profile
+      + _PinPad
+    + Texts
+    + Txn_flow
+    + Utils
+    + _Farsi
+  + Resource Files
+scroll:0
+[State]
+SCREEN: 1280 800 66 87 960 577 0 0 M 0 0 0 0 986 603
+CWD: ..\T4200
+BUFFER: BN="Farsi\Farsi_dspFont_06BN08.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.0 CL=1 LE=0 CX=0 CY=0 WI=5 BI=11 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="Farsi\Farsi_dspFont_06BN08.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.0 CL=1 LE=0 CX=0 CY=0 WI=5 BI=12 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="Farsi\Farsi_print.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=544 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.841 CL=1 LE=0 CX=0 CY=21 WI=5 BI=13 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Texts\text.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=608 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.16132 CL=13 LE=0 CX=12 CY=18 WI=5 BI=15 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="Farsi\pclfatext.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=544 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.0 CL=1 LE=0 CX=0 CY=0 WI=5 BI=14 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="Farsi\hdtfatext.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=544 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.0 CL=1 LE=0 CX=0 CY=0 WI=5 BI=16 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="Farsi\evtfatext.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=544 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.0 CL=1 LE=0 CX=0 CY=0 WI=5 BI=17 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="Farsi\rspfatext.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=608 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.0 CL=1 LE=0 CX=0 CY=0 WI=5 BI=18 HT=0 HN=0 HF=0 HC=4
+WINDOW: 66 87 854 429 -1 -1 N  WF=0 WT=2 "Default Fixed Font,10,0,1"
+BUFFER: BN="Farsi\Farsi_dspFont_06BN08.c"
+VIEW: LN=.0 CL=1 LE=0 CX=0 CY=0 WI=87 BI=11 HT=0 HN=0 HF=0 HC=4
+WINDOW: 88 116 854 429 -1 -1 N  WF=0 WT=3 "Default Fixed Font,10,0,1"
+BUFFER: BN="Farsi\Farsi_dspFont_06BN08.h"
+VIEW: LN=.0 CL=1 LE=0 CX=0 CY=0 WI=88 BI=12 HT=0 HN=0 HF=0 HC=4
+WINDOW: 110 145 854 429 -1 -1 N  WF=0 WT=1 "Default Fixed Font,10,0,1"
+BUFFER: BN="Farsi\Farsi_print.c"
+VIEW: LN=.841 CL=1 LE=0 CX=0 CY=21 WI=89 BI=13 HT=0 HN=0 HF=0 HC=4
+WINDOW: 66 87 854 429 -1 -1 N  WF=0 WT=5 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Texts\text.c"
+VIEW: LN=.16132 CL=13 LE=0 CX=12 CY=18 WI=96 BI=15 HT=0 HN=0 HF=0 HC=4
+WINDOW: 88 116 854 429 -1 -1 N  WF=0 WT=6 "Default Fixed Font,10,0,1"
+BUFFER: BN="Farsi\pclfatext.c"
+VIEW: LN=.0 CL=1 LE=0 CX=0 CY=0 WI=198 BI=14 HT=0 HN=0 HF=0 HC=4
+WINDOW: 110 145 854 429 -1 -1 N  WF=0 WT=7 "Default Fixed Font,10,0,1"
+BUFFER: BN="Farsi\hdtfatext.c"
+VIEW: LN=.0 CL=1 LE=0 CX=0 CY=0 WI=201 BI=16 HT=0 HN=0 HF=0 HC=4
+WINDOW: 132 174 854 429 -1 -1 N  WF=0 WT=8 "Default Fixed Font,10,0,1"
+BUFFER: BN="Farsi\evtfatext.c"
+VIEW: LN=.0 CL=1 LE=0 CX=0 CY=0 WI=204 BI=17 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 854 429 -1 -1 M  WF=0 WT=4 "Default Fixed Font,10,0,1"
+BUFFER: BN="Farsi\rspfatext.c"
+VIEW: LN=.658 CL=17 LE=0 CX=16 CY=24 WI=207 BI=18 HT=0 HN=0 HF=0 HC=4
+FILEHIST: 9
+..\Common\Printer\prtdrv.c
+Farsi\Farsi_dspFont_06BN08.c
+Farsi\Farsi_dspFont_06BN08.h
+Farsi\Farsi_print.c
+..\Common\Texts\text.c
+Farsi\pclfatext.c
+Farsi\hdtfatext.c
+Farsi\evtfatext.c
+Farsi\rspfatext.c
+DEBUG: 1 5 4 0 3 0
+1BuildFixedBufferLineBuf0
+..\Common\_Main\
+..\NucleusInterface\Main\
+..\Common\Texts\
+UI\
+..\Common\Printer\
+00MoveChar..\Common\Printer\Farsi_print.c65100
+00Farsi_Print..\Common\Printer\Farsi_print.c10600
+00Farsi_Print..\Common\Printer\Farsi_print.c18500x20a81c8c0
+00Farsi_Print..\Common\Printer\Farsi_print.c19500x20a81d400
+printf
+strcpy
+std::*

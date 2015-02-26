@@ -1,0 +1,257 @@
+[Global]
+CurrentProject=BaseApp.vpj
+[ProjectDates]
+BaseApp.vpj=20071210143513461
+[TreeExpansion2]
+- BaseApp.vpj
+  - Source Files
+    + _Main
+    + Batch
+    + Comms
+    + Data
+    + EMV
+    + EmvL2
+    - Hosts
+    + HostUtil
+    + Images
+    + PinPad
+    + Printer
+    - T4200
+      + Main
+      + Comm
+      + UI
+      + Profile
+      + _PinPad
+    + Texts
+    + Txn_flow
+    + Utils
+  + Resource Files
+scroll:15
+[State]
+SCREEN: 1280 800 22 33 825 574 0 0 M 0 0 0 0 881 392
+CWD: ..\T4200
+BUFFER: BN="..\NucleusInterface\Comms\comm.cpp"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=104 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.3736 CL=30 LE=0 CX=29 CY=7 WI=5 BI=6 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Data\comdata.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=8 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.3459 CL=23 LE=0 CX=22 CY=10 WI=5 BI=7 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Data\comdata.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=8 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.6016 CL=23 LE=0 CX=22 CY=10 WI=5 BI=8 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Data\superVariables.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=8 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=1
+VIEW: LN=.129 CL=1 LE=0 CX=0 CY=5 WI=5 BI=9 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Data\superVariables.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=8 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=1
+VIEW: LN=.215 CL=36 LE=0 CX=35 CY=8 WI=5 BI=10 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Txn_flow\app1.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=8 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.4591 CL=1 LE=0 CX=0 CY=7 WI=5 BI=11 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Hosts\bit8583.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=8 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.2893 CL=1 LE=0 CX=0 CY=10 WI=5 BI=12 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="C:\Program Files\Hypercom\Optimum\HSDK\HSDK_1_2_6\T4200\fixdata_app.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=8 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.16552 CL=1 LE=0 CX=0 CY=10 WI=5 BI=13 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="C:\Program Files\Microsoft Visual Studio 8\VC\PlatformSDK\include\MsHTML.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=8 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.152523 CL=5 LE=0 CX=4 CY=10 WI=5 BI=14 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Data\appdata.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=8 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.3678 CL=1 LE=0 CX=0 CY=10 WI=5 BI=15 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Txn_flow\setTMComParameter.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=104 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=1
+VIEW: LN=.22706 CL=1 LE=0 CX=0 CY=9 WI=5 BI=16 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Txn_flow\setup.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=616 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.2849 CL=53 LE=0 CX=52 CY=10 WI=5 BI=35 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Txn_flow\eventbl.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=616 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.15697 CL=13 LE=0 CX=12 CY=11 WI=5 BI=5 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="C:\Program Files\Hypercom\Optimum\HSDK\HSDK_1_2_6\T4200\fixdata.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=104 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.10138 CL=23 LE=0 CX=22 CY=9 WI=5 BI=38 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Txn_flow\function.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=104 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.114432 CL=22 LE=0 CX=21 CY=12 WI=5 BI=17 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="C:\Program Files\Hypercom\Optimum\AppManager\T4200\20070926_UNICODE_PSOC\Inc\MainAppForAppMgr\mdmAPI.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=616 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.12245 CL=63 LE=0 CX=62 CY=9 WI=5 BI=39 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\NucleusInterface\Comms\comm_c.hpp"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=104 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.7847 CL=19 LE=0 CX=18 CY=10 WI=5 BI=41 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\NucleusInterface\Comms\HostTransport.hpp"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=616 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.1756 CL=23 LE=0 CX=22 CY=9 WI=5 BI=42 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\NucleusInterface\Comms\comm_c.cpp"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=616 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.38810 CL=39 LE=0 CX=38 CY=15 WI=5 BI=22 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Data\defines.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=104 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.3118 CL=13 LE=0 CX=12 CY=11 WI=5 BI=69 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Batch\journal.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=616 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.1916 CL=6 LE=0 CX=5 CY=11 WI=5 BI=66 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="C:\Program Files\Microsoft Visual Studio 8\VC\PlatformSDK\include\dciddi.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=104 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.10390 CL=9 LE=0 CX=8 CY=9 WI=5 BI=40 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="UI\menu.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=616 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.10572 CL=70 LE=0 CX=69 CY=16 WI=5 BI=36 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Txn_flow\transdef.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=104 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.3264 CL=13 LE=0 CX=12 CY=9 WI=5 BI=37 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Hosts\hyper.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=8 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.9000 CL=17 LE=0 CX=16 CY=3 WI=5 BI=18 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Hosts\i8583utl.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=8 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.9409 CL=13 LE=0 CX=12 CY=10 WI=5 BI=19 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Hosts\rsphyp.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=8 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.7835 CL=18 LE=0 CX=17 CY=11 WI=5 BI=20 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Data\struct.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=104 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.18651 CL=20 LE=0 CX=19 CY=7 WI=5 BI=23 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Hosts\reqhyp.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=131688 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.7070 CL=11 LE=0 CX=10 CY=5 WI=5 BI=21 HT=0 HN=0 HF=0 HC=4
+WINDOW: 22 33 815 255 -1 -1 N  WF=0 WT=6 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Data\comdata.h"
+VIEW: LN=.3459 CL=23 LE=0 CX=22 CY=10 WI=15 BI=7 HT=0 HN=0 HF=0 HC=4
+WINDOW: 44 66 815 255 -1 -1 N  WF=0 WT=3 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Data\comdata.c"
+VIEW: LN=.6016 CL=23 LE=0 CX=22 CY=10 WI=16 BI=8 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 815 255 -1 -1 N  WF=0 WT=5 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Data\superVariables.h"
+VIEW: LN=.129 CL=1 LE=0 CX=0 CY=5 WI=17 BI=9 HT=0 HN=0 HF=0 HC=4
+WINDOW: 22 33 815 255 -1 -1 N  WF=0 WT=2 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Data\superVariables.c"
+VIEW: LN=.215 CL=36 LE=0 CX=35 CY=8 WI=18 BI=10 HT=0 HN=0 HF=0 HC=4
+WINDOW: 44 66 761 261 -1 -1 N  WF=0 WT=10 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Txn_flow\app1.c"
+VIEW: LN=.4591 CL=1 LE=0 CX=0 CY=7 WI=19 BI=11 HT=0 HN=0 HF=0 HC=4
+WINDOW: 66 99 761 261 -1 -1 N  WF=0 WT=11 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Hosts\bit8583.c"
+VIEW: LN=.2893 CL=1 LE=0 CX=0 CY=10 WI=20 BI=12 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 761 261 -1 -1 N  WF=0 WT=12 "Default Fixed Font,10,0,1"
+BUFFER: BN="C:\Program Files\Hypercom\Optimum\HSDK\HSDK_1_2_6\T4200\fixdata_app.h"
+VIEW: LN=.16552 CL=1 LE=0 CX=0 CY=10 WI=21 BI=13 HT=0 HN=0 HF=0 HC=4
+WINDOW: 22 33 815 272 -1 -1 N  WF=0 WT=13 "Default Fixed Font,10,0,1"
+BUFFER: BN="C:\Program Files\Microsoft Visual Studio 8\VC\PlatformSDK\include\MsHTML.h"
+VIEW: LN=.152523 CL=5 LE=0 CX=4 CY=10 WI=22 BI=14 HT=0 HN=0 HF=0 HC=4
+WINDOW: 44 66 761 290 -1 -1 N  WF=0 WT=14 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Data\appdata.c"
+VIEW: LN=.3678 CL=1 LE=0 CX=0 CY=10 WI=23 BI=15 HT=0 HN=0 HF=0 HC=4
+WINDOW: 66 99 815 285 -1 -1 N  WF=0 WT=7 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Txn_flow\setTMComParameter.c"
+VIEW: LN=.22706 CL=1 LE=0 CX=1 CY=9 WI=24 BI=16 HT=0 HN=0 HF=0 HC=4
+WINDOW: 44 66 739 144 -1 -1 N  WF=0 WT=16 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Hosts\hyper.c"
+VIEW: LN=.9000 CL=17 LE=0 CX=16 CY=3 WI=26 BI=18 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 771 272 -1 -1 N  WF=0 WT=18 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Hosts\i8583utl.c"
+VIEW: LN=.9409 CL=13 LE=0 CX=12 CY=10 WI=27 BI=19 HT=0 HN=0 HF=0 HC=4
+WINDOW: 22 33 771 272 -1 -1 N  WF=0 WT=19 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Hosts\rsphyp.c"
+VIEW: LN=.7835 CL=18 LE=0 CX=17 CY=11 WI=28 BI=20 HT=0 HN=0 HF=0 HC=4
+WINDOW: 22 33 837 199 -1 -1 N  WF=0 WT=4 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Data\struct.h"
+VIEW: LN=.18651 CL=20 LE=0 CX=19 CY=7 WI=29 BI=23 HT=0 HN=0 HF=0 HC=4
+WINDOW: 44 66 815 234 -1 -1 N  WF=0 WT=20 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Txn_flow\setup.c"
+VIEW: LN=.2849 CL=53 LE=0 CX=52 CY=10 WI=161 BI=35 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 815 234 -1 -1 N  WF=0 WT=22 "Default Fixed Font,10,0,1"
+BUFFER: BN="UI\menu.c"
+VIEW: LN=.10572 CL=70 LE=0 CX=69 CY=16 WI=249 BI=36 HT=0 HN=0 HF=0 HC=4
+WINDOW: 22 33 815 234 -1 -1 N  WF=0 WT=23 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Txn_flow\transdef.h"
+VIEW: LN=.3264 CL=13 LE=0 CX=12 CY=9 WI=251 BI=37 HT=0 HN=0 HF=0 HC=4
+WINDOW: 66 99 815 234 -1 -1 N  WF=0 WT=21 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Txn_flow\eventbl.c"
+VIEW: LN=.15697 CL=13 LE=0 CX=12 CY=11 WI=162 BI=5 HT=0 HN=0 HF=0 HC=4
+WINDOW: 44 66 815 234 -1 -1 N  WF=0 WT=24 "Default Fixed Font,10,0,1"
+BUFFER: BN="C:\Program Files\Hypercom\Optimum\HSDK\HSDK_1_2_6\T4200\fixdata.h"
+VIEW: LN=.10138 CL=23 LE=0 CX=22 CY=9 WI=182 BI=38 HT=0 HN=0 HF=0 HC=4
+WINDOW: 66 99 717 224 -1 -1 N  WF=0 WT=17 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Txn_flow\function.c"
+VIEW: LN=.114432 CL=22 LE=0 CX=22 CY=12 WI=25 BI=17 HT=0 HN=0 HF=0 HC=4
+WINDOW: 66 99 815 234 -1 -1 N  WF=0 WT=25 "Default Fixed Font,10,0,1"
+BUFFER: BN="C:\Program Files\Hypercom\Optimum\AppManager\T4200\20070926_UNICODE_PSOC\Inc\MainAppForAppMgr\mdmAPI.h"
+VIEW: LN=.12245 CL=63 LE=0 CX=62 CY=9 WI=199 BI=39 HT=0 HN=0 HF=0 HC=4
+WINDOW: 22 33 739 144 -1 -1 N  WF=0 WT=15 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\NucleusInterface\Comms\comm.cpp"
+VIEW: LN=.3736 CL=30 LE=0 CX=29 CY=7 WI=14 BI=6 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 815 234 -1 -1 N  WF=0 WT=26 "Default Fixed Font,10,0,1"
+BUFFER: BN="C:\Program Files\Microsoft Visual Studio 8\VC\PlatformSDK\include\dciddi.h"
+VIEW: LN=.10390 CL=9 LE=0 CX=8 CY=9 WI=256 BI=40 HT=0 HN=0 HF=0 HC=4
+WINDOW: 22 33 815 234 -1 -1 N  WF=0 WT=27 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\NucleusInterface\Comms\comm_c.hpp"
+VIEW: LN=.7847 CL=19 LE=0 CX=18 CY=10 WI=258 BI=41 HT=0 HN=0 HF=0 HC=4
+WINDOW: 44 66 815 234 -1 -1 N  WF=0 WT=28 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\NucleusInterface\Comms\HostTransport.hpp"
+VIEW: LN=.1756 CL=23 LE=0 CX=22 CY=9 WI=260 BI=42 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 815 293 -1 -1 N  WF=0 WT=29 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Data\defines.h"
+VIEW: LN=.3118 CL=13 LE=0 CX=12 CY=11 WI=219 BI=69 HT=0 HN=0 HF=0 HC=4
+WINDOW: 22 33 815 293 -1 -1 N  WF=0 WT=30 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Batch\journal.c"
+VIEW: LN=.1916 CL=6 LE=0 CX=5 CY=11 WI=34 BI=66 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 815 285 -1 -1 N  WF=0 WT=8 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\NucleusInterface\Comms\comm_c.cpp"
+VIEW: LN=.38810 CL=39 LE=0 CX=39 CY=15 WI=31 BI=22 HT=0 HN=0 HF=0 HC=4
+WINDOW: 22 33 815 272 -1 -1 M  WF=0 WT=9 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Hosts\reqhyp.c"
+VIEW: LN=.7373 CL=44 LE=0 CX=44 CY=15 WI=30 BI=21 HT=0 HN=0 HF=0 HC=4
+FILEHIST: 9
+C:\Program Files\Hypercom\Optimum\AppManager\T4200\20070926_UNICODE_PSOC\Inc\MainAppForAppMgr\mdmAPI.h
+..\NucleusInterface\Comms\comm.cpp
+C:\Program Files\Microsoft Visual Studio 8\VC\PlatformSDK\include\dciddi.h
+..\NucleusInterface\Comms\comm_c.hpp
+..\NucleusInterface\Comms\HostTransport.hpp
+..\Common\Data\defines.h
+..\Common\Batch\journal.c
+..\NucleusInterface\Comms\comm_c.cpp
+..\Common\Hosts\reqhyp.c
+DEBUG: 4 9 24 0 3 0
+2m_modemMode0
+1TERM.TERMPabx0
+1tmp0
+1phoneStr0
+..\Common\_Main\
+..\NucleusInterface\Main\
+..\Common\Data\
+..\NucleusInterface\Profile\
+..\Common\Hosts\
+..\Common\Txn_flow\
+UI\
+..\Common\Utils\
+..\NucleusInterface\Comms\
+00ThreadTransportSendMessage_..\NucleusInterface\Comms\comm_c.cpp19310x20a8936c0
+00UpdateTables..\NucleusInterface\Profile\fileinit.c13610x2018e66c0
+00UpdateTables..\NucleusInterface\Profile\fileinit.c12910x2018e66c0
+00MerchFunction..\Common\Txn_flow\function.c41410x20aa9a6c0
+00SetTMPosTPDU..\Common\Txn_flow\setTMComParameter.c81010x20ab9c7c0
+00SetTMPosTPDU..\Common\Txn_flow\setTMComParameter.c82210x20ab9cf80
+00SetTMPosTPDU..\Common\Txn_flow\setTMComParameter.c83310x20ab9d400
+00ReqHyper..\Common\Hosts\reqhyp.c69010x20a6e7ec0
+00ThreadTransportSendMessage_..\NucleusInterface\Comms\comm_c.cpp22610x20a894580
+00ThreadTransportCommConfig..\NucleusInterface\Comms\comm_c.cpp167010x20a89e0c0
+00ThreadTransportCommConfig..\NucleusInterface\Comms\comm_c.cpp167410x20a89e240
+00ThreadTransportSetGPRSConfig..\NucleusInterface\Comms\comm_c.cpp186310x20a88af80
+00ThreadTransportSetPPPConfig..\NucleusInterface\Comms\comm_c.cpp190810x20a88b140
+00AddIP..\NucleusInterface\Comms\comm_c.cpp194010x20a883080
+00ThreadTransportSetTCPIPConfig..\NucleusInterface\Comms\comm_c.cpp196810x20a884c80
+00ThreadTransportSetHLANConfig..\NucleusInterface\Comms\comm_c.cpp210510x20a88c940
+00ThreadTransportIsDialBackup..\NucleusInterface\Comms\comm_c.cpp101810x20a8925c0
+00ThreadTransportSetTCPIPConfig..\NucleusInterface\Comms\comm_c.cpp208810x20a88a700
+00ThreadTransportSetDialConfig..\NucleusInterface\Comms\comm_c.cpp183310x20a899c40
+00ThreadTransportSetDialConfig..\NucleusInterface\Comms\comm_c.cpp182510x20a899240
+00ThreadTransportSetDialConfig..\NucleusInterface\Comms\comm_c.cpp182910x20a899540
+00ThreadTransportSetDialConfig..\NucleusInterface\Comms\comm_c.cpp181210x20a8981c0
+00AddPBAX..\NucleusInterface\Comms\comm_c.cpp223910x20a881ec0
+00AddPBAX..\NucleusInterface\Comms\comm_c.cpp224610x20a8828c0
+printf
+strcpy
+std::*

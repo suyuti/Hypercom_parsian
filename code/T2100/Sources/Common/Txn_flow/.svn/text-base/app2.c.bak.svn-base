@@ -1,0 +1,473 @@
+
+//=============================================================================
+//                       Hypercom Inc
+//                      (c) Copyright 2002
+//=============================================================================
+//
+// Module overview:     app2.c
+//  Functions used on the second generic application page
+//
+//=============================================================================
+
+#include "string.h"
+
+#include "eftos.h"
+#include "basictyp.h"
+#include "sdk.h"
+#include "sdkos.h"
+#include "sdkio.h"
+#include "sdkmem.h"
+#include "sdktime.h"
+#include "sdkterm.h"
+#include "sdkgui.h"
+#include "utllib.h"
+#include "sdkterm.h"
+#include "struct.h"
+#include "appdata.h"
+#include "comdata.h"
+#include "defines.h"
+#include "msg.h"
+#include "util.h"
+#include "util2.h"
+#include "pinpad.h"
+#include "tables.h"
+#include "taginfo.h"
+#include "menu.h"
+#include "hstprint.h"
+#include "receipt.h"
+#include "app1.h"
+#include "amtproc.h"
+#include "flaghost.h"
+#include "cvv2proc.h"
+#include "pinutils.h"
+#include "respdsp.h"
+#include "predial.h"
+#include "acctproc.h"
+#include "addprmpt.h"
+#include "fixdata.h"
+#include "checkCurrency.h"
+#include "forceSettlement.h"
+#include "loyalty.h"
+
+#include "app2.h"
+
+//=============================================================================
+// External variables / declarations
+//=============================================================================
+
+
+//=============================================================================
+// Private defines and typedefs
+//=============================================================================
+
+
+//=============================================================================
+// Private function declarations
+//=============================================================================
+
+
+//=============================================================================
+// Public data definitions
+//=============================================================================
+
+
+//=============================================================================
+// Private data definitions
+//=============================================================================
+static const ENTRY_STR CardNumberEntry = {
+	N_NullStr,					// Issuer Tran 
+	EnterCard,					// Prompt 
+	N_NullStr,					// Default passed in INJECTKEY 
+};
+
+static const ENTRY_STR TillNumberEntry = {
+	CustomMsg,					// Issuer Tran 
+	TillNum,					// Prompt 
+	N_NullStr,					// Default value 
+};
+
+
+static const ENTRY_STR LastRespEntry = {
+	N_LastRsp,					// Title 
+	CustomMsg,					// First line 
+	CustomMsg2,					// Second line 
+};
+
+static const ENTRY_STR NoLastResp = {
+	N_LastRsp,					// Title 
+	N_NullStr,					// First line 
+	N_NoData,					// Second line 
+};
+
+
+
+//=============================================================================
+// Public function definitions
+//=============================================================================
+
+
+
+
+
+//-----------------------------------------------------------------------------
+//  SalCash         The function that handles the SAL+CASH transaction
+//
+//  Parameters:     None
+//
+//  Global Inputs:
+//
+//  Returns:        None
+//
+//  Notes:          We never come here directly.  Always redirected from
+//                  App1SALE() or debit().  AcctProc() has already been called.
+//
+//-----------------------------------------------------------------------------
+
+extern void SalCash( void )
+{
+
+}
+
+
+
+//-----------------------------------------------------------------------------
+//  DbCash          The function that handles the CASH transaction
+//
+//  Parameters:     None
+//
+//  Global Inputs:
+//
+//  Returns:        None
+//
+//  Notes:          We never come here directly.  Always redirected from
+//                  SAL+CSH.  AcctProc() has already been called. 
+//
+//-----------------------------------------------------------------------------
+
+extern void DbCash( void )
+{      
+}
+
+
+
+//-----------------------------------------------------------------------------
+//  BalInq          The function that handles the Balance Inquiry transaction
+//
+//  Parameters:     None
+//
+//  Global Inputs:
+//
+//  Returns:        None
+//
+//  Notes:
+//
+//-----------------------------------------------------------------------------
+// PARSIAN @@
+extern void BalInq( void )
+{  
+   // parametre yüklü mü
+   if ( TERM.TERMInit == 0x00 )  
+      return;
+  
+   if ( ForceSettlement () ) 
+      return;
+
+   if ( JournalFullTest(  ) )
+      return;	
+  
+   if ( !CheckCurrency() ) 
+      return;
+
+   TRINP.TRKEY = BALINQ;
+   CurrentEvent.NEXTEVENT = 0;      
+
+   ShowIssuer_Tran(  );
+
+   if ( !Reading(  ) )
+     return;
+     
+   if ( !AcctProc () )
+      return;
+
+     if ( INJECTKEY && !((TRINP.TRISPTR->ISOPT1) & IS1_MANPAN) )
+   {
+      ShowErrMsg( Msg_NoManEntry );
+      CurrentEvent.NEXTEVENT = 0;	// Back to idle 
+      return;	
+   }
+
+   if ( !CheckCardExp(  ) )
+      return;
+
+   if(!CheckIssueNum())       /* CANCEL_KY key pressed? */
+      return;
+
+   ForcedOnline = True;
+  // Perform a Pre-Dial if allowed 
+  PreDial ();   
+	
+  do
+  {                
+      // Get PIN from PIN PAD, if required 
+	if ( !GetPIN () )
+	{
+            // Finish receipt printing, if preprint is enabled 
+            if ( (AQ4_PREPRINT & (TRINP.TRAQPTR->AQOPT4)) && TRINP.TRPINRETRY )
+	 	Receipt ();
+                return;
+        }
+
+        ShowIssuer_Tran(  );
+        FlagHostCntl = FLAG_PREPRINT + FLAG_ALLOW_CANCEL;
+        FlagHost(  );
+        SaveResponseText(  );
+        RespDisplay ();
+
+  }while(( TRINP.TRRSPOPT & R_BADPIN ) && ( TRINP.TRPINRETRY++ < 2 ));
+
+  
+  Receipt ();  
+
+  return;
+}
+
+
+//-----------------------------------------------------------------------------
+//  DoPrtTill       Print Till Report
+//
+//  Parameters:     None
+//
+//  Global Inputs:
+//
+//  Returns:        None
+//
+//  Notes:
+//
+//-----------------------------------------------------------------------------
+
+extern void Logon(void)
+{
+  TRINP.TRKEY = LOGON;
+  CurrentEvent.NEXTEVENT = 0;
+  
+
+   TRINP.TRAQID = AQTAB[0].AQID;
+   TRINP.TRAQPTR = (struct acquirer_rec *)&AQTAB;
+
+   if ( InInvoiceNum(  ) )
+    return;
+
+   FlagHostCntl = FLAG_PREPRINT | FLAG_ALLOW_CANCEL;
+
+   // Notify host packet is ready and wait for response.   
+   FlagHost(  );
+
+   // Save host response text in terminal flag table.  
+   SaveResponseText(  );
+
+   // Display Response 
+   RespDisplay ();  
+}
+
+
+
+//-----------------------------------------------------------------------------
+//  DoPrtTill       Print Till Report
+//
+//  Parameters:     None
+//
+//  Global Inputs:
+//
+//  Returns:        None
+//
+//  Notes:
+//
+//-----------------------------------------------------------------------------
+
+extern void DoPrtTill( void )
+{
+	
+}
+
+
+
+//-----------------------------------------------------------------------------
+//  LastRsp             Display last response data.
+//                      Cross called when LASTRSP key pressed
+//
+//  Parameters:         None
+//
+//  Global Inputs:
+//
+//  Returns:            None
+//
+//  Notes:
+//
+//-----------------------------------------------------------------------------
+
+extern void LastRsp( void )
+{
+	// Verify there is data to display. Host text is 40 bytes. 
+	if ( NullComp( ( char * ) TFTAB.TFHOSTTEXT, 20 ) )
+	{
+		// Clear the Custom messages 
+		ClrCstMsgs(  );
+
+		ContinueEntry( &NoLastResp );
+	}
+	else
+	{							// There is data to display 
+
+		// Display first 20 bytes on upper line.  
+		memcpy( CSTMSG, TFTAB.TFHOSTTEXT, 20 );
+		CSTMSG[20] = '\0';
+
+		// Display second 20 bytes on lower line if it exists.  
+		CSTMSG2[0] = '\0';
+		if ( !SpaceComp( ( char * ) &TFTAB.TFHOSTTEXT[20], 20 ) )
+		{
+			memcpy( CSTMSG2, &TFTAB.TFHOSTTEXT[20], 20 );
+			CSTMSG2[20] = '\0';
+		}
+
+		if ( 1 == ContinueEntry( &LastRespEntry ) )
+			ButtonId = B_PREVIOUS;
+		else
+			ButtonId = CANCEL_KY;
+	}
+}
+
+
+
+//-----------------------------------------------------------------------------
+//  SetDefaultTitle     Load DefaultTitle with acquired and transaction
+//
+//  Parameters:         None
+//
+//  Global Inputs:
+//
+//  Returns:            None
+//
+//  Notes:
+//
+//-----------------------------------------------------------------------------
+
+extern void SetDefaultTitle( void )
+{
+	UBYTE length;
+	int title_limit;
+	UBYTE	 tmpISNAME[S_ISNAME];
+
+	// Get Font size 
+	CHARSIZE charsz;
+	SDK_GuiGetCharSize( &charsz );
+
+	// Maximum characters for the line 
+	title_limit = ( TITLE_F_W - ( TEXT_INDENT * 2 ) ) / ( charsz.Width );
+
+	// Maximum characters for the line 
+
+	// Fill the DefaultTitle with spaces 
+	memset( DefaultTitle, ' ', ( UWORD ) title_limit );
+	DefaultTitle[title_limit] = 0;	// Null terminate 
+
+	/* Move the issuer name into local buffer */
+	MoveItIss( tmpISNAME, (const char *)TRINP.TRISPTR->ISNAME, S_ISNAME );
+	/* Put the issuer name in, left justified */
+	MoveTillZero( DefaultTitle, (const char *)tmpISNAME, S_ISNAME );
+
+	// Put the transaction in, right justified 
+	length = StrLn( CurrentEvent.TRNTEXT, sizeof( CurrentEvent.TRNTEXT ) );
+
+	// The text offset 
+	memcpy( &DefaultTitle[title_limit - length], CurrentEvent.TRNTEXT,
+			length );
+}
+
+
+//-----------------------------------------------------------------------------
+//  ChangeApplication    Select an application, notify Application Manager, Restart 
+//
+//  Parameters:         None
+//  Global Inputs:
+//  Returns:            
+//  Notes:
+//-----------------------------------------------------------------------------
+extern void ChangeApplication( void )
+{
+    static const unsigned char SA_Tag_Info[] =
+    {
+      // Name       Type        Length
+        'S','A',    'T','T',    0x00,0x01,
+    };
+
+    UBYTE status;
+    FILE *f;
+
+    // Check if there is not multiapplication
+    if ( Number_Of_Applications < 2 )
+    {
+        return;
+    }
+    
+    // Clear menu
+    ClearMenus ();
+
+    // Draw Application selection menu
+    DrawMenu( APPLICATION_LIST_MENU );
+
+    //  Call the selected option processor
+	while ( 1 )
+	{
+		status = GetOneKey( DEV_KBD | STAY_OPEN0, UserTimeout );
+
+        switch ( status )
+        {
+            case B_PREVIOUS_NEW_MENU:// previous menu page
+            case B_PREVIOUS: 
+				DrawMenu( MENU_PREVIOUS );
+                break;
+
+            case B_NEXT:            // next menu page
+				DrawMenu( MENU_NEXT );
+                break;
+
+            case CANCEL_KY:         // cancelled
+            case CLEAR_KY:
+            case 0:                 // timeout
+                SDK_BeepIt (1);
+				return;
+
+            case 1:                // application's slot number
+            case 2:                 
+            case 3:                 
+            case 4:                 
+            case 5:                 
+            case 6:                 
+            case 7:                 
+                // Create command file to notify an Application Manager
+                // to run selected application
+                f = fopen(COMMAND_FILE, "wb");
+                fwrite( SA_Tag_Info, 1, sizeof(SA_Tag_Info), f );
+
+                // Restore and append slot number selected
+                status = status - 1;
+                fwrite( &status, 1, 1, f );
+
+                // Close file created
+                fclose (f);
+
+                // Invoke Application Manager to perform fast start
+                TerminalQuickReset ( );     
+
+            default:                  // numeric keyboard
+                SDK_BeepIt (2);
+                break;
+
+        } // switch
+
+    } // while
+
+}
+
+

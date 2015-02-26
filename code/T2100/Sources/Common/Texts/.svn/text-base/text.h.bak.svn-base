@@ -1,0 +1,89 @@
+
+#ifndef _TEXT_H_
+#define _TEXT_H_
+//=============================================================================
+//                       Hypercom Inc
+//                      (c) Copyright 2002, 2005
+//=============================================================================
+//
+// Module overview:             text.h
+//      Header file for text file database
+//
+//=============================================================================
+
+
+//=============================================================================
+// Public defines and typedefs
+//=============================================================================
+#define MAXLANG 10
+#define MAXTABLE 10
+
+
+// Do use ISO639 for language naming
+enum Languages
+{
+    LNG_NULL = 0,               // Empty language
+
+#ifdef MAKE_ENGLISH
+	LNG_EN,                     // English
+#endif
+    
+#ifdef MAKE_TURKISH
+        LNG_TR,       // türkçe 
+#endif
+
+#ifdef MAKE_GERMAN
+    LNG_DE,						// German
+#endif
+    
+#ifdef MAKE_SWEDISH
+    LNG_SV,						// Swedish
+#endif
+    
+#ifdef MAKE_SPANISH    
+    LNG_ES,						// Spanish
+#endif
+
+#ifdef MAKE_PORTUGUESE    
+    LNG_PT,						// Portuguese
+#endif
+
+    LNG_LAST                    // Last language (empty)
+};
+
+// Number of languages available
+#define NumberOfLanguages ( LNG_LAST - LNG_NULL - 1 )
+
+
+
+struct dbtable_ptr
+{
+	short page;
+	const char *const *pTable;
+};
+
+
+//=============================================================================
+// Public data declarations
+//=============================================================================
+
+struct MLGetMsg_str				// Structure to get a message across page.
+{
+	short tblid;				// Table ID of the message
+	enum msg_id msgid;			// Message ID in the table
+};
+
+//=============================================================================
+// Public function declarations
+//=============================================================================
+extern void TextLanguageSelectMenu( void );
+extern void SetCurrentLanguageFont( void );
+extern void SetLanguageDefault ( void ); 
+extern const UBYTE* GetRemapTblPtr ( void );
+extern void TEXTINDEXNEW( void );
+extern void TextDatabaseInit( void );
+extern void TEXTINDEXADDTABLE( void );
+extern Bool TEXTGETSTRING( struct MLGetMsg_str * );
+
+
+#endif // _TEXT_H_

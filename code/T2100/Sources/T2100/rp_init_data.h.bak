@@ -1,0 +1,13 @@
+#ifndef RP_INIT_DATA_H
+#define RP_INIT_DATA_H
+
+#include "pcltext.h"
+#include "prtdef.h"
+#include "prtdef_defines.h"
+
+const UBYTE RP_INIT_DATA[] =
+{
+
+};
+
+#endif

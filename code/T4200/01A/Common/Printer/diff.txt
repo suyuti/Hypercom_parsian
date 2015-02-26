@@ -1,0 +1,74 @@
+40,43d39
+< 
+< #ifdef MAKE_FARSI
+< #include "Farsi_print.h"
+< #endif
+382,390d377
+< 
+< #ifdef MAKE_FARSI
+<     // Redefine MaxCols if Farsi laguage selected
+<     if( LOCTAB.LANGID == LNG_FA )
+<     {
+<         MaxCols = Farsi_max_char_per_line;
+<     }
+< #endif
+< 
+1033,1042d1019
+< #ifdef MAKE_FARSI
+<             if( LOCTAB.LANGID == LNG_FA )
+<             {
+<                 printerStat = Farsi_Print( PRTBUF, len );
+<             }
+<             else
+<             {
+<                 printerStat = SDK_PrintBuffer( PRTBUF, len );
+<             }
+< #else
+1044,1045c1021
+< #endif
+<             if ( printerStat != orvOK )
+---
+> 			if ( printerStat != orvOK )
+1300,1307c1276
+< #ifdef MAKE_FARSI
+<     if( LOCTAB.LANGID == LNG_FA )
+<     {
+<         return;
+<     }
+< #endif
+< 
+<     switch ( fontID )
+---
+> 	switch ( fontID )
+1354,1360d1322
+< #ifdef MAKE_FARSI
+<     if( LOCTAB.LANGID == LNG_FA )
+<     {
+<         return;
+<     }
+< #endif
+< 
+2036,2047c1998
+< #ifdef MAKE_FARSI
+<             case LNG_FARSI:
+<                 if( LOCTAB.LANGID == LNG_FA )
+<                 {
+<                     result = True;
+<                 }
+<                 else
+<                 {
+<                     result = False;
+<                 }
+<                 break;
+< #endif
+---
+> 
+3911,3916c3862
+< #ifdef MAKE_FARSI
+<             // allow to remap all the characters
+<             if( LOCTAB.LANGID == LNG_FA )
+< #else
+<             if ( chr & 0x80 )
+< #endif
+---
+> 			if ( chr & 0x80 )

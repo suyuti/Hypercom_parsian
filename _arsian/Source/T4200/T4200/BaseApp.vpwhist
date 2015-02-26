@@ -1,0 +1,81 @@
+[Global]
+CurrentProject=BaseApp.vpj
+[ProjectDates]
+BaseApp.vpj=20080409162642588
+[TreeExpansion2]
+- BaseApp.vpj
+  - Source Files
+    + _Main
+    + Batch
+    + Comms
+    + Data
+    + EMV
+    + EmvL2
+    + Hosts
+    + HostUtil
+    + Images
+    + PinPad
+    + Printer
+    - T4200
+      + Main
+      + Comm
+      + UI
+      + Profile
+      + _PinPad
+    + Texts
+    - Txn_flow
+    + Utils
+    + _Farsi
+  + Resource Files
+scroll:0
+[State]
+SCREEN: 1280 800 88 116 960 577 0 0 M 0 0 0 0 974 636
+CWD: C:\Program Files\Hypercom\ODTWorkspace
+BUFFER: BN="..\Common\Txn_flow\adjust.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=1 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=608 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.0 CL=1 LE=0 CX=0 CY=0 WI=5 BI=4 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 820 433 -1 -1 M  WF=0 WT=2 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Txn_flow\adjust.c"
+VIEW: LN=.4278 CL=1 LE=0 CX=0 CY=0 WI=92 BI=4 HT=0 HN=0 HF=0 HC=4
+FILEHIST: 9
+UI\disproc.h
+UI\disproc.c
+UI\sprite.c
+..\Common\_Main\hypertcf.c
+..\Common\Txn_flow\app1.c
+..\Common\Txn_flow\forceSettlement.c
+..\Common\Hosts\flaghost.c
+..\NUCLEU~1\Main\events.h
+..\Common\Txn_flow\adjust.c
+BOOKMARK2: 2
+ALIGN():24841124911104169                CNTR,G:\projeler\Parsian\code\T4200A\Sources\Common\Printer\prtdef.c
+ALIGN():1951111958386408    //IF, NOT, CND_REJ,G:\projeler\Parsian\code\T4200A\Sources\Common\Printer\prtdef.c
+DEBUG: 8 16 1 0 3 0
+2JRBUF.TRDATA.TRSTAN0
+2JRBUF0
+1SelMatchJRBUF.TRDATA0
+1JSREC0
+1LineBuff0
+1GetStringLenghtInPixelFarsi_prnCodePage_table0
+1BuildFixedBufferFarsi_prnCodePage_table[ chr ].fpi_options0
+2*len0
+..\Common\_Main\
+..\NucleusInterface\Main\
+..\Common\Texts\
+UI\
+..\Common\Printer\
+..\Common\Txn_flow\
+..\Common\Hosts\
+..\Common\Data\
+..\Common\Utils\
+..\Common\Comms\
+..\Common\PinPad\
+..\NucleusInterface\Comms\
+PinPad\
+..\Common\EMV\
+..\Common\Batch\
+Farsi\
+00CvtAmt..\Common\Txn_flow\cvtamt.c7810x20ab30440
+printf
+strcpy
+std::*

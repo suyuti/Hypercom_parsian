@@ -1,0 +1,279 @@
+MEMORY
+{
+  CACHE_1 (wx) : ORIGIN = 0x10001000, LENGTH = 0x00001000
+  SDRAM_STACK (wx) : ORIGIN = 0x0c700000, LENGTH = 0x00100000
+  SDRAM_SW (wx) : ORIGIN = 0x0c100000, LENGTH = 0x00600000
+  SDRAM (wx) : ORIGIN = 0x0c000000, LENGTH = 0x00080000
+  FILESYSTEM (wx) : ORIGIN = 0x04013000, LENGTH = 0x0006d000
+  ReservedForApplicationManager (wx) : ORIGIN = 0x0400f000, LENGTH = 0x00004000
+  NVRAM (wx) : ORIGIN = 0x04001000, LENGTH = 0x0000e000
+  SRAM_COMMON (wx) : ORIGIN = 0x04000a00, LENGTH = 0x00000600
+  SRAM_5 (wx) : ORIGIN = 0x04000400, LENGTH = 0x00000600
+  SRAM_4 (wx) : ORIGIN = 0x04000300, LENGTH = 0x00000100
+  SRAM_3 (wx) : ORIGIN = 0x04000200, LENGTH = 0x00000100
+  SRAM_2 (wx) : ORIGIN = 0x04000100, LENGTH = 0x00000100
+  SRAM_1 (wx) : ORIGIN = 0x04000000, LENGTH = 0x00000100
+}
+
+
+SECTIONS
+{
+  __CACHE_1_segment_start__ = 0x10001000;
+  __CACHE_1_segment_end__ = 0x10002000;
+  __SDRAM_STACK_segment_start__ = 0x0c700000;
+  __SDRAM_STACK_segment_end__ = 0x0c800000;
+  __SDRAM_SW_segment_start__ = 0x0c100000;
+  __SDRAM_SW_segment_end__ = 0x0c700000;
+  __SDRAM_segment_start__ = 0x0c000000;
+  __SDRAM_segment_end__ = 0x0c080000;
+  __FILESYSTEM_segment_start__ = 0x04013000;
+  __FILESYSTEM_segment_end__ = 0x04080000;
+  __ReservedForApplicationManager_segment_start__ = 0x0400f000;
+  __ReservedForApplicationManager_segment_end__ = 0x04013000;
+  __NVRAM_segment_start__ = 0x04001000;
+  __NVRAM_segment_end__ = 0x0400f000;
+  __SRAM_COMMON_segment_start__ = 0x04000a00;
+  __SRAM_COMMON_segment_end__ = 0x04001000;
+  __SRAM_5_segment_start__ = 0x04000400;
+  __SRAM_5_segment_end__ = 0x04000a00;
+  __SRAM_4_segment_start__ = 0x04000300;
+  __SRAM_4_segment_end__ = 0x04000400;
+  __SRAM_3_segment_start__ = 0x04000200;
+  __SRAM_3_segment_end__ = 0x04000300;
+  __SRAM_2_segment_start__ = 0x04000100;
+  __SRAM_2_segment_end__ = 0x04000200;
+  __SRAM_1_segment_start__ = 0x04000000;
+  __SRAM_1_segment_end__ = 0x04000100;
+
+  __STACKSIZE__ = 1024;
+  __STACKSIZE_IRQ__ = 256;
+  __STACKSIZE_FIQ__ = 256;
+  __STACKSIZE_SVC__ = 0;
+  __STACKSIZE_ABT__ = 0;
+  __STACKSIZE_UND__ = 0;
+  __HEAPSIZE__ = 1024;
+
+  .cache1 __CACHE_1_segment_start__ (NOLOAD) :
+  {
+    __cache1_start__ = .;
+    *(SecureMemory)
+  }
+  __cache1_end__ = __cache1_start__ + SIZEOF(.cache1);
+
+  . = ASSERT(__cache1_end__ >= __CACHE_1_segment_start__ && __cache1_end__ <= (__CACHE_1_segment_start__ + 0x00001000) , ".cache1 is too large to fit in CACHE_1 memory segment");
+
+  .stack_svc __SDRAM_STACK_segment_start__ (NOLOAD) :
+  {
+    __stack_svc_start__ = .;
+    *(.stack_svc)
+    . = MAX(__stack_svc_start__ + 0xf000 , .);
+  }
+  __stack_svc_end__ = __stack_svc_start__ + SIZEOF(.stack_svc);
+
+  . = ASSERT(__stack_svc_end__ >= __SDRAM_STACK_segment_start__ && __stack_svc_end__ <= (__SDRAM_STACK_segment_start__ + 0x00100000) , ".stack_svc is too large to fit in SDRAM_STACK memory segment");
+
+  .stack_und __stack_svc_end__ (NOLOAD) :
+  {
+    __stack_und_start__ = .;
+    *(.stack_und)
+    . = MAX(__stack_und_start__ + 0x100 , .);
+  }
+  __stack_und_end__ = __stack_und_start__ + SIZEOF(.stack_und);
+
+  . = ASSERT(__stack_und_end__ >= __SDRAM_STACK_segment_start__ && __stack_und_end__ <= (__SDRAM_STACK_segment_start__ + 0x00100000) , ".stack_und is too large to fit in SDRAM_STACK memory segment");
+
+  .stack_abt __stack_und_end__ (NOLOAD) :
+  {
+    __stack_abt_start__ = .;
+    *(.stack_abt)
+    . = MAX(__stack_abt_start__ + 0x100 , .);
+  }
+  __stack_abt_end__ = __stack_abt_start__ + SIZEOF(.stack_abt);
+
+  . = ASSERT(__stack_abt_end__ >= __SDRAM_STACK_segment_start__ && __stack_abt_end__ <= (__SDRAM_STACK_segment_start__ + 0x00100000) , ".stack_abt is too large to fit in SDRAM_STACK memory segment");
+
+  .stack_irq __stack_abt_end__ (NOLOAD) :
+  {
+    __stack_irq_start__ = .;
+    *(.stack_irq)
+    . = MAX(__stack_irq_start__ + 0xd00 , .);
+  }
+  __stack_irq_end__ = __stack_irq_start__ + SIZEOF(.stack_irq);
+
+  . = ASSERT(__stack_irq_end__ >= __SDRAM_STACK_segment_start__ && __stack_irq_end__ <= (__SDRAM_STACK_segment_start__ + 0x00100000) , ".stack_irq is too large to fit in SDRAM_STACK memory segment");
+
+  .stack_fiq __stack_irq_end__ (NOLOAD) :
+  {
+    __stack_fiq_start__ = .;
+    *(.stack_fiq)
+    . = MAX(__stack_fiq_start__ + 0x100 , .);
+  }
+  __stack_fiq_end__ = __stack_fiq_start__ + SIZEOF(.stack_fiq);
+
+  . = ASSERT(__stack_fiq_end__ >= __SDRAM_STACK_segment_start__ && __stack_fiq_end__ <= (__SDRAM_STACK_segment_start__ + 0x00100000) , ".stack_fiq is too large to fit in SDRAM_STACK memory segment");
+
+  .reset __SDRAM_SW_segment_start__ :
+  {
+    __reset_start__ = .;
+    *(.reset)
+  }
+  __reset_end__ = __reset_start__ + SIZEOF(.reset);
+
+  . = ASSERT(__reset_end__ >= __SDRAM_SW_segment_start__ && __reset_end__ <= (__SDRAM_SW_segment_start__ + 0x00600000) , ".reset is too large to fit in SDRAM_SW memory segment");
+
+  .nocache __reset_end__ :
+  {
+    __nocache_start__ = .;
+    *(.nocache)
+    . = MAX(__nocache_start__ + 0xffc , .);
+  }
+  __nocache_end__ = __nocache_start__ + SIZEOF(.nocache);
+
+  . = ASSERT(__nocache_end__ >= __SDRAM_SW_segment_start__ && __nocache_end__ <= (__SDRAM_SW_segment_start__ + 0x00600000) , ".nocache is too large to fit in SDRAM_SW memory segment");
+
+  .text __nocache_end__ :
+  {
+    __text_start__ = .;
+    *(.cstart) *(.text .text.*) *(.glue_7 .glue_7t) *(.gnu.linkonce.t.*) *(.gcc_except_table)
+  }
+  __text_end__ = __text_start__ + SIZEOF(.text);
+
+  . = ASSERT(__text_end__ >= __SDRAM_SW_segment_start__ && __text_end__ <= (__SDRAM_SW_segment_start__ + 0x00600000) , ".text is too large to fit in SDRAM_SW memory segment");
+
+  .ctors __text_end__ :
+  {
+    __ctors_start__ = .;
+    *(.ctors)
+  }
+  __ctors_end__ = __ctors_start__ + SIZEOF(.ctors);
+
+  . = ASSERT(__ctors_end__ >= __SDRAM_SW_segment_start__ && __ctors_end__ <= (__SDRAM_SW_segment_start__ + 0x00600000) , ".ctors is too large to fit in SDRAM_SW memory segment");
+
+  .dtors __ctors_end__ :
+  {
+    __dtors_start__ = .;
+    *(.dtors)
+  }
+  __dtors_end__ = __dtors_start__ + SIZEOF(.dtors);
+
+  . = ASSERT(__dtors_end__ >= __SDRAM_SW_segment_start__ && __dtors_end__ <= (__SDRAM_SW_segment_start__ + 0x00600000) , ".dtors is too large to fit in SDRAM_SW memory segment");
+
+  .rodata __dtors_end__ :
+  {
+    __rodata_start__ = .;
+    *(.rodata .rodata.*) *(.gnu.linkonce.r.*)
+  }
+  __rodata_end__ = __rodata_start__ + SIZEOF(.rodata);
+
+  . = ASSERT(__rodata_end__ >= __SDRAM_SW_segment_start__ && __rodata_end__ <= (__SDRAM_SW_segment_start__ + 0x00600000) , ".rodata is too large to fit in SDRAM_SW memory segment");
+
+  .data_load __rodata_end__ (NOLOAD) :
+  {
+    __data_load_start__ = .;
+    *(.data_load)
+  }
+  __data_load_end__ = __data_load_start__ + SIZEOF(.data_load);
+
+  . = ASSERT(__data_load_end__ >= __SDRAM_SW_segment_start__ && __data_load_end__ <= (__SDRAM_SW_segment_start__ + 0x00600000) , ".data_load is too large to fit in SDRAM_SW memory segment");
+
+  .data __data_load_end__ :
+  {
+    __data_start__ = .;
+    *(.data .data.*)
+  }
+  __data_end__ = __data_start__ + SIZEOF(.data);
+
+  . = ASSERT(__data_end__ >= __SDRAM_SW_segment_start__ && __data_end__ <= (__SDRAM_SW_segment_start__ + 0x00600000) , ".data is too large to fit in SDRAM_SW memory segment");
+
+  .data_alignment __data_end__ :
+  {
+    __data_alignment_start__ = .;
+    *(.data_alignment)
+  }
+  __data_alignment_end__ = __data_alignment_start__ + SIZEOF(.data_alignment);
+
+  . = ASSERT(__data_alignment_end__ >= __SDRAM_SW_segment_start__ && __data_alignment_end__ <= (__SDRAM_SW_segment_start__ + 0x00600000) , ".data_alignment is too large to fit in SDRAM_SW memory segment");
+
+  .bss __data_alignment_end__ (NOLOAD) :
+  {
+    __bss_start__ = .;
+    *(.bss .bss.*) *(COMMON)
+  }
+  __bss_end__ = __bss_start__ + SIZEOF(.bss);
+
+  . = ASSERT(__bss_end__ >= __SDRAM_SW_segment_start__ && __bss_end__ <= (__SDRAM_SW_segment_start__ + 0x00600000) , ".bss is too large to fit in SDRAM_SW memory segment");
+
+  .filesystem __FILESYSTEM_segment_start__ (NOLOAD) :
+  {
+    __filesystem_start__ = .;
+    *(.filesystem)
+  }
+  __filesystem_end__ = __filesystem_start__ + SIZEOF(.filesystem);
+
+  . = ASSERT(__filesystem_end__ >= __FILESYSTEM_segment_start__ && __filesystem_end__ <= (__FILESYSTEM_segment_start__ + 0x0006d000) , ".filesystem is too large to fit in FILESYSTEM memory segment");
+
+  .nvram __NVRAM_segment_start__ (NOLOAD) :
+  {
+    __nvram_start__ = .;
+    *(jrndata) *(comdata) *(aqtab) *(cardrange) *(istab) *(pdntab) *(iccpar) *(pkdata) *(adtdata) *(a40totals)
+  }
+  __nvram_end__ = __nvram_start__ + SIZEOF(.nvram);
+
+  . = ASSERT(__nvram_end__ >= __NVRAM_segment_start__ && __nvram_end__ <= (__NVRAM_segment_start__ + 0x0000e000) , ".nvram is too large to fit in NVRAM memory segment");
+
+  .sram_common __SRAM_COMMON_segment_start__ (NOLOAD) :
+  {
+    __sram_common_start__ = .;
+    *(fixdata) *(RS232data) *(fixdata2)
+  }
+  __sram_common_end__ = __sram_common_start__ + SIZEOF(.sram_common);
+
+  . = ASSERT(__sram_common_end__ >= __SRAM_COMMON_segment_start__ && __sram_common_end__ <= (__SRAM_COMMON_segment_start__ + 0x00000600) , ".sram_common is too large to fit in SRAM_COMMON memory segment");
+
+  .sram5 __SRAM_5_segment_start__ (NOLOAD) :
+  {
+    __sram5_start__ = .;
+    *(CryptoServiceData)
+  }
+  __sram5_end__ = __sram5_start__ + SIZEOF(.sram5);
+
+  . = ASSERT(__sram5_end__ >= __SRAM_5_segment_start__ && __sram5_end__ <= (__SRAM_5_segment_start__ + 0x00000600) , ".sram5 is too large to fit in SRAM_5 memory segment");
+
+  .sram4 __SRAM_4_segment_start__ (NOLOAD) :
+  {
+    __sram4_start__ = .;
+    *(AppData)
+  }
+  __sram4_end__ = __sram4_start__ + SIZEOF(.sram4);
+
+  . = ASSERT(__sram4_end__ >= __SRAM_4_segment_start__ && __sram4_end__ <= (__SRAM_4_segment_start__ + 0x00000100) , ".sram4 is too large to fit in SRAM_4 memory segment");
+
+  .sram3 __SRAM_3_segment_start__ (NOLOAD) :
+  {
+    __sram3_start__ = .;
+    *(ldrdata)
+  }
+  __sram3_end__ = __sram3_start__ + SIZEOF(.sram3);
+
+  . = ASSERT(__sram3_end__ >= __SRAM_3_segment_start__ && __sram3_end__ <= (__SRAM_3_segment_start__ + 0x00000100) , ".sram3 is too large to fit in SRAM_3 memory segment");
+
+  .sram2 __SRAM_2_segment_start__ (NOLOAD) :
+  {
+    __sram2_start__ = .;
+    *(Prodconfig)
+  }
+  __sram2_end__ = __sram2_start__ + SIZEOF(.sram2);
+
+  . = ASSERT(__sram2_end__ >= __SRAM_2_segment_start__ && __sram2_end__ <= (__SRAM_2_segment_start__ + 0x00000100) , ".sram2 is too large to fit in SRAM_2 memory segment");
+
+  .sram1 __SRAM_1_segment_start__ (NOLOAD) :
+  {
+    __sram1_start__ = .;
+    *(Version) *(HWconfig) *(Restart)
+  }
+  __sram1_end__ = __sram1_start__ + SIZEOF(.sram1);
+
+  . = ASSERT(__sram1_end__ >= __SRAM_1_segment_start__ && __sram1_end__ <= (__SRAM_1_segment_start__ + 0x00000100) , ".sram1 is too large to fit in SRAM_1 memory segment");
+
+}
+

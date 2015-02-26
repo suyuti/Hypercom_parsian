@@ -1,0 +1,39 @@
+<!DOCTYPE Workspace SYSTEM "http://www.slickedit.com/dtd/vse/10.0/vpw.dtd">
+<Workspace Version="10.0" VendorName="SlickEdit">
+	<Environment>
+		<Set Name="APPNAME" Value="BaseApp" />
+		<Set Name="FAPP" Value="BaseApp" />
+		<Set Name="FICON" Value="financialicon.bin" />
+		<Set Name="FREV" Value="1.4.x" />
+		<Set Name="APPMGR_ROOT" Value="%(HYP_TOOLKIT)\AppManager\T4200\20070926_UNICODE_PSOC" />
+		<Set Name="SECPROV_ROOT" Value="%(HYP_TOOLKIT)\Security Providers\T4200\StandardSecProv\20070730" />
+		<Set Name="AAE_ROOT" Value="%(HYP_TOOLKIT)\AAE\T4200\20070702" />
+		<Set Name="HFC_ROOT" Value="%(HYP_TOOLKIT)\HFC\HFC_1.5.1\T4200" />
+		<Set Name="HSDK_ROOT" Value="%(HYP_TOOLKIT)\HSDK\HSDK_1.2.0\T4200" />
+		<Set Name="HSDK_ROOT_DEBUG" Value="%(HYP_TOOLKIT)\HSDK\HSDK_1.2.0\T4200_Debug" />
+		<Set Name="GNU_TOOLS" Value="%(HYP_TOOLKIT)\..\GNUTools\gnu-4.0.1-arm922t" />
+		<Set Name="GNU_TOOLS_BIN" Value="%(GNU_TOOLS)\bin" />
+		<Set Name="CC" Value='"%(GNU_TOOLS_BIN)\xscale-elf-gcc"' />
+		<Set Name="CCFLAGS_RELEASE" Value="-specs='%wpgccspecs' -mcpu=arm922t -mapcs-frame -mthumb-interwork -Os" />
+		<Set Name="CCFLAGS_DEBUG" Value="-specs='%wpgccspecs' -mcpu=arm922t -mapcs-frame -mthumb-interwork -Wcast-align" />
+		<Set Name="AR" Value='"%(GNU_TOOLS_BIN)\xscale-elf-ar" -rso' />
+		<Set Name="LINK" Value='"%(GNU_TOOLS_BIN)\xscale-elf-ld"' />
+		<Set Name="OBJCOPY" Value='"%(GNU_TOOLS_BIN)\xscale-elf-objcopy"' />
+		<Set Name="OS_LIBS" Value='"%(APPMGR_ROOT)\Lib\API_Interface.a" "%(APPMGR_ROOT)\Lib\API_AppMgrInterface.a" "%(APPMGR_ROOT)\Lib\Retarget_Newlib.a"' />
+		<Set Name="AAE_LIBS" Value='"%(AAE_ROOT)\Lib\ClientLib.lib" "%(AAE_ROOT)\Lib\Transporlib.lib" "%(AAE_ROOT)\Lib\RPCLib.lib"' />
+		<Set Name="HFC_LIBS" Value='"%(HFC_ROOT)\Lib\hfc.lib"' />
+		<Set Name="HFC_LIBS_DEBUG" Value='"%(HFC_ROOT)\Lib\hfcd.lib"' />
+		<Set Name="HSDK_LIBS" Value='"%(HSDK_ROOT)\Osgui.lib" "%(HSDK_ROOT)\IOCSLib.lib" "%(HSDK_ROOT)\HwOptimum.lib" "%(HSDK_ROOT)\Osclib.lib" "%(HSDK_ROOT)\Sdklib.lib" "%(HSDK_ROOT)\UtilLib.lib" "%(HSDK_ROOT)\vTlib.lib" "%(HSDK_ROOT)\FileSys.lib" "%(HSDK_ROOT)\Security.lib"' />
+		<Set Name="HSDK_LIBS_DEBUG" Value='"%(HSDK_ROOT_DEBUG)\LogTrace.lib" "%(HSDK_ROOT_DEBUG)\Osgui.lib" "%(HSDK_ROOT_DEBUG)\IOCSLib.lib" "%(HSDK_ROOT_DEBUG)\HwOptimum.lib" "%(HSDK_ROOT_DEBUG)\Osclib.lib" "%(HSDK_ROOT_DEBUG)\Sdklib.lib" "%(HSDK_ROOT_DEBUG)\UtilLib.lib" "%(HSDK_ROOT_DEBUG)\vTlib.lib" "%(HSDK_ROOT_DEBUG)\FileSys.lib" "%(HSDK_ROOT_DEBUG)\Security.lib"' />
+		<Set Name="LIBC_DIRS" Value='-L "%(GNU_TOOLS)\lib\gcc\xscale-elf\4.0.1\interwork" -L "%(GNU_TOOLS)\xscale-elf\lib\interwork"' />
+		<Set Name="PACKINGLISTBUILDER" Value="%(HYP_TOOLKIT)\..\PackingListBuilder\PackingListBuilder.exe" />
+		<Set Name="BINFORMAT" Value="bin" />
+		<Set Name="HEAPSIZE_RELEASE" Value="0x2ffff" />
+		<Set Name="HEAPSIZE_DEBUG" Value="0x2ffff" />
+		<Set Name="DYNAMIC_MEMORY_SIZE" Value="(1024 * 1024)" />
+		<Set Name="APPLICATION_STACK_SIZE" Value="(128 * 1024)" />
+	</Environment>
+	<Projects>
+		<Project File="BaseApp.vpj" />
+	</Projects>
+</Workspace>

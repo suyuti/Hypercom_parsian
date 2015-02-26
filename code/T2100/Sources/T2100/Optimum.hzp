@@ -1,0 +1,826 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution version="1" Name="Optimum" >
+  <project Name="Optimum" >
+    <configuration linker_additional_files="" project_directory="" project_dependencies="Agent;SNMPLib" link_include_startup_code="No" project_type="Executable" Name="Common" />
+    <configuration linker_additional_files="" Name="Debug" />
+    <folder Name="Scripts" >
+      <configuration filter="js;jse;scr" Name="Common" />
+      <file file_name="$(StudioDir)/targets/SAMSUNG_S3C44BOX/SAMSUNG_S3C44BOX_Target.js" Name="SAMSUNG_S3C44BOX_Target.js" >
+        <configuration Name="Common" file_type="Reset Script" />
+      </file>
+      <file file_name="threads.js" Name="threads.js" />
+      <file file_name="Optimum_MemoryMap.xml" Name="Optimum_MemoryMap.xml" />
+    </folder>
+    <folder Name="_Main" >
+      <configuration filter="" Name="Common" />
+      <file file_name="../Common/_Main/taginfo.h" Name="taginfo.h" />
+      <file file_name="../Common/_Main/_main.c" Name="_main.c" />
+      <file file_name="../Common/_Main/AppStart.c" Name="AppStart.c" />
+      <file file_name="../Common/_Main/AppStart.h" Name="AppStart.h" />
+      <file file_name="../Common/_Main/hypertcf.c" Name="hypertcf.c" />
+      <file file_name="../Common/_Main/hypertcf.h" Name="hypertcf.h" />
+      <file file_name="../Common/_Main/initcryp.c" Name="initcryp.c" />
+      <file file_name="../Common/_Main/initcryp.h" Name="initcryp.h" />
+      <file file_name="../Common/_Main/multiapp.c" Name="multiapp.c" />
+      <file file_name="../Common/_Main/ProcessTable.h" Name="ProcessTable.h" />
+      <file file_name="../Common/_Main/release.c" Name="release.c" />
+      <file file_name="../Common/_Main/schdoverride.c" Name="schdoverride.c" />
+      <file file_name="../Common/_Main/schdoverride.h" Name="schdoverride.h" />
+      <file file_name="../Common/_Main/schedule.c" Name="schedule.c" />
+      <file file_name="../Common/_Main/startup.c" Name="startup.c" />
+      <file file_name="../Common/_Main/SysData.c" Name="SysData.c" />
+    </folder>
+    <folder Name="Batch" >
+      <configuration filter="" Name="Common" />
+      <file file_name="../Common/Batch/jrnapps.h" Name="jrnapps.h" />
+      <file file_name="../Common/Batch/batcntl.c" Name="batcntl.c" />
+      <file file_name="../Common/Batch/batcntl.h" Name="batcntl.h" />
+      <file file_name="../Common/Batch/batpend.c" Name="batpend.c" />
+      <file file_name="../Common/Batch/batpend.h" Name="batpend.h" />
+      <file file_name="../Common/Batch/chkbatch.c" Name="chkbatch.c" />
+      <file file_name="../Common/Batch/chkbatch.h" Name="chkbatch.h" />
+      <file file_name="../Common/Batch/hstjs.c" Name="hstjs.c" />
+      <file file_name="../Common/Batch/hstjs.h" Name="hstjs.h" />
+      <file file_name="../Common/Batch/incbatno.c" Name="incbatno.c" />
+      <file file_name="../Common/Batch/incbatno.h" Name="incbatno.h" />
+      <file file_name="../Common/Batch/journal.c" Name="journal.c" />
+      <file file_name="../Common/Batch/journal.h" Name="journal.h" />
+      <file file_name="../Common/Batch/jrnapps.c" Name="jrnapps.c" />
+    </folder>
+    <folder Name="Comms" >
+      <configuration filter="" Name="Common" />
+      <file file_name="../Common/Comms/SSL_auth.h" Name="SSL_auth.h" />
+      <file file_name="../Common/Comms/comm.c" Name="comm.c" />
+      <file file_name="../Common/Comms/comm.h" Name="comm.h" />
+      <file file_name="../Common/Comms/comm_c.cpp" Name="comm_c.cpp" />
+      <file file_name="../Common/Comms/comm_c.h" Name="comm_c.h" />
+      <file file_name="../Common/Comms/comm_cfg.cpp" Name="comm_cfg.cpp" />
+      <file file_name="../Common/Comms/comm_cfg.h" Name="comm_cfg.h" />
+      <file file_name="../Common/Comms/CommModule.c" Name="CommModule.c" />
+      <file file_name="../Common/Comms/CommModule.h" Name="CommModule.h" />
+      <file file_name="../Common/Comms/predial.c" Name="predial.c" />
+      <file file_name="../Common/Comms/predial.h" Name="predial.h" />
+      <file file_name="../Common/Comms/SerialTrace.c" Name="SerialTrace.c" />
+      <file file_name="../Common/Comms/sertrce.h" Name="sertrce.h" />
+      <file file_name="../Common/Comms/SimPinSend.cpp" Name="SimPinSend.cpp" />
+      <file file_name="../Common/Comms/SimPinSend.h" Name="SimPinSend.h" />
+      <file file_name="../Common/Comms/SSL_auth.c" Name="SSL_auth.c" />
+      <file file_name="../Common/Comms/Threshold.h" Name="Threshold.h" />
+      <file file_name="../Common/Comms/Threshold.c" Name="Threshold.c" />
+      <file file_name="../Common/Comms/crttab.h" Name="crttab.h" />
+      <file file_name="../Common/Comms/crttab.c" Name="crttab.c" />
+      <file file_name="../Common/Comms/basnmp.c" Name="basnmp.c" />
+      <file file_name="../Common/Comms/basnmp.h" Name="basnmp.h" />
+    </folder>
+    <folder Name="Data" >
+      <configuration filter="" Name="Common" />
+      <file file_name="../Common/Data/tftab.h" Name="tftab.h" />
+      <file file_name="../Common/Data/appdata.c" Name="appdata.c" />
+      <file file_name="../Common/Data/appdata.h" Name="appdata.h" />
+      <file file_name="../Common/Data/aptab.c" Name="aptab.c" />
+      <file file_name="../Common/Data/aptab.h" Name="aptab.h" />
+      <file file_name="../Common/Data/aqtab.c" Name="aqtab.c" />
+      <file file_name="../Common/Data/aqtab.h" Name="aqtab.h" />
+      <file file_name="../Common/Data/battab.c" Name="battab.c" />
+      <file file_name="../Common/Data/battab.h" Name="battab.h" />
+      <file file_name="../Common/Data/comdata.c" Name="comdata.c" />
+      <file file_name="../Common/Data/comdata.h" Name="comdata.h" />
+      <file file_name="../Common/Data/crtab.c" Name="crtab.c" />
+      <file file_name="../Common/Data/crtab.h" Name="crtab.h" />
+      <file file_name="../Common/Data/defines.h" Name="defines.h" />
+      <file file_name="../Common/Data/delreprt.c" Name="delreprt.c" />
+      <file file_name="../Common/Data/delreprt.h" Name="delreprt.h" />
+      <file file_name="../Common/Data/dstab.c" Name="dstab.c" />
+      <file file_name="../Common/Data/dstab.h" Name="dstab.h" />
+      <file file_name="../Common/Data/fttab.c" Name="fttab.c" />
+      <file file_name="../Common/Data/fttab.h" Name="fttab.h" />
+      <file file_name="../Common/Data/ibtab.c" Name="ibtab.c" />
+      <file file_name="../Common/Data/ibtab.h" Name="ibtab.h" />
+      <file file_name="../Common/Data/ipctab.c" Name="ipctab.c" />
+      <file file_name="../Common/Data/ipctab.h" Name="ipctab.h" />
+      <file file_name="../Common/Data/iptab.c" Name="iptab.c" />
+      <file file_name="../Common/Data/iptab.h" Name="iptab.h" />
+      <file file_name="../Common/Data/istab.c" Name="istab.c" />
+      <file file_name="../Common/Data/istab.h" Name="istab.h" />
+      <file file_name="../Common/Data/loctab.c" Name="loctab.c" />
+      <file file_name="../Common/Data/loctab.h" Name="loctab.h" />
+      <file file_name="../Common/Data/pdntab.c" Name="pdntab.c" />
+      <file file_name="../Common/Data/pdntab.h" Name="pdntab.h" />
+      <file file_name="../Common/Data/PFlrc.c" Name="PFlrc.c" />
+      <file file_name="../Common/Data/PFlrc.h" Name="PFlrc.h" />
+      <file file_name="../Common/Data/rs232.c" Name="rs232.c" />
+      <file file_name="../Common/Data/rs232tab.h" Name="rs232tab.h" />
+      <file file_name="../Common/Data/schtab.c" Name="schtab.c" />
+      <file file_name="../Common/Data/schtab.h" Name="schtab.h" />
+      <file file_name="../Common/Data/struct.h" Name="struct.h" />
+      <file file_name="../Common/Data/tables.c" Name="tables.c" />
+      <file file_name="../Common/Data/tables.h" Name="tables.h" />
+      <file file_name="../Common/Data/tabutil.c" Name="tabutil.c" />
+      <file file_name="../Common/Data/tabutil.h" Name="tabutil.h" />
+      <file file_name="../Common/Data/tconf.c" Name="tconf.c" />
+      <file file_name="../Common/Data/tconf.h" Name="tconf.h" />
+      <file file_name="../Common/Data/TERMtab.c" Name="TERMtab.c" />
+      <file file_name="../Common/Data/TERMtab.h" Name="TERMtab.h" />
+      <file file_name="../Common/Data/tftab.c" Name="tftab.c" />
+      <file file_name="../Common/Data/isdebit.h" Name="isdebit.h" />
+      <file file_name="../Common/Data/isdebit.c" Name="isdebit.c" />
+      <file file_name="../Common/Data/V2tab.h" Name="V2tab.h" />
+      <file file_name="../Common/Data/V2tab.c" Name="V2tab.c" />
+      <file file_name="../Common/Data/collect.h" Name="collect.h" />
+      <file file_name="../Common/Data/collect.c" Name="collect.c" />
+      <file file_name="../Common/Data/MIBData.h" Name="MIBData.h" />
+      <file file_name="../Common/Data/fimpeOID.h" Name="fimpeOID.h" />
+      <file file_name="../Common/Data/fimpeOID.c" Name="fimpeOID.c" />
+      <file file_name="../Common/Data/tcap.c" Name="tcap.c" />
+      <file file_name="../Common/Data/tcap.h" Name="tcap.h" />
+    </folder>
+    <folder Name="T2100" >
+      <configuration filter="" Name="Common" />
+      <file file_name="src/sprite.h" Name="sprite.h" />
+      <file file_name="src/disproc.c" Name="disproc.c" />
+      <file file_name="src/disproc.h" Name="disproc.h" />
+      <file file_name="src/menu.c" Name="menu.c" />
+      <file file_name="src/menu.h" Name="menu.h" />
+      <file file_name="src/review.c" Name="review.c" />
+      <file file_name="src/review.h" Name="review.h" />
+      <file file_name="src/runtime.c" Name="runtime.c" />
+      <file file_name="src/runtime.h" Name="runtime.h" />
+      <file file_name="src/screen.c" Name="screen.c" />
+      <file file_name="src/screen.h" Name="screen.h" />
+      <file file_name="src/screentab.h" Name="screentab.h" />
+      <file file_name="src/sdl.c" Name="sdl.c" />
+      <file file_name="src/sdl.h" Name="sdl.h" />
+      <file file_name="src/sdlcalls.c" Name="sdlcalls.c" />
+      <file file_name="src/sprite.c" Name="sprite.c" />
+    </folder>
+    <folder Name="Texts" >
+      <configuration filter="" Name="Common" />
+      <file file_name="../Common/Texts/TextInit.h" Name="TextInit.h" />
+      <file file_name="../Common/Texts/chktextinit.h" Name="chktextinit.h" />
+      <file file_name="../Common/Texts/evtentext.c" Name="evtentext.c" />
+      <file file_name="../Common/Texts/evttextinit.c" Name="evttextinit.c" />
+      <file file_name="../Common/Texts/evttextinit.h" Name="evttextinit.h" />
+      <file file_name="../Common/Texts/fnt_custom_de.h" Name="fnt_custom_de.h" />
+      <file file_name="../Common/Texts/hdtentext.c" Name="hdtentext.c" />
+      <file file_name="../Common/Texts/hdttextinit.c" Name="hdttextinit.c" />
+      <file file_name="../Common/Texts/hdttextinit.h" Name="hdttextinit.h" />
+      <file file_name="../Common/Texts/msg1.c" Name="msg1.c" />
+      <file file_name="../Common/Texts/msg.c" Name="msg.c" />
+      <file file_name="../Common/Texts/msg.h" Name="msg.h" />
+      <file file_name="../Common/Texts/msgfunc.c" Name="msgfunc.c" />
+      <file file_name="../Common/Texts/msgfunc.h" Name="msgfunc.h" />
+      <file file_name="../Common/Texts/pclentext.c" Name="pclentext.c" />
+      <file file_name="../Common/Texts/pcltext.h" Name="pcltext.h" />
+      <file file_name="../Common/Texts/pcltextinit.c" Name="pcltextinit.c" />
+      <file file_name="../Common/Texts/pcltextinit.h" Name="pcltextinit.h" />
+      <file file_name="../Common/Texts/rspentext.c" Name="rspentext.c" />
+      <file file_name="../Common/Texts/rsptext.h" Name="rsptext.h" />
+      <file file_name="../Common/Texts/rsptextinit.c" Name="rsptextinit.c" />
+      <file file_name="../Common/Texts/rsptextinit.h" Name="rsptextinit.h" />
+      <file file_name="../Common/Texts/syserr.c" Name="syserr.c" />
+      <file file_name="../Common/Texts/syserr.h" Name="syserr.h" />
+      <file file_name="../Common/Texts/text.c" Name="text.c" />
+      <file file_name="../Common/Texts/text.h" Name="text.h" />
+      <file file_name="../Common/Texts/TextInit.c" Name="TextInit.c" />
+      <file file_name="../Common/Texts/rsptrtext.c" Name="rsptrtext.c" />
+      <file file_name="../Common/Texts/evttrtext.c" Name="evttrtext.c" />
+      <file file_name="../Common/Texts/pcltrtext.c" Name="pcltrtext.c" />
+      <file file_name="../Common/Texts/hdttrtext.c" Name="hdttrtext.c" />
+    </folder>
+    <folder Name="Txn_flow" >
+      <configuration filter="" Name="Common" />
+      <file file_name="../Common/Txn_flow/wrrtc.h" Name="wrrtc.h" />
+      <file file_name="../Common/Txn_flow/aapallow.c" Name="aapallow.c" />
+      <file file_name="../Common/Txn_flow/aapallow.h" Name="aapallow.h" />
+      <file file_name="../Common/Txn_flow/acctproc.c" Name="acctproc.c" />
+      <file file_name="../Common/Txn_flow/acctproc.h" Name="acctproc.h" />
+      <file file_name="../Common/Txn_flow/addprmpt.c" Name="addprmpt.c" />
+      <file file_name="../Common/Txn_flow/addprmpt.h" Name="addprmpt.h" />
+      <file file_name="../Common/Txn_flow/adjust.c" Name="adjust.c" />
+      <file file_name="../Common/Txn_flow/adjust.h" Name="adjust.h" />
+      <file file_name="../Common/Txn_flow/amtentry.c" Name="amtentry.c" />
+      <file file_name="../Common/Txn_flow/amtentry.h" Name="amtentry.h" />
+      <file file_name="../Common/Txn_flow/amtproc.c" Name="amtproc.c" />
+      <file file_name="../Common/Txn_flow/amtproc.h" Name="amtproc.h" />
+      <file file_name="../Common/Txn_flow/app1.c" Name="app1.c" />
+      <file file_name="../Common/Txn_flow/app1.h" Name="app1.h" />
+      <file file_name="../Common/Txn_flow/app2.c" Name="app2.c" />
+      <file file_name="../Common/Txn_flow/app2.h" Name="app2.h" />
+      <file file_name="../Common/Txn_flow/autosetl.c" Name="autosetl.c" />
+      <file file_name="../Common/Txn_flow/autosetl.h" Name="autosetl.h" />
+      <file file_name="../Common/Txn_flow/chkleng.c" Name="chkleng.c" />
+      <file file_name="../Common/Txn_flow/chkleng.h" Name="chkleng.h" />
+      <file file_name="../Common/Txn_flow/close.c" Name="close.c" />
+      <file file_name="../Common/Txn_flow/close.h" Name="close.h" />
+      <file file_name="../Common/Txn_flow/cndmtamt.c" Name="cndmtamt.c" />
+      <file file_name="../Common/Txn_flow/cndmtamt.h" Name="cndmtamt.h" />
+      <file file_name="../Common/Txn_flow/crdrange.c" Name="crdrange.c" />
+      <file file_name="../Common/Txn_flow/crdrange.h" Name="crdrange.h" />
+      <file file_name="../Common/Txn_flow/creauth.c" Name="creauth.c" />
+      <file file_name="../Common/Txn_flow/cstmamnt.c" Name="cstmamnt.c" />
+      <file file_name="../Common/Txn_flow/cstmamnt.h" Name="cstmamnt.h" />
+      <file file_name="../Common/Txn_flow/cvtamt.c" Name="cvtamt.c" />
+      <file file_name="../Common/Txn_flow/cvtamt.h" Name="cvtamt.h" />
+      <file file_name="../Common/Txn_flow/cvv2proc.c" Name="cvv2proc.c" />
+      <file file_name="../Common/Txn_flow/cvv2proc.h" Name="cvv2proc.h" />
+      <file file_name="../Common/Txn_flow/eventbl.c" Name="eventbl.c" />
+      <file file_name="../Common/Txn_flow/eventbl.h" Name="eventbl.h" />
+      <file file_name="../Common/Txn_flow/findtran.c" Name="findtran.c" />
+      <file file_name="../Common/Txn_flow/findtran.h" Name="findtran.h" />
+      <file file_name="../Common/Txn_flow/floor.c" Name="floor.c" />
+      <file file_name="../Common/Txn_flow/floor.h" Name="floor.h" />
+      <file file_name="../Common/Txn_flow/funct2.c" Name="funct2.c" />
+      <file file_name="../Common/Txn_flow/function.c" Name="function.c" />
+      <file file_name="../Common/Txn_flow/function.h" Name="function.h" />
+      <file file_name="../Common/Txn_flow/genauth.c" Name="genauth.c" />
+      <file file_name="../Common/Txn_flow/genauth.h" Name="genauth.h" />
+      <file file_name="../Common/Txn_flow/getaqid.c" Name="getaqid.c" />
+      <file file_name="../Common/Txn_flow/getaqid.h" Name="getaqid.h" />
+      <file file_name="../Common/Txn_flow/getdate.c" Name="getdate.c" />
+      <file file_name="../Common/Txn_flow/getdate.h" Name="getdate.h" />
+      <file file_name="../Common/Txn_flow/getrninv.c" Name="getrninv.c" />
+      <file file_name="../Common/Txn_flow/getrninv.h" Name="getrninv.h" />
+      <file file_name="../Common/Txn_flow/gettime.c" Name="gettime.c" />
+      <file file_name="../Common/Txn_flow/gettime.h" Name="gettime.h" />
+      <file file_name="../Common/Txn_flow/idlebutt.c" Name="idlebutt.c" />
+      <file file_name="../Common/Txn_flow/idlebutt.h" Name="idlebutt.h" />
+      <file file_name="../Common/Txn_flow/inadjinv.c" Name="inadjinv.c" />
+      <file file_name="../Common/Txn_flow/inadjinv.h" Name="inadjinv.h" />
+      <file file_name="../Common/Txn_flow/inpmpswd.c" Name="inpmpswd.c" />
+      <file file_name="../Common/Txn_flow/inpmpswd.h" Name="inpmpswd.h" />
+      <file file_name="../Common/Txn_flow/inputpwd.c" Name="inputpwd.c" />
+      <file file_name="../Common/Txn_flow/inputpwd.h" Name="inputpwd.h" />
+      <file file_name="../Common/Txn_flow/inputspw.c" Name="inputspw.c" />
+      <file file_name="../Common/Txn_flow/inputspw.h" Name="inputspw.h" />
+      <file file_name="../Common/Txn_flow/manuexp.c" Name="manuexp.c" />
+      <file file_name="../Common/Txn_flow/manuexp.h" Name="manuexp.h" />
+      <file file_name="../Common/Txn_flow/manuissn.c" Name="manuissn.c" />
+      <file file_name="../Common/Txn_flow/manuissn.h" Name="manuissn.h" />
+      <file file_name="../Common/Txn_flow/manustd.c" Name="manustd.c" />
+      <file file_name="../Common/Txn_flow/manustd.h" Name="manustd.h" />
+      <file file_name="../Common/Txn_flow/offline.c" Name="offline.c" />
+      <file file_name="../Common/Txn_flow/perfutil.c" Name="perfutil.c" />
+      <file file_name="../Common/Txn_flow/perfutil.h" Name="perfutil.h" />
+      <file file_name="../Common/Txn_flow/refproc.c" Name="refproc.c" />
+      <file file_name="../Common/Txn_flow/refproc.h" Name="refproc.h" />
+      <file file_name="../Common/Txn_flow/reports.c" Name="reports.c" />
+      <file file_name="../Common/Txn_flow/reports.h" Name="reports.h" />
+      <file file_name="../Common/Txn_flow/settime.c" Name="settime.c" />
+      <file file_name="../Common/Txn_flow/settime.h" Name="settime.h" />
+      <file file_name="../Common/Txn_flow/settle.c" Name="settle.c" />
+      <file file_name="../Common/Txn_flow/settle.h" Name="settle.h" />
+      <file file_name="../Common/Txn_flow/settlesum.c" Name="settlesum.c" />
+      <file file_name="../Common/Txn_flow/settlesum.h" Name="settlesum.h" />
+      <file file_name="../Common/Txn_flow/setup.c" Name="setup.c" />
+      <file file_name="../Common/Txn_flow/setup.h" Name="setup.h" />
+      <file file_name="../Common/Txn_flow/show.c" Name="show.c" />
+      <file file_name="../Common/Txn_flow/show.h" Name="show.h" />
+      <file file_name="../Common/Txn_flow/showtrk2.c" Name="showtrk2.c" />
+      <file file_name="../Common/Txn_flow/showtrk2.h" Name="showtrk2.h" />
+      <file file_name="../Common/Txn_flow/tabclose.c" Name="tabclose.c" />
+      <file file_name="../Common/Txn_flow/tabclose.h" Name="tabclose.h" />
+      <file file_name="../Common/Txn_flow/tabproc.c" Name="tabproc.c" />
+      <file file_name="../Common/Txn_flow/tabproc.h" Name="tabproc.h" />
+      <file file_name="../Common/Txn_flow/totals.c" Name="totals.c" />
+      <file file_name="../Common/Txn_flow/totals.h" Name="totals.h" />
+      <file file_name="../Common/Txn_flow/totlook.c" Name="totlook.c" />
+      <file file_name="../Common/Txn_flow/totlook.h" Name="totlook.h" />
+      <file file_name="../Common/Txn_flow/trainmod.c" Name="trainmod.c" />
+      <file file_name="../Common/Txn_flow/trainmod.h" Name="trainmod.h" />
+      <file file_name="../Common/Txn_flow/transdef.h" Name="transdef.h" />
+      <file file_name="../Common/Txn_flow/trinpclr.c" Name="trinpclr.c" />
+      <file file_name="../Common/Txn_flow/trinpclr.h" Name="trinpclr.h" />
+      <file file_name="../Common/Txn_flow/validexp.c" Name="validexp.c" />
+      <file file_name="../Common/Txn_flow/validexp.h" Name="validexp.h" />
+      <file file_name="../Common/Txn_flow/validstd.c" Name="validstd.c" />
+      <file file_name="../Common/Txn_flow/validstd.h" Name="validstd.h" />
+      <file file_name="../Common/Txn_flow/void.c" Name="void.c" />
+      <file file_name="../Common/Txn_flow/void.h" Name="void.h" />
+      <file file_name="../Common/Txn_flow/wrrtc.c" Name="wrrtc.c" />
+      <file file_name="../Common/Txn_flow/forceSettlement.c" Name="forceSettlement.c" />
+      <file file_name="../Common/Txn_flow/forceSettlement.h" Name="forceSettlement.h" />
+      <file file_name="../Common/Txn_flow/checkCurrency.c" Name="checkCurrency.c" />
+      <file file_name="../Common/Txn_flow/checkCurrency.h" Name="checkCurrency.h" />
+      <file file_name="../Common/Txn_flow/loyalty.c" Name="loyalty.c" />
+      <file file_name="../Common/Txn_flow/loyalty.h" Name="loyalty.h" />
+      <file file_name="../Common/Txn_flow/autoinit.c" Name="autoinit.c" />
+      <file file_name="../Common/Txn_flow/autoinit.h" Name="autoinit.h" />
+      <file file_name="../Common/Txn_flow/applicationExpire.c" Name="applicationExpire.c" />
+    </folder>
+    <folder Name="Utils" >
+      <configuration filter="" Name="Common" />
+      <file file_name="../Common/Utils/utilfunc.h" Name="utilfunc.h" />
+      <file file_name="../Common/Utils/bcdbinw.c" Name="bcdbinw.c" />
+      <file file_name="../Common/Utils/bcdbinw.h" Name="bcdbinw.h" />
+      <file file_name="../Common/Utils/binbcdb.c" Name="binbcdb.c" />
+      <file file_name="../Common/Utils/binbcdw.c" Name="binbcdw.c" />
+      <file file_name="../Common/Utils/datetime.c" Name="datetime.c" />
+      <file file_name="../Common/Utils/datetime.h" Name="datetime.h" />
+      <file file_name="../Common/Utils/getkey.c" Name="getkey.c" />
+      <file file_name="../Common/Utils/getkey.h" Name="getkey.h" />
+      <file file_name="../Common/Utils/negsign.c" Name="negsign.c" />
+      <file file_name="../Common/Utils/negsign.h" Name="negsign.h" />
+      <file file_name="../Common/Utils/read_io.c" Name="read_io.c" />
+      <file file_name="../Common/Utils/read_io.h" Name="read_io.h" />
+      <file file_name="../Common/Utils/readdata.c" Name="readdata.c" />
+      <file file_name="../Common/Utils/readdata.h" Name="readdata.h" />
+      <file file_name="../Common/Utils/util2.c" Name="util2.c" />
+      <file file_name="../Common/Utils/util2.h" Name="util2.h" />
+      <file file_name="../Common/Utils/util.c" Name="util.c" />
+      <file file_name="../Common/Utils/util.h" Name="util.h" />
+      <file file_name="../Common/Utils/utilfunc.c" Name="utilfunc.c" />
+    </folder>
+    <folder Name="Images" >
+      <configuration filter="" Name="Common" />
+      <file file_name="../Common/Images/ImgVoid16.h" Name="ImgVoid16.h" />
+      <file file_name="../Common/Images/fdwnld.c" Name="fdwnld.c" />
+      <file file_name="../Common/Images/fdwnld.h" Name="fdwnld.h" />
+      <file file_name="../Common/Images/img.c" Name="img.c" />
+      <file file_name="../Common/Images/img.h" Name="img.h" />
+      <file file_name="../Common/Images/ImgAchcheck16.h" Name="ImgAchcheck16.h" />
+      <file file_name="../Common/Images/ImgAddrmv16.h" Name="ImgAddrmv16.h" />
+      <file file_name="../Common/Images/ImgAdjust16.h" Name="ImgAdjust16.h" />
+      <file file_name="../Common/Images/ImgAll16.h" Name="ImgAll16.h" />
+      <file file_name="../Common/Images/ImgAmex16.h" Name="ImgAmex16.h" />
+      <file file_name="../Common/Images/ImgAtm16.h" Name="ImgAtm16.h" />
+      <file file_name="../Common/Images/ImgAudit16.h" Name="ImgAudit16.h" />
+      <file file_name="../Common/Images/ImgAuth16.h" Name="ImgAuth16.h" />
+      <file file_name="../Common/Images/ImgBalance16.h" Name="ImgBalance16.h" />
+      <file file_name="../Common/Images/ImgBank16.h" Name="ImgBank16.h" />
+      <file file_name="../Common/Images/ImgBatch16.h" Name="ImgBatch16.h" />
+      <file file_name="../Common/Images/ImgBattary_0.h" Name="ImgBattary_0.h" />
+      <file file_name="../Common/Images/ImgBattary_20.h" Name="ImgBattary_20.h" />
+      <file file_name="../Common/Images/ImgBattary_40.h" Name="ImgBattary_40.h" />
+      <file file_name="../Common/Images/ImgBattary_60.h" Name="ImgBattary_60.h" />
+      <file file_name="../Common/Images/ImgBattary_80.h" Name="ImgBattary_80.h" />
+      <file file_name="../Common/Images/ImgBattary_100.h" Name="ImgBattary_100.h" />
+      <file file_name="../Common/Images/ImgBlueTooth.h" Name="ImgBlueTooth.h" />
+      <file file_name="../Common/Images/ImgBrowser16.h" Name="ImgBrowser16.h" />
+      <file file_name="../Common/Images/ImgCard16.h" Name="ImgCard16.h" />
+      <file file_name="../Common/Images/ImgCash16.h" Name="ImgCash16.h" />
+      <file file_name="../Common/Images/ImgChange16.h" Name="ImgChange16.h" />
+      <file file_name="../Common/Images/ImgCheck16.h" Name="ImgCheck16.h" />
+      <file file_name="../Common/Images/ImgChkrdr16.h" Name="ImgChkrdr16.h" />
+      <file file_name="../Common/Images/ImgClear16.h" Name="ImgClear16.h" />
+      <file file_name="../Common/Images/ImgClock16.h" Name="ImgClock16.h" />
+      <file file_name="../Common/Images/ImgClose16.h" Name="ImgClose16.h" />
+      <file file_name="../Common/Images/ImgContrast16.h" Name="ImgContrast16.h" />
+      <file file_name="../Common/Images/ImgCrdr16.h" Name="ImgCrdr16.h" />
+      <file file_name="../Common/Images/ImgCustomer16.h" Name="ImgCustomer16.h" />
+      <file file_name="../Common/Images/ImgDb16.h" Name="ImgDb16.h" />
+      <file file_name="../Common/Images/ImgDetail16.h" Name="ImgDetail16.h" />
+      <file file_name="../Common/Images/ImgDialtype16.h" Name="ImgDialtype16.h" />
+      <file file_name="../Common/Images/ImgDisplay16.h" Name="ImgDisplay16.h" />
+      <file file_name="../Common/Images/ImgEye16.h" Name="ImgEye16.h" />
+      <file file_name="../Common/Images/ImgFind16.h" Name="ImgFind16.h" />
+      <file file_name="../Common/Images/ImgFingerPrint16.h" Name="ImgFingerPrint16.h" />
+      <file file_name="../Common/Images/ImgFunction16.h" Name="ImgFunction16.h" />
+      <file file_name="../Common/Images/ImgGSMsignal_0.h" Name="ImgGSMsignal_0.h" />
+      <file file_name="../Common/Images/ImgGSMsignal_20.h" Name="ImgGSMsignal_20.h" />
+      <file file_name="../Common/Images/ImgGSMsignal_40.h" Name="ImgGSMsignal_40.h" />
+      <file file_name="../Common/Images/ImgGSMsignal_60.h" Name="ImgGSMsignal_60.h" />
+      <file file_name="../Common/Images/ImgGSMsignal_80.h" Name="ImgGSMsignal_80.h" />
+      <file file_name="../Common/Images/ImgGSMsignal_100.h" Name="ImgGSMsignal_100.h" />
+      <file file_name="../Common/Images/ImgHandset16.h" Name="ImgHandset16.h" />
+      <file file_name="../Common/Images/ImgHost16.h" Name="ImgHost16.h" />
+      <file file_name="../Common/Images/ImgIcepac16.h" Name="ImgIcepac16.h" />
+      <file file_name="../Common/Images/ImgInit16.h" Name="ImgInit16.h" />
+      <file file_name="../Common/Images/ImgInitphone16.h" Name="ImgInitphone16.h" />
+      <file file_name="../Common/Images/ImgInvoice16.h" Name="ImgInvoice16.h" />
+      <file file_name="../Common/Images/ImgKbd500016.h" Name="ImgKbd500016.h" />
+      <file file_name="../Common/Images/ImgKeyAsc.h" Name="ImgKeyAsc.h" />
+      <file file_name="../Common/Images/ImgKeyAscSmall.h" Name="ImgKeyAscSmall.h" />
+      <file file_name="../Common/Images/ImgKeyNum.h" Name="ImgKeyNum.h" />
+      <file file_name="../Common/Images/ImgKeySym.h" Name="ImgKeySym.h" />
+      <file file_name="../Common/Images/ImgLanguage16.h" Name="ImgLanguage16.h" />
+      <file file_name="../Common/Images/ImgLast16.h" Name="ImgLast16.h" />
+      <file file_name="../Common/Images/ImgLogon16.h" Name="ImgLogon16.h" />
+      <file file_name="../Common/Images/ImgMemory16.h" Name="ImgMemory16.h" />
+      <file file_name="../Common/Images/ImgMorder16.h" Name="ImgMorder16.h" />
+      <file file_name="../Common/Images/ImgNew16.h" Name="ImgNew16.h" />
+      <file file_name="../Common/Images/ImgNmsphone16.h" Name="ImgNmsphone16.h" />
+      <file file_name="../Common/Images/ImgNoimage16.h" Name="ImgNoimage16.h" />
+      <file file_name="../Common/Images/ImgOffline16.h" Name="ImgOffline16.h" />
+      <file file_name="../Common/Images/ImgOnoff16.h" Name="ImgOnoff16.h" />
+      <file file_name="../Common/Images/ImgOpen16.h" Name="ImgOpen16.h" />
+      <file file_name="../Common/Images/ImgPabx16.h" Name="ImgPabx16.h" />
+      <file file_name="../Common/Images/ImgPhone16.h" Name="ImgPhone16.h" />
+      <file file_name="../Common/Images/ImgPinpad16.h" Name="ImgPinpad16.h" />
+      <file file_name="../Common/Images/ImgPrint16.h" Name="ImgPrint16.h" />
+      <file file_name="../Common/Images/ImgPriorachcheck16.h" Name="ImgPriorachcheck16.h" />
+      <file file_name="../Common/Images/ImgProgload16.h" Name="ImgProgload16.h" />
+      <file file_name="../Common/Images/ImgPwd16.h" Name="ImgPwd16.h" />
+      <file file_name="../Common/Images/ImgQuit16.h" Name="ImgQuit16.h" />
+      <file file_name="../Common/Images/ImgReceipt16.h" Name="ImgReceipt16.h" />
+      <file file_name="../Common/Images/ImgReferral16.h" Name="ImgReferral16.h" />
+      <file file_name="../Common/Images/ImgRefund16.h" Name="ImgRefund16.h" />
+      <file file_name="../Common/Images/ImgRelease16.h" Name="ImgRelease16.h" />
+      <file file_name="../Common/Images/ImgReport16.h" Name="ImgReport16.h" />
+      <file file_name="../Common/Images/ImgReset16.h" Name="ImgReset16.h" />
+      <file file_name="../Common/Images/ImgReview16.h" Name="ImgReview16.h" />
+      <file file_name="../Common/Images/ImgSalCash16.h" Name="ImgSalCash16.h" />
+      <file file_name="../Common/Images/ImgSale16.h" Name="ImgSale16.h" />
+      <file file_name="../Common/Images/ImgServer16.h" Name="ImgServer16.h" />
+      <file file_name="../Common/Images/ImgSetup16.h" Name="ImgSetup16.h" />
+      <file file_name="../Common/Images/ImgShift16.h" Name="ImgShift16.h" />
+      <file file_name="../Common/Images/ImgSummary16.h" Name="ImgSummary16.h" />
+      <file file_name="../Common/Images/ImgTab16.h" Name="ImgTab16.h" />
+      <file file_name="../Common/Images/ImgTerm16.h" Name="ImgTerm16.h" />
+      <file file_name="../Common/Images/ImgTermid16.h" Name="ImgTermid16.h" />
+      <file file_name="../Common/Images/ImgTest16.h" Name="ImgTest16.h" />
+      <file file_name="../Common/Images/ImgTill16.h" Name="ImgTill16.h" />
+      <file file_name="../Common/Images/ImgToll16.h" Name="ImgToll16.h" />
+      <file file_name="../Common/Images/ImgTotal16.h" Name="ImgTotal16.h" />
+      <file file_name="../Common/Images/ImgTrain16.h" Name="ImgTrain16.h" />
+      <file file_name="../Common/Images/ImgTxrx16.h" Name="ImgTxrx16.h" />
+      <file file_name="../Common/Images/ImgUnadjusted16.h" Name="ImgUnadjusted16.h" />
+      <file file_name="../Common/Images/ImgUp16.h" Name="ImgUp16.h" />
+      <file file_name="../Common/Images/Img6x4_9.h" Name="Img6x4_9.h" />
+      <file file_name="../Common/Images/Img6x4_0.h" Name="Img6x4_0.h" />
+      <file file_name="../Common/Images/Img6x4_1.h" Name="Img6x4_1.h" />
+      <file file_name="../Common/Images/Img6x4_2.h" Name="Img6x4_2.h" />
+      <file file_name="../Common/Images/Img6x4_3.h" Name="Img6x4_3.h" />
+      <file file_name="../Common/Images/Img6x4_4.h" Name="Img6x4_4.h" />
+      <file file_name="../Common/Images/Img6x4_5.h" Name="Img6x4_5.h" />
+      <file file_name="../Common/Images/Img6x4_6.h" Name="Img6x4_6.h" />
+      <file file_name="../Common/Images/Img6x4_7.h" Name="Img6x4_7.h" />
+      <file file_name="../Common/Images/Img6x4_8.h" Name="Img6x4_8.h" />
+    </folder>
+    <folder Name="Hosts" >
+      <configuration filter="" Name="Common" />
+      <file file_name="../Common/Hosts/updttime.h" Name="updttime.h" />
+      <file file_name="../Common/Hosts/bit8583.c" Name="bit8583.c" />
+      <file file_name="../Common/Hosts/bit8583.h" Name="bit8583.h" />
+      <file file_name="../Common/Hosts/demo.c" Name="demo.c" />
+      <file file_name="../Common/Hosts/demo.h" Name="demo.h" />
+      <file file_name="../Common/Hosts/flaghost.c" Name="flaghost.c" />
+      <file file_name="../Common/Hosts/flaghost.h" Name="flaghost.h" />
+      <file file_name="../Common/Hosts/host.c" Name="host.c" />
+      <file file_name="../Common/Hosts/host.h" Name="host.h" />
+      <file file_name="../Common/Hosts/HostTable.c" Name="HostTable.c" />
+      <file file_name="../Common/Hosts/hstcopy.c" Name="hstcopy.c" />
+      <file file_name="../Common/Hosts/hstcopy.h" Name="hstcopy.h" />
+      <file file_name="../Common/Hosts/hstmsg.c" Name="hstmsg.c" />
+      <file file_name="../Common/Hosts/hstmsg.h" Name="hstmsg.h" />
+      <file file_name="../Common/Hosts/hstprint2.c" Name="hstprint2.c" />
+      <file file_name="../Common/Hosts/hstprint2.h" Name="hstprint2.h" />
+      <file file_name="../Common/Hosts/hstprint.c" Name="hstprint.c" />
+      <file file_name="../Common/Hosts/hstprint.h" Name="hstprint.h" />
+      <file file_name="../Common/Hosts/hstresp.c" Name="hstresp.c" />
+      <file file_name="../Common/Hosts/hstresp.h" Name="hstresp.h" />
+      <file file_name="../Common/Hosts/hyper.c" Name="hyper.c" />
+      <file file_name="../Common/Hosts/hyper.h" Name="hyper.h" />
+      <file file_name="../Common/Hosts/i8583utl.c" Name="i8583utl.c" />
+      <file file_name="../Common/Hosts/I8583utl.h" Name="I8583utl.h" />
+      <file file_name="../Common/Hosts/i_host.h" Name="i_host.h" />
+      <file file_name="../Common/Hosts/icepak1.c" Name="icepak1.c" />
+      <file file_name="../Common/Hosts/icepak.c" Name="icepak.c" />
+      <file file_name="../Common/Hosts/icepak.h" Name="icepak.h" />
+      <file file_name="../Common/Hosts/init.c" Name="init.c" />
+      <file file_name="../Common/Hosts/init.h" Name="init.h" />
+      <file file_name="../Common/Hosts/is8583.c" Name="is8583.c" />
+      <file file_name="../Common/Hosts/is8583.h" Name="is8583.h" />
+      <file file_name="../Common/Hosts/reqhyp.c" Name="reqhyp.c" />
+      <file file_name="../Common/Hosts/reqhyp.h" Name="reqhyp.h" />
+      <file file_name="../Common/Hosts/reqicepk.c" Name="reqicepk.c" />
+      <file file_name="../Common/Hosts/reqicepk.h" Name="reqicepk.h" />
+      <file file_name="../Common/Hosts/reqinit.c" Name="reqinit.c" />
+      <file file_name="../Common/Hosts/reqinit.h" Name="reqinit.h" />
+      <file file_name="../Common/Hosts/respdsp.c" Name="respdsp.c" />
+      <file file_name="../Common/Hosts/respdsp.h" Name="respdsp.h" />
+      <file file_name="../Common/Hosts/rsphyp.c" Name="rsphyp.c" />
+      <file file_name="../Common/Hosts/rsphyp.h" Name="rsphyp.h" />
+      <file file_name="../Common/Hosts/rspinit.c" Name="rspinit.c" />
+      <file file_name="../Common/Hosts/rspinit.h" Name="rspinit.h" />
+      <file file_name="../Common/Hosts/rspunp.c" Name="rspunp.c" />
+      <file file_name="../Common/Hosts/rspunp.h" Name="rspunp.h" />
+      <file file_name="../Common/Hosts/updttime.c" Name="updttime.c" />
+      <file file_name="../Common/Hosts/visad.h" Name="visad.h" />
+      <file file_name="../Common/Hosts/reqvisa1.h" Name="reqvisa1.h" />
+      <file file_name="../Common/Hosts/reqvisad.c" Name="reqvisad.c" />
+      <file file_name="../Common/Hosts/reqvisad.h" Name="reqvisad.h" />
+      <file file_name="../Common/Hosts/rspvisa1.c" Name="rspvisa1.c" />
+      <file file_name="../Common/Hosts/rspvisa1.h" Name="rspvisa1.h" />
+      <file file_name="../Common/Hosts/rspvisad.c" Name="rspvisad.c" />
+      <file file_name="../Common/Hosts/rspvisad.h" Name="rspvisad.h" />
+      <file file_name="../Common/Hosts/visa1.c" Name="visa1.c" />
+      <file file_name="../Common/Hosts/visa1.h" Name="visa1.h" />
+      <file file_name="../Common/Hosts/visad.c" Name="visad.c" >
+        <configuration build_exclude_from_build="No" Name="Debug" />
+      </file>
+      <file file_name="../Common/Hosts/reqvisa1.c" Name="reqvisa1.c" />
+    </folder>
+    <folder Name="PinPad" >
+      <configuration filter="" Name="Common" />
+      <file file_name="../Common/PinPad/pinutils.h" Name="pinutils.h" />
+      <file file_name="../Common/PinPad/pinattackdelay.c" Name="pinattackdelay.c" />
+      <file file_name="../Common/PinPad/pinattackdelay.h" Name="pinattackdelay.h" />
+      <file file_name="../Common/PinPad/pinpad.c" Name="pinpad.c" />
+      <file file_name="../Common/PinPad/pinpad.h" Name="pinpad.h" />
+      <file file_name="../Common/PinPad/pinutils.c" Name="pinutils.c" />
+      <file file_name="../Common/PinPad/des.c" Name="des.c" />
+    </folder>
+    <folder Name="Printer" >
+      <configuration filter="" Name="Common" />
+      <file file_name="../Common/Printer/testprnt.h" Name="testprnt.h" />
+      <file file_name="../Common/Printer/chkprinter.h" Name="chkprinter.h" />
+      <file file_name="../Common/Printer/chkprntr.c" Name="chkprntr.c" />
+      <file file_name="../Common/Printer/debugprt.c" Name="debugprt.c" />
+      <file file_name="../Common/Printer/debugprt.h" Name="debugprt.h" />
+      <file file_name="../Common/Printer/doprtlst.c" Name="doprtlst.c" />
+      <file file_name="../Common/Printer/doprtlst.h" Name="doprtlst.h" />
+      <file file_name="../Common/Printer/prtdata.c" Name="prtdata.c" />
+      <file file_name="../Common/Printer/prtdata.h" Name="prtdata.h" />
+      <file file_name="../Common/Printer/prtdef2.h" Name="prtdef2.h" />
+      <file file_name="../Common/Printer/prtdef.c" Name="prtdef.c" />
+      <file file_name="../Common/Printer/prtdef.h" Name="prtdef.h" />
+      <file file_name="../Common/Printer/prtdrv.c" Name="prtdrv.c" />
+      <file file_name="../Common/Printer/prtdrv.h" Name="prtdrv.h" />
+      <file file_name="../Common/Printer/prttable.c" Name="prttable.c" />
+      <file file_name="../Common/Printer/prttable.h" Name="prttable.h" />
+      <file file_name="../Common/Printer/receipt.c" Name="receipt.c" />
+      <file file_name="../Common/Printer/receipt.h" Name="receipt.h" />
+      <file file_name="../Common/Printer/testprnt.c" Name="testprnt.c" />
+      <file file_name="../Common/Printer/prtfields.h" Name="prtfields.h" />
+      <file file_name="../Common/Printer/prtfields.c" Name="prtfields.c" />
+      <file file_name="../Common/Printer/rp_common_data.h" Name="rp_common_data.h" />
+      <file file_name="../Common/Printer/prtdef_defines.h" Name="prtdef_defines.h" />
+      <file file_name="../Common/Printer/rp_audit_data.h" Name="rp_audit_data.h" />
+      <file file_name="../Common/Printer/rp_summary_byiss_data.h" Name="rp_summary_byiss_data.h" />
+      <file file_name="../Common/Printer/rp_sale_data.h" Name="rp_sale_data.h" />
+      <file file_name="../Common/Printer/rp_refund_data.h" Name="rp_refund_data.h" />
+      <file file_name="../Common/Printer/rp_void_data.h" Name="rp_void_data.h" />
+      <file file_name="../Common/Printer/rp_test_data.h" Name="rp_test_data.h" />
+      <file file_name="../Common/Printer/rp_other_data.h" Name="rp_other_data.h" />
+      <file file_name="../Common/Printer/prtDetayli.h" Name="prtDetayli.h" />
+      <file file_name="../Common/Printer/prtDetayli.c" Name="prtDetayli.c" />
+      <file file_name="../Common/Printer/IssTableVarName.h" Name="IssTableVarName.h" />
+      <file file_name="../Common/Printer/TermTableVarName.h" Name="TermTableVarName.h" />
+      <file file_name="../Common/Printer/AcqTableVarName.h" Name="AcqTableVarName.h" />
+      <file file_name="../Common/Printer/CardTableVarName.h" Name="CardTableVarName.h" />
+      <file file_name="../Common/Printer/rp_init_data.h" Name="rp_init_data.h" />
+      <file file_name="../Common/Printer/rp_loyaltyinq_data.h" Name="rp_loyaltyinq_data.h" />
+      <file file_name="../Common/Printer/rp_loyalty_data.h" Name="rp_loyalty_data.h" />
+    </folder>
+    <folder Name="HostUtil" >
+      <configuration filter="c;h" Name="Common" />
+      <file file_name="../Common/HostUtil/hostutil.h" Name="hostutil.h" />
+      <file file_name="../Common/HostUtil/appdac3p.c" Name="appdac3p.c" />
+      <file file_name="../Common/HostUtil/appdacc2.c" Name="appdacc2.c" />
+      <file file_name="../Common/HostUtil/appdamt.c" Name="appdamt.c" />
+      <file file_name="../Common/HostUtil/appdchar.c" Name="appdchar.c" />
+      <file file_name="../Common/HostUtil/appdcnmc.c" Name="appdcnmc.c" />
+      <file file_name="../Common/HostUtil/appdcnmp.c" Name="appdcnmp.c" />
+      <file file_name="../Common/HostUtil/appdedat.c" Name="appdedat.c" />
+      <file file_name="../Common/HostUtil/appdfs.c" Name="appdfs.c" />
+      <file file_name="../Common/HostUtil/appdmicr.c" Name="appdmicr.c" />
+      <file file_name="../Common/HostUtil/appdmta.c" Name="appdmta.c" />
+      <file file_name="../Common/HostUtil/appdmtta.c" Name="appdmtta.c" />
+      <file file_name="../Common/HostUtil/appdpanm.c" Name="appdpanm.c" />
+      <file file_name="../Common/HostUtil/appdpant.c" Name="appdpant.c" />
+      <file file_name="../Common/HostUtil/appdrout.c" Name="appdrout.c" />
+      <file file_name="../Common/HostUtil/appdvtid.c" Name="appdvtid.c" />
+      <file file_name="../Common/HostUtil/appdvtpd.c" Name="appdvtpd.c" />
+      <file file_name="../Common/HostUtil/appdwcc.c" Name="appdwcc.c" />
+      <file file_name="../Common/HostUtil/appd2chr.c" Name="appd2chr.c" />
+      <file file_name="xxx.c" Name="xxx.c" />
+    </folder>
+  </project>
+  <project Name="SNMPLib" >
+    <configuration c_preprocessor_definitions="" project_directory="" project_type="Library" Name="Common" />
+    <folder Name="Source Files" >
+      <file file_name="../snmp/snmplib/asn1.c" Name="asn1.c" />
+      <file file_name="../snmp/snmplib/callback.c" Name="callback.c" />
+      <file file_name="../snmp/snmplib/check_varbind.c" Name="check_varbind.c" />
+      <file file_name="../snmp/snmplib/cmu_compat.c" Name="cmu_compat.c" />
+      <file file_name="../snmp/snmplib/container.c" Name="container.c" />
+      <file file_name="../snmp/snmplib/container_binary_array.c" Name="container_binary_array.c" />
+      <file file_name="../snmp/snmplib/container_iterator.c" Name="container_iterator.c" />
+      <file file_name="../snmp/snmplib/container_list_ssll.c" Name="container_list_ssll.c" />
+      <file file_name="../snmp/snmplib/container_null.c" Name="container_null.c" />
+      <file file_name="../snmp/snmplib/data_list.c" Name="data_list.c" />
+      <file file_name="../snmp/snmplib/default_store.c" Name="default_store.c" />
+      <file file_name="../snmp/snmplib/fd_event_manager.c" Name="fd_event_manager.c" />
+      <file file_name="../snmp/snmplib/file_utils.c" Name="file_utils.c" />
+      <file file_name="../snmp/snmplib/getopt.c" Name="getopt.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/snmplib/inet_ntop.c" Name="inet_ntop.c" />
+      <file file_name="../snmp/snmplib/inet_pton.c" Name="inet_pton.c" />
+      <file file_name="../snmp/snmplib/int64.c" Name="int64.c" />
+      <file file_name="../snmp/snmplib/keytools.c" Name="keytools.c" />
+      <file file_name="../snmp/snmplib/lcd_time.c" Name="lcd_time.c" />
+      <file file_name="../snmp/snmplib/md5.c" Name="md5.c" />
+      <file file_name="../snmp/snmplib/mib.c" Name="mib.c" />
+      <file file_name="../snmp/snmplib/mt_support.c" Name="mt_support.c" />
+      <file file_name="../snmp/snmplib/oid_stash.c" Name="oid_stash.c" />
+      <file file_name="../snmp/snmplib/parse.c" Name="parse.c" />
+      <file file_name="../snmp/snmplib/pkcs.c" Name="pkcs.c" />
+      <file file_name="../snmp/snmplib/read_config.c" Name="read_config.c" />
+      <file file_name="../snmp/snmplib/scapi.c" Name="scapi.c" />
+      <file file_name="../snmp/snmplib/snmp.c" Name="snmp.c" />
+      <file file_name="../snmp/snmplib/snmp_alarm.c" Name="snmp_alarm.c" />
+      <file file_name="../snmp/snmplib/snmp_api.c" Name="snmp_api.c" />
+      <file file_name="../snmp/snmplib/snmp_auth.c" Name="snmp_auth.c" />
+      <file file_name="../snmp/snmplib/snmp_client.c" Name="snmp_client.c" />
+      <file file_name="../snmp/snmplib/snmp_debug.c" Name="snmp_debug.c" />
+      <file file_name="../snmp/snmplib/snmp_enum.c" Name="snmp_enum.c" />
+      <file file_name="../snmp/snmplib/snmp_logging.c" Name="snmp_logging.c" >
+        <configuration c_preprocessor_definitions="BUILD_LOGS" Name="Common" />
+      </file>
+      <file file_name="../snmp/snmplib/snmp_parse_args.c" Name="snmp_parse_args.c" />
+      <file file_name="../snmp/snmplib/snmp_secmod.c" Name="snmp_secmod.c" />
+      <file file_name="../snmp/snmplib/snmp_transport.c" Name="snmp_transport.c" />
+      <file file_name="../snmp/snmplib/snmp_version.c" Name="snmp_version.c" />
+      <file file_name="../snmp/snmplib/snmpAAL5PVCDomain.c" Name="snmpAAL5PVCDomain.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/snmplib/snmpCallbackDomain.c" Name="snmpCallbackDomain.c" />
+      <file file_name="../snmp/snmplib/snmpIPXDomain.c" Name="snmpIPXDomain.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/snmplib/snmpksm.c" Name="snmpksm.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/snmplib/snmplocalsm.c" Name="snmplocalsm.c" />
+      <file file_name="../snmp/snmplib/snmpSTDDomain.c" Name="snmpSTDDomain.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/snmplib/snmp-tc.c" Name="snmp-tc.c" />
+      <file file_name="../snmp/snmplib/snmpTCPDomain.c" Name="snmpTCPDomain.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/snmplib/snmpTCPIPv6Domain.c" Name="snmpTCPIPv6Domain.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/snmplib/snmpUDPDomain.c" Name="snmpUDPDomain.c" />
+      <file file_name="../snmp/snmplib/snmpUDPIPv6Domain.c" Name="snmpUDPIPv6Domain.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/snmplib/snmpUnixDomain.c" Name="snmpUnixDomain.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/snmplib/snmpusm.c" Name="snmpusm.c" />
+      <file file_name="../snmp/snmplib/snmpv3.c" Name="snmpv3.c" />
+      <file file_name="../snmp/snmplib/snprintf.c" Name="snprintf.c" />
+      <file file_name="../snmp/snmplib/strlcpy.c" Name="strlcpy.c" />
+      <file file_name="../snmp/snmplib/strtok_r.c" Name="strtok_r.c" />
+      <file file_name="../snmp/snmplib/strtol.c" Name="strtol.c" />
+      <file file_name="../snmp/snmplib/strtoul.c" Name="strtoul.c" />
+      <file file_name="../snmp/snmplib/system.c" Name="system.c" />
+      <file file_name="../snmp/snmplib/test_binary_array.c" Name="test_binary_array.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/snmplib/text_utils.c" Name="text_utils.c" />
+      <file file_name="../snmp/snmplib/tools.c" Name="tools.c" />
+      <file file_name="../snmp/snmplib/ucd_compat.c" Name="ucd_compat.c" />
+      <file file_name="../snmp/snmplib/ucd-snmp-includes.h" Name="ucd-snmp-includes.h" />
+      <file file_name="../snmp/snmplib/vacm.c" Name="vacm.c" />
+      <file file_name="../snmp/snmplib/winpipe.c" Name="winpipe.c" />
+      <file file_name="../snmp/snmplib/winservice.c" Name="winservice.c" />
+    </folder>
+    <configuration c_user_include_directories="" Name="SNMP" />
+  </project>
+  <project Name="Agent" >
+    <configuration c_preprocessor_definitions="" project_directory="" project_type="Library" Name="Common" />
+    <folder Name="Common" >
+      <file file_name="../snmp/agent/agent_handler.c" Name="agent_handler.c" />
+      <file file_name="../snmp/agent/agent_index.c" Name="agent_index.c" />
+      <file file_name="../snmp/agent/agent_read_config.c" Name="agent_read_config.c" />
+      <file file_name="../snmp/agent/agent_registry.c" Name="agent_registry.c" />
+      <file file_name="../snmp/agent/agent_trap.c" Name="agent_trap.c" />
+      <file file_name="../snmp/agent/auto_nlist.c" Name="auto_nlist.c" />
+      <file file_name="../snmp/agent/kernel.c" Name="kernel.c" />
+      <file file_name="../snmp/agent/mib_modules.c" Name="mib_modules.c" />
+      <file file_name="../snmp/agent/object_monitor.c" Name="object_monitor.c" />
+      <file file_name="../snmp/agent/snmp_agent.c" Name="snmp_agent.c" />
+      <file file_name="../snmp/agent/snmp_perl.c" Name="snmp_perl.c" >
+        <configuration build_exclude_from_build="Yes" Name="Debug.D2100" />
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/snmp_vars.c" Name="snmp_vars.c" />
+      <file file_name="../snmp/agent/snmpd.c" Name="snmpd.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+    </folder>
+    <folder Name="Helpers" >
+      <file file_name="../snmp/agent/helpers/all_helpers.c" Name="all_helpers.c" />
+      <file file_name="../snmp/agent/helpers/baby_steps.c" Name="baby_steps.c" />
+      <file file_name="../snmp/agent/helpers/bulk_to_next.c" Name="bulk_to_next.c" />
+      <file file_name="../snmp/agent/helpers/cache_handler.c" Name="cache_handler.c" />
+      <file file_name="../snmp/agent/helpers/debug_handler.c" Name="debug_handler.c" />
+      <file file_name="../snmp/agent/helpers/instance.c" Name="instance.c" />
+      <file file_name="../snmp/agent/helpers/mode_end_call.c" Name="mode_end_call.c" />
+      <file file_name="../snmp/agent/helpers/multiplexer.c" Name="multiplexer.c" />
+      <file file_name="../snmp/agent/helpers/null.c" Name="null.c" />
+      <file file_name="../snmp/agent/helpers/old_api.c" Name="old_api.c" />
+      <file file_name="../snmp/agent/helpers/read_only.c" Name="read_only.c" />
+      <file file_name="../snmp/agent/helpers/row_merge.c" Name="row_merge.c" />
+      <file file_name="../snmp/agent/helpers/scalar.c" Name="scalar.c" />
+      <file file_name="../snmp/agent/helpers/scalar_group.c" Name="scalar_group.c" />
+      <file file_name="../snmp/agent/helpers/serialize.c" Name="serialize.c" />
+      <file file_name="../snmp/agent/helpers/stash_cache.c" Name="stash_cache.c" />
+      <file file_name="../snmp/agent/helpers/stash_to_next.c" Name="stash_to_next.c" />
+      <file file_name="../snmp/agent/helpers/table.c" Name="table.c" />
+      <file file_name="../snmp/agent/helpers/table_array.c" Name="table_array.c" />
+      <file file_name="../snmp/agent/helpers/table_container.c" Name="table_container.c" />
+      <file file_name="../snmp/agent/helpers/table_data.c" Name="table_data.c" />
+      <file file_name="../snmp/agent/helpers/table_dataset.c" Name="table_dataset.c" />
+      <file file_name="../snmp/agent/helpers/table_generic.c" Name="table_generic.c" >
+        <configuration build_exclude_from_build="Yes" Name="Debug.D2100" />
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/helpers/table_iterator.c" Name="table_iterator.c" />
+      <file file_name="../snmp/agent/helpers/table_tdata.c" Name="table_tdata.c" />
+      <file file_name="../snmp/agent/helpers/watcher.c" Name="watcher.c" />
+    </folder>
+    <folder Name="MIBGroup" >
+      <file file_name="../snmp/agent/mibgroup/header_complex.c" Name="header_complex.c" />
+      <file file_name="../snmp/agent/mibgroup/kernel_sunos5.c" Name="kernel_sunos5.c" />
+      <file file_name="../snmp/agent/mibgroup/testhandler.c" Name="testhandler.c" />
+      <file file_name="../snmp/agent/mibgroup/util_funcs.c" Name="util_funcs.c" />
+    </folder>
+    <folder Name="System-MIB" >
+      <file file_name="../snmp/agent/mibgroup/mibII/at.c" Name="at.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/icmp.c" Name="icmp.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/interfaces.c" Name="interfaces.c" >
+        <configuration build_exclude_from_build="No" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/ip.c" Name="ip.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/ipAddr.c" Name="ipAddr.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/ipCidrRouteTable.c" Name="ipCidrRouteTable.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/ipCidrRouteTable_access.c" Name="ipCidrRouteTable_access.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/ipCidrRouteTable_checkfns.c" Name="ipCidrRouteTable_checkfns.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/ipv6.c" Name="ipv6.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/kernel_linux.c" Name="kernel_linux.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/mta_sendmail.c" Name="mta_sendmail.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/route_write.c" Name="route_write.c" >
+        <configuration build_exclude_from_build="Yes" Name="Debug.T2100" />
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/setSerialNo.c" Name="setSerialNo.c" />
+      <file file_name="../snmp/agent/mibgroup/mibII/snmp_mib.c" Name="snmp_mib.c" />
+      <file file_name="../snmp/agent/mibgroup/mibII/sysORTable.c" Name="sysORTable.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/system_mib.c" Name="system_mib.c" />
+      <file file_name="../snmp/agent/mibgroup/mibII/tcp.c" Name="tcp.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/tcpTable.c" Name="tcpTable.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/udp.c" Name="udp.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/udpTable.c" Name="udpTable.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/vacm_conf.c" Name="vacm_conf.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+        <configuration build_exclude_from_build="No" Name="Debug" />
+        <configuration build_exclude_from_build="No" Name="Release" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/vacm_context.c" Name="vacm_context.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+        <configuration build_exclude_from_build="No" Name="Debug" />
+        <configuration build_exclude_from_build="No" Name="Release" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/vacm_vars.c" Name="vacm_vars.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+        <configuration build_exclude_from_build="No" Name="Debug" />
+        <configuration build_exclude_from_build="No" Name="Release" />
+      </file>
+      <file file_name="../snmp/agent/mibgroup/mibII/var_route.c" Name="var_route.c" >
+        <configuration build_exclude_from_build="Yes" Name="Common" />
+      </file>
+    </folder>
+    <folder Name="FIMPE" />
+    <configuration c_user_include_directories="../snmp/agent;../snmp/agent/mibgroup" Name="SNMP" />
+  </project>
+  <configuration inherited_configurations="SNMP" c_preprocessor_definitions="MAKE_SCREEN_CAPTURE" linker_additional_files="" gcc_optimization_level="None" Name="Debug" />
+  <configuration inherited_configurations="SNMP" c_preprocessor_definitions="NDEBUG" linker_additional_files="" gcc_optimization_level="None" build_debug_information="No" Name="Release" build_optimize_output="Yes" />
+  <configuration arm_interwork="No" linker_memory_map_file="D:/sand/Optimum_x2100_Application/Sources/T2100/Optimum_MemoryMap.xml" gcc_entry_point="0x0c100000" c_preprocessor_definitions="_TERM_325;__GNUC__=3;MAKE_VIKING;C_DEV;MAKE_VHDT;HFS_SIMULATION;MAKE_FLATMEMORY;VRELEASE=&quot;PRS_SRV&quot;;VREV='0','1';VMOD='B';PCL_VRELEASE = 'F','W','5','0','0';PCL_VREV = '0','1';PCL_VMOD = 'A';MAKE_ENGLISH;MAKE_TURKISH;DEFAULT_LANGUAGE=0;SUPP_ADDICCTAGS;MAKE_SNMP;MAKE_SSL;MAKE_CERTIFICATE;MAKE_HFT_P1100;NEWAPPLICATION;MAKE_KIB;MAKE_PARSIAN" linker_additional_files="../../HSDK/T2100/$(Configuration)/lib/CryptoLib.a;../../HSDK/T2100/$(Configuration)/lib/CryptoService.a;../../HSDK/T2100/$(Configuration)/lib/eftos9.a;../../HSDK/T2100/$(Configuration)/lib/FileSys.a;../../HSDK/T2100/$(Configuration)/lib/HPOSFC.a;../../HSDK/T2100/$(Configuration)/lib/HwLib.a;../../HSDK/T2100/$(Configuration)/lib/IOCSLib.a;../../HSDK/T2100/$(Configuration)/lib/OSCLib.a;../../HSDK/T2100/$(Configuration)/lib/OsGuiLib.a;../../HSDK/T2100/$(Configuration)/lib/ScardLib.a;../../HSDK/T2100/$(Configuration)/lib/SdkLib.a;../../HSDK/T2100/$(Configuration)/lib/UtilLib.a;../../HSDK/T2100/$(Configuration)/lib/vTLib.a;../../HSDK/T2100/$(Configuration)/lib/cstartup.o;../../HSDK/T2100/$(Configuration)/lib/ssllib.a;../../HSDK/T2100/$(Configuration)/lib/tffs.a;../../HSDK/T2100/$(Configuration)/lib/osutils.a;../../EmvL2/EMVL2_KernelLib.a;$(StudioDir)/stdlib/lib/libc.a;$(StudioDir)/stdlib/lib/libgcc.a;$(StudioDir)/stdlib/lib/libstdc++.a" c_user_include_directories="../../EmvL2;../Common/_Main;../Common/Batch;../Common/Comms;../Common/Data;./src;../Common/EMV;../Common/Hosts;../Common/HostUtil;../Common/Images;../Common/PinPad;../Common/Printer;../Common/Texts;../Common/Txn_flow;../Common/Utils;../../HSDK/T2100/$(Configuration)/include" target_reset_script="S3C44BOX_Reset()" link_include_standard_libraries="No" link_include_startup_code="No" gcc_optimization_level="None" c_additional_options="-Wall" linker_additional_options="--cref;-Map;./Optimum.map;--warn-common" Name="Common" c_system_include_directories="$(StudioDir)/stdlib/include;$(StudioDir)/stdlib/include/c++/3.4.3" />
+  <configuration c_preprocessor_definitions="NODEBUG;MAKE_SSL" linker_additional_files="../HSDK/T2100/Release/lib/CryptoLib.a;../HSDK/T2100/Release/lib/CryptoService.a;../HSDK/T2100/Release/lib/eftos9.a;../HSDK/T2100/Release/lib/EmvLib9.a;../HSDK/T2100/Release/lib/FileSys.a;../HSDK/T2100/Release/lib/HPOSFC.a;../HSDK/T2100/Release/lib/HwLib.a;../HSDK/T2100/Release/lib/IOCSLib.a;../HSDK/T2100/Release/lib/OSCLib.a;../HSDK/T2100/Release/lib/OsGuiLib.a;../HSDK/T2100/Release/lib/ScardLib.a;../HSDK/T2100/Release/lib/SdkLib.a;../HSDK/T2100/Release/lib/UtilLib.a;../HSDK/T2100/Release/lib/vTLib.a;../HSDK/T2100/Release/lib/cstartup.o;../HSDK/T2100/Release/lib/ssllib.a" gcc_optimization_level="None" build_debug_information="No" Name="Release_SSL" />
+  <configuration linker_additional_files="" c_user_include_directories="../snmp/include;../snmp/agent" hidden="Yes" Name="SNMP" />
+</solution>

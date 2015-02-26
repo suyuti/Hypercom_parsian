@@ -1,0 +1,11 @@
+// terminal yetenekleri tablosu 
+
+#include "string.h"
+
+#include "basictyp.h"
+#include "utllib.h"
+
+#include "struct.h"
+#include "comdata.h"
+
+#include "tcap.h"

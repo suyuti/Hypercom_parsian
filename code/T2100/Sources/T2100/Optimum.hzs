@@ -1,0 +1,342 @@
+<!DOCTYPE CrossStudio_for_ARM_Session_File>
+<session>
+ <Breakpoints>
+  <BreakpointListItem actiontype="0" chainFrom="" line="0" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="4" value="2721256667" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="7" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\EMV\app_at.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="1142" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0001\Sources\Common\Txn_flow\app1.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="1147" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0001\Sources\Common\Txn_flow\app1.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="1160" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Txn_flow\app1.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="1167" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Txn_flow\app1.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="1192" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0001\Sources\Common\Txn_flow\app1.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="1415" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Txn_flow\app1.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="145" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Txn_flow\app1.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="1548" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Txn_flow\app1.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="1576" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Txn_flow\app1.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="221" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Txn_flow\app1.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="254" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Txn_flow\app1.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="271" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Txn_flow\app1.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="277" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\01A\Sources\Common\Txn_flow\app1.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="295" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\01A\Sources\Common\Txn_flow\app1.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="299" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Txn_flow\app1.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="306" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0001\Sources\Common\Txn_flow\app1.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="306" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0004\Sources\Common\Txn_flow\app1.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="491" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Txn_flow\app1.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="184" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\PARSIAN\01\Sources\Common\Txn_flow\app2.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="212" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\PARSIAN\01\Sources\Common\Txn_flow\app2.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="250" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="f:\firmalar\parsian\sourcecode\parsian\sources\common\txn_flow\app2.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="251" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\01A\Sources\Common\Txn_flow\app2.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="263" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\01A\Sources\Common\Txn_flow\app2.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="266" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\01A\Sources\Common\Txn_flow\app2.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="78" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0003\Sources\Common\Txn_flow\applicationExpire.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="114" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Txn_flow\autoinit.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="118" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Txn_flow\autoinit.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="55" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Txn_flow\autoinit.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="182" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Txn_flow\autosetl.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="102" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\01A\Sources\Common\Hosts\bit8583.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="2317" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Hosts\bit8583.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="993" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\01A\Sources\Common\Hosts\bit8583.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="66" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Txn_flow\checkCurrency.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="95" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Txn_flow\checkCurrency.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="112" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Txn_flow\close.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="117" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="f:\firmalar\parsian\sourcecode\parsian\sources\common\txn_flow\close.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="278" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Txn_flow\close.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="281" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="f:\firmalar\parsian\sourcecode\parsian\sources\common\txn_flow\close.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="369" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="f:\firmalar\parsian\sourcecode\parsian\sources\common\txn_flow\close.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="15" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Data\comdata.h" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="177" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Comms\comm.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="412" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Comms\comm.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="472" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Comms\comm.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="414" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\PARSIAN\01\Sources\Common\Comms\comm_cfg.cpp" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="521" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\PARSIAN\01\Sources\Common\Comms\comm_cfg.cpp" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="630" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\PARSIAN\01\Sources\Common\Comms\comm_cfg.cpp" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="115" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\PARSIAN\01\Sources\Common\Txn_flow\cstmamnt.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="76" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Txn_flow\cvtamt.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="432" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\EMV\emvutils.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="571" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\yedek\002B-26032007\Sources\Common\EMV\emvutils.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="583" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\EMV\emvutils.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="2383" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Txn_flow\function.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="2435" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Txn_flow\function.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="2849" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Txn_flow\function.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="72" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\yedek\002B-26032007\Sources\Common\Texts\hdttextinit.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="828" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\yedek\002B-26032007\Sources\Common\Texts\hdttrtext.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="831" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\yedek\002B-26032007\Sources\Common\Texts\hdttrtext.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="746" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Hosts\hstprint.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="268" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Hosts\hstprint2.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="165" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Hosts\hstresp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="138" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Hosts\hyper.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="213" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Hosts\hyper.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="216" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Hosts\hyper.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="219" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0004\Sources\Common\Hosts\hyper.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="325" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0004\Sources\Common\Hosts\hyper.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="328" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\01A\Sources\Common\Hosts\hyper.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="719" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\_Main\hypertcf.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="638" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Hosts\i8583utl.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="107" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="2" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Hosts\init.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="90" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0003\Sources\Common\Hosts\init.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="78" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Txn_flow\inpmpswd.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="108" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0001\Sources\Common\Txn_flow\loyalty.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="110" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0001\Sources\Common\Txn_flow\loyalty.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="170" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Txn_flow\loyalty.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="171" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Txn_flow\loyalty.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="200" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0001\Sources\Common\Txn_flow\loyalty.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="219" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0001\Sources\Common\Txn_flow\loyalty.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="246" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0001\Sources\Common\Txn_flow\loyalty.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="249" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0001\Sources\Common\Txn_flow\loyalty.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="392" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0001\Sources\Common\Txn_flow\loyalty.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="30" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0001\Sources\Common\Txn_flow\loyaltyInquiry.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="75" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0001\Sources\Common\Txn_flow\loyaltyInquiry.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="77" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0001\Sources\Common\Txn_flow\loyaltyInquiry.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="0" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="1" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="OS_bEEPER" filename="" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="0" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="1" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="OS_BEEPER" filename="" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="0" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="1" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="OS_BEEPER" filename="" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="617" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Txn_flow\perfutil.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="2372" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="f:\firmalar\parsian\sourcecode\parsian\sources\common\pinpad\pinpad.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="248" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\yedek\002B-26032007\Sources\Common\PinPad\pinpad.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="2740" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\PinPad\pinpad.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="396" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\yedek\002B-26032007\Sources\Common\PinPad\pinpad.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="690" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\yedek\002B-26032007\Sources\Common\PinPad\pinpad.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="703" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\yedek\002B-26032007\Sources\Common\PinPad\pinpad.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="223" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="f:\firmalar\parsian\sourcecode\parsian\sources\common\pinpad\pinutils.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="350" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="f:\firmalar\parsian\sourcecode\parsian\sources\common\pinpad\pinutils.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="2579" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Printer\prtdrv.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="2902" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Printer\prtdrv.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="3608" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Printer\prtdrv.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="648" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Printer\prtdrv.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="344" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0001\Sources\Common\Printer\prtfields.h" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="1101" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Hosts\reqhyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="1155" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Hosts\reqhyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="243" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Hosts\reqhyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="475" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\01A\Sources\Common\Hosts\reqhyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="709" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0003\Sources\Common\Hosts\reqhyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="1330" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Hosts\rsphyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="1521" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0001\Sources\Common\Hosts\rsphyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="1641" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Hosts\rsphyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="168" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\01A\Sources\Common\Hosts\rsphyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="174" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\01A\Sources\Common\Hosts\rsphyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="187" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\01A\Sources\Common\Hosts\rsphyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="549" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0001\Sources\Common\Hosts\rsphyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="559" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\working Base Upgrade\002C\Sources\Common\Hosts\rsphyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="560" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Hosts\rsphyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="561" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Hosts\rsphyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="565" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\01A\Sources\Common\Hosts\rsphyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="766" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Hosts\rsphyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="805" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Hosts\rsphyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="812" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Hosts\rsphyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="838" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0002\Sources\Common\Hosts\rsphyp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="215" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\01A\Sources\Common\Hosts\rspunp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="261" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\01A\Sources\Common\Hosts\rspunp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="285" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\01A\Sources\Common\Hosts\rspunp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="297" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\01A\Sources\Common\Hosts\rspunp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="672" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\01A\Sources\Common\Hosts\rspunp.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="110" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Txn_flow\settle.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="182" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0003\Sources\Common\Data\tables.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="227" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0004\Sources\Common\Txn_flow\totals.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="248" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Txn_flow\totals.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="283" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Txn_flow\totals.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="354" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Txn_flow\totals.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="357" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\KIB SingleAcq\0004\Sources\Common\Txn_flow\totals.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="534" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Utils\utilfunc.c" />
+  <BreakpointListItem actiontype="0" chainFrom="" line="240" length="0" triggertype="0" useHWbreakpoint="false" group="(Default)" breakdatatype="0" value="0" name="unnamed" counter="0" state="3" mask="0" comparison="0" expression="" filename="F:\AYD\SOURCE\ON_ME\PARSIAN\01\Sources\Common\Txn_flow\void.c" />
+ </Breakpoints>
+ <ExecutionCountWindow/>
+ <Memory1>
+  <MemoryWindow autoEvaluate="0" addressText="0x04003c56" numColumns="8" sizeText="16" dataSize="1" radix="16" addressSpace="" />
+ </Memory1>
+ <Memory2>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" addressSpace="" />
+ </Memory2>
+ <Memory3>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" addressSpace="" />
+ </Memory3>
+ <Memory4>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" addressSpace="" />
+ </Memory4>
+ <Project>
+  <ProjectSessionItem path="Optimum" name="unnamed" />
+  <ProjectSessionItem path="Optimum;Agent" name="unnamed" />
+  <ProjectSessionItem path="Optimum;Optimum" name="unnamed" />
+  <ProjectSessionItem path="Optimum;Optimum;_Main" name="unnamed" />
+  <ProjectSessionItem path="Optimum;Optimum;Batch" name="unnamed" />
+  <ProjectSessionItem path="Optimum;Optimum;Comms" name="unnamed" />
+  <ProjectSessionItem path="Optimum;Optimum;Data" name="unnamed" />
+  <ProjectSessionItem path="Optimum;Optimum;Hosts" name="unnamed" />
+  <ProjectSessionItem path="Optimum;Optimum;HostUtil" name="unnamed" />
+  <ProjectSessionItem path="Optimum;Optimum;PinPad" name="unnamed" />
+  <ProjectSessionItem path="Optimum;Optimum;Printer" name="unnamed" />
+  <ProjectSessionItem path="Optimum;Optimum;T2100" name="unnamed" />
+  <ProjectSessionItem path="Optimum;Optimum;Texts" name="unnamed" />
+  <ProjectSessionItem path="Optimum;Optimum;Txn_flow" name="unnamed" />
+  <ProjectSessionItem path="Optimum;Optimum;Utils" name="unnamed" />
+ </Project>
+ <Register1>
+  <RegisterWindow unsignedDisplays="" asciiDisplays="" octalDisplays="" visibleGroups="" decimalDisplays="" binaryDisplays="" />
+ </Register1>
+ <Register2>
+  <RegisterWindow unsignedDisplays="" asciiDisplays="" octalDisplays="" visibleGroups="" decimalDisplays="" binaryDisplays="" />
+ </Register2>
+ <Register3>
+  <RegisterWindow unsignedDisplays="" asciiDisplays="" octalDisplays="" visibleGroups="" decimalDisplays="" binaryDisplays="" />
+ </Register3>
+ <Register4>
+  <RegisterWindow unsignedDisplays="" asciiDisplays="" octalDisplays="" visibleGroups="" decimalDisplays="" binaryDisplays="" />
+ </Register4>
+ <SourceNavigatorWindow/>
+ <TraceWindow>
+  <Trace wrap="Yes" type="1" enabled="Yes" />
+ </TraceWindow>
+ <Watch1>
+  <Watches active="0" >
+   <Watchpoint linenumber="0" radix="16" name="SIOMYIP" expression="SIOMYIP" filename="" />
+   <Watchpoint linenumber="0" radix="-1" name="TERM" expression="TERM" filename="" />
+   <Watchpoint linenumber="126" radix="-1" name="SendMsgLen" expression="SendMsgLen" filename="f:\firmalar\parsian\sourcecode\parsian\sources\common\comms\comm.c" />
+   <Watchpoint evalMode="2" linenumber="0" numelements="64" evalType="0" radix="-1" name="SENDBUF" expression="SENDBUF" filename="" />
+   <Watchpoint evalMode="1" linenumber="0" evalType="1" radix="-1" name="&amp;Captured_IPaddr" expression="&amp;Captured_IPaddr" filename="" />
+  </Watches>
+ </Watch1>
+ <Watch2>
+  <Watches active="0" >
+   <Watchpoint evalMode="1" linenumber="0" evalType="1" radix="-1" name="TRINP.TRAQPTR" expression="TRINP.TRAQPTR" filename="" />
+   <Watchpoint evalMode="1" linenumber="0" evalType="1" radix="-1" name="TRINP.TRISPTR" expression="TRINP.TRISPTR" filename="" />
+   <Watchpoint linenumber="0" radix="-1" name="TRINP.TRISPTR->ISOPT1" expression="TRINP.TRISPTR->ISOPT1" filename="" />
+   <Watchpoint evalMode="2" linenumber="0" numelements="8" evalType="0" radix="16" name="TRINP.TRPINBL" expression="TRINP.TRPINBL" filename="" />
+  </Watches>
+ </Watch2>
+ <Watch3>
+  <Watches active="0" >
+   <Watchpoint evalMode="1" linenumber="0" evalType="1" radix="-1" name="TRINP.TRISPTR" expression="TRINP.TRISPTR" filename="" />
+   <Watchpoint evalMode="1" linenumber="0" evalType="1" radix="-1" name="&amp;TRINP.TRISPTR->ISPINTRAN" expression="&amp;TRINP.TRISPTR->ISPINTRAN" filename="" />
+   <Watchpoint evalMode="2" linenumber="0" numelements="2" evalType="0" radix="-1" name="RSPCODE" expression="RSPCODE" filename="" />
+   <Watchpoint evalMode="0" linenumber="0" evalType="1" radix="-1" name="&amp;TRINP.TRISPTR->ISOPT1" expression="&amp;TRINP.TRISPTR->ISOPT1" filename="" />
+   <Watchpoint evalMode="1" linenumber="0" evalType="1" radix="-1" name="&amp;TRINP.TRISPTR->ISREAUTH" expression="&amp;TRINP.TRISPTR->ISREAUTH" filename="" />
+   <Watchpoint linenumber="0" radix="16" name="TRINP.TRISPTR->ISOPT1" expression="TRINP.TRISPTR->ISOPT1" filename="" />
+   <Watchpoint evalMode="1" linenumber="0" evalType="1" radix="-1" name="&amp;TRINP.TRISPTR->ISAP" expression="&amp;TRINP.TRISPTR->ISAP" filename="" />
+   <Watchpoint evalMode="0" linenumber="0" evalType="1" radix="-1" name="&amp;TRINP.TRISPTR->ISOPT5" expression="&amp;TRINP.TRISPTR->ISOPT5" filename="" />
+  </Watches>
+ </Watch3>
+ <Watch4>
+  <Watches active="1" />
+ </Watch4>
+ <Files>
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="0" debugPath="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Hosts\init.c" y="106" useHTMLEdit="0" path="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Hosts\init.c" left="0" selected="0" name="unnamed" top="102" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="16" debugPath="f:\firmalar\parsian\sourcecode\parsian\sources\common\hosts\reqinit.c" y="245" useHTMLEdit="0" path="f:\firmalar\parsian\sourcecode\parsian\sources\common\hosts\reqinit.c" left="0" selected="0" name="unnamed" top="233" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="22" debugPath="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Txn_flow\app1.c" y="300" useHTMLEdit="0" path="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Txn_flow\app1.c" left="0" selected="0" name="unnamed" top="291" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="35" debugPath="f:\firmalar\parsian\sourcecode\parsian\sources\common\hosts\flaghost.c" y="126" useHTMLEdit="0" path="f:\firmalar\parsian\sourcecode\parsian\sources\common\hosts\flaghost.c" left="0" selected="0" name="unnamed" top="95" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="1" debugPath="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Hosts\reqhyp.c" y="743" useHTMLEdit="0" path="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Hosts\reqhyp.c" left="0" selected="0" name="unnamed" top="739" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="0" debugPath="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Hosts\hyper.c" y="145" useHTMLEdit="0" path="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Hosts\hyper.c" left="0" selected="0" name="unnamed" top="138" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="3" debugPath="f:\firmalar\parsian\sourcecode\parsian\sources\common\comms\comm.c" y="156" useHTMLEdit="0" path="f:\firmalar\parsian\sourcecode\parsian\sources\common\comms\comm.c" left="0" selected="0" name="unnamed" top="145" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="0" debugPath="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\_Main\_main.c" y="60" useHTMLEdit="0" path="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\_Main\_main.c" left="0" selected="0" name="unnamed" top="60" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" x="0" debugPath="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Comms\comm_c.cpp" y="245" useHTMLEdit="0" path="F:\Firmalar\Parsian\SourceCode\Parsian\Sources\Common\Comms\comm_c.cpp" left="0" selected="0" name="unnamed" top="233" />
+ </Files>
+ <ARMCrossStudioWindow activeProject="Optimum" ignoreExceptions="" autoConnectTarget="/USB CrossConnect for ARM" debugSearchFileMap="..\gcc-3.4.3\newlib\libc\string\memchr.c
+
+..\gcc-3.4.3\newlib\libc\string\memcmp.c
+
+..\gcc-3.4.3\newlib\libc\string\memcpy.c
+
+..\gcc-3.4.3\newlib\libc\string\memmove.c
+\memmove.c
+..\gcc-3.4.3\newlib\libc\string\memset.c
+
+..\gcc-3.4.3\newlib\libc\time\mktm_r.c
+\mktm_r.c
+.\OptimumA\HPOSFC\PublicHeaders\SimpleVector.hpp
+
+C:\sand-asa\eftos9\CryptoService\CryptoService.c
+
+C:\sand-asa\eftos9\CryptoService\Offlpin.c
+
+C:\sand-asa\eftos9\Eftos9\Os.c
+
+C:\sand-asa\eftos9\Eftos9\Res.c
+
+C:\sand-asa\eftos9\Eftos9\Th.c
+
+C:\sand-asa\HypercomSDK\OptimumA\HwLib\hwpid.c
+\hwpid.c
+C:\sand-asa\HypercomSDK\OptimumA\HwLib\hwstart.c
+\hwstart.c
+C:\sand-asa\HypercomSDK\Osclib\os_timer.c
+
+C:\sand-asa\HypercomSDK\Osclib\osclib.c
+\osclib.c
+C:\sand-asa\HypercomSDK\Osclib\osfunction.c
+\osfunction.c
+C:\sand-asa\HypercomSDK\Osclib\rtctotime.c
+\rtctotime.c
+C:\sand-asa\HypercomSDK\Sdklib\ioread.c
+\ioread.c
+C:\sand-asa\HypercomSDK\Sdklib\iostatus.c
+\iostatus.c
+C:\sand-asa\HypercomSDK\Sdklib\iotimer.c
+\iotimer.c
+C:\sand-asa\HypercomSDK\Sdklib\iowrisr.c
+\iowrisr.c
+C:\sand-asa\HypercomSDK\Sdklib\print.c
+\print.c
+C:\sand-asa\HypercomSDK\Sdklib\prtbuf.c
+\prtbuf.c
+C:\sand-asa\HypercomSDK\Sdklib\prtbusy.c
+\prtbusy.c
+C:\sand-asa\HypercomSDK\Sdklib\prtchar.c
+\prtchar.c
+C:\sand-asa\HypercomSDK\Sdklib\prtopen.c
+\prtopen.c
+C:\sand-asa\HypercomSDK\Sdklib\prtstat.c
+\prtstat.c
+C:\sand-asa\HypercomSDK\Sdklib\ptcscifx.c
+\ptcscifx.c
+C:\sand-asa\HypercomSDK\Sdklib\readpage.c
+
+C:\sand-asa\HypercomSDK\Sdklib\regtime.c
+\regtime.c
+C:\sand-asa\HypercomSDK\Sdklib\relcpu.c
+
+C:\sand-asa\HypercomSDK\Sdklib\rs232.c
+\rs232.c
+C:\sand-asa\HypercomSDK\UtilLib\bcdbin.c
+\bcdbin.c
+C:\sand-asa\HypercomSDK\UtilLib\bfascii.c
+\bfascii.c
+C:\sand-asa\HypercomSDK\UtilLib\binary.c
+\binary.c
+C:\sand-asa\HypercomSDK\UtilLib\bufasc.c
+\bufasc.c
+C:\sand-asa\HypercomSDK\UtilLib\calclrc.c
+\calclrc.c
+C:\sand-asa\HypercomSDK\UtilLib\divamt.c
+\divamt.c
+C:\sand-asa\HypercomSDK\UtilLib\getsem.c
+\getsem.c
+C:\sand-asa\HypercomSDK\UtilLib\incbcdn.c
+\incbcdn.c
+C:\sand-asa\HypercomSDK\UtilLib\leadspce.c
+\leadspce.c
+C:\sand-asa\HypercomSDK\UtilLib\mvchar.c
+\mvchar.c
+C:\sand-asa\HypercomSDK\UtilLib\mvzero.c
+\mvzero.c
+C:\sand-asa\HypercomSDK\UtilLib\nullcomp.c
+\nullcomp.c
+C:\sand-asa\HypercomSDK\UtilLib\relsem.c
+\relsem.c
+C:\sand-asa\HypercomSDK\UtilLib\spcecomp.c
+\spcecomp.c
+C:\sand-asa\HypercomSDK\UtilLib\spcit.c
+\spcit.c
+C:\sand-asa\HypercomSDK\UtilLib\strln.c
+\strln.c
+C:\sand\138rc4_build\hsdkj38\eftos9\Eftos9\Os.c
+
+C:\sand\138rc4_build\hsdkj38\hypercomsdk\OptimumA\HPOSFC\Src\HypCEvent.cpp
+
+C:\sand\138rc4_build\hsdkj38\hypercomsdk\OptimumA\HwLib\HwSwapSP.c
+
+C:\sand\138rc4_build\hsdkj38\hypercomsdk\Osclib\beeper.c
+F:\Firmalar\Parsian\SourceCode\Parsian\HSDK\T2100\Debug\lib\SdkLib.a
+C:\sand\138rc4_build\hsdkj38\hypercomsdk\Osclib\beepit.c
+
+C:\sand\138rc4_build\hsdkj38\hypercomsdk\Osclib\devclose.c
+\devclose.c
+C:\sand\138rc4_build\hsdkj38\hypercomsdk\Osclib\devconfig.c
+\devconfig.c" fileDialogInitialDirectory="F:\Firmalar\Parsian\SourceCode\Parsian\HSDK\T2100\Debug\lib" fileDialogDefaultFilter="*.cpp;*.cxx;*.cc;*.c;*.h" debugSearchPath="" buildConfiguration="Debug" />
+</session>

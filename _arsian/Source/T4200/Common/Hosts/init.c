@@ -1,0 +1,342 @@
+//=============================================================================
+//                       Hypercom Inc
+//                      (c) Copyright 2002
+//=============================================================================
+//
+// Module overview:             init.c
+//      Initialize host module
+//
+//=============================================================================
+#include "string.h"
+
+#include "basictyp.h"
+#include "sdk.h"
+#include "sdkos.h"
+#include "sdkio.h"
+#include "osclib.h"
+
+#include "defines.h"
+#include "struct.h"
+#include "appdata.h"
+#include "comdata.h"
+#include "utllib.h"
+#include "comm.h"
+#include "init.h"
+#include "icepak.h"
+#include "hstmsg.h"
+#include "tables.h"
+#include "hstcopy.h"
+#include "tables.h"
+#include "reqinit.h"
+#include "rspinit.h"
+#include "reqicepk.h"
+
+//=============================================================================
+// External variables / declarations
+//=============================================================================
+
+
+//=============================================================================
+// Private defines and typedefs
+//=============================================================================
+
+
+//=============================================================================
+// Private function declarations
+//=============================================================================
+static void SpecialInit( void );
+static void InitAgain( void );
+static Bool Chk_Recovery( void );
+
+
+//=============================================================================
+// Public data definitions
+//=============================================================================
+//! ID of the table whose entry # exceeds maximum entry #
+UBYTE ExTabID;
+
+//=============================================================================
+// Private data definitions
+//=============================================================================
+//! Retry counter
+UBYTE Retries;
+
+
+//=============================================================================
+// Public function definitions
+//=============================================================================
+
+
+
+//-----------------------------------------------------------------------------
+//! \brief
+//!     Initialization Transaction
+//!
+//! \return
+//!     None
+//-----------------------------------------------------------------------------
+extern void Init( void )
+{
+	OS_RETURN_VALS CommStatus;
+	UBYTE MsgLength;
+
+	// Copy Transaction to Request Buffer
+	memcpy( ( UBYTE * ) & TRREQ, ( UBYTE * ) & TRINP, TRSZE );
+
+	/* Check if TFTAB.TFMAXTRY is set, otherwise set to 3 (default) */
+	if ( 0 == TFTAB.TFMAXTRY )
+	{
+		TFTAB.TFMAXTRY = 0x03;
+		SetTFTabLRC();
+	}
+
+#ifdef MAKE_SMARTINIT
+    // To support extended card ranges ( 254 ranges ),
+    // do create internal enumeration of card ranges
+    // Start enumeration with CRNUM = 1
+    CRIndex = 1;				
+#endif // MAKE_SMARTINIT
+
+	/* Initialise the counter */
+	Retries = 0;
+
+	// Clear Request Flag
+	TRREQBLD &= ~BIT_0_SET;
+
+	// Reset Initialization Continuation
+	TRREQ.TRAGAIN = False;
+
+	// Increment System Trace Audit No.
+	IncTraceNum( TRREQ.TRSTAN );
+
+	// Reset the Message Communication Flags
+	MsgComFlag = 0x00;
+
+		CommStatus = ReqInit(  );	
+
+	// Set ID of the table whose entry # exceeds maximum entry #
+	ExTabID = 0xFF;
+
+	// Wait for a Response
+	RspInit( CommStatus );
+
+	// Special Processing
+	SpecialInit(  );
+
+	// ID of the talbe whose entry # exceeds maximum entry #, exists
+	if( 0xFF != ExTabID )
+	{
+		memset( TRREQ.TRHOSTTEXT, 0, sizeof( TRREQ.TRHOSTTEXT ) );
+		GetMsg( N_TableId, (char *)TRREQ.TRHOSTTEXT );
+
+		MsgLength = StrLn((char *)TRREQ.TRHOSTTEXT, sizeof( TRREQ.TRHOSTTEXT ));
+		BfAscii( (char *)&(TRREQ.TRHOSTTEXT[ MsgLength ]),
+				 ( UBYTE * )&ExTabID, 1);
+
+		GetMsg( N_EntryNumExceedsMax, (char *)&(TRREQ.TRHOSTTEXT[20]) );
+		memcpy( TRREQ.TRRSPC, rspEND, S_TRRSPC);
+
+		TRREQ.TRRSPOPT &= ~R_APPROVED;
+
+		// Clear Terminal Initialization Done Flag 
+		Clr_TermInit( );
+	}
+
+	// Mark the Transaction as ready and 
+	// move data back to input record
+	CopyFromReqReady(  );
+
+	// Hang-Up
+	Hang_Up ();
+}
+
+
+//-----------------------------------------------------------------------------
+//! \brief
+//!     Downloads IcePak Graphic files
+//!
+//! \return
+//!     None
+//-----------------------------------------------------------------------------
+extern void DownloadIcePak( void )
+{
+	OS_RETURN_VALS CommStatus;
+
+	// Copy Transaction to Request Buffer
+	memcpy( ( UBYTE * ) & TRREQ, ( UBYTE * ) & TRINP, TRSZE );
+
+	// Clear Request Flag
+	TRREQBLD &= ~BIT_0_SET;
+
+	// clear present IcePak images - note: if download
+	// fails, current images are lost
+	IcePak_RemoveAll ();
+
+
+	// Reset Initialization Continuation
+	TRREQ.TRAGAIN = False;
+
+
+	do
+	{
+
+		// Increment System Trace Audit No.
+		IncTraceNum( TRREQ.TRSTAN );
+
+		// Reset the Message Communication Flags
+		MsgComFlag = 0x00;
+
+		// Send the Request
+		CommStatus = ReqIcePak(  );
+
+		// Wait for a Response
+		RspInit( CommStatus );
+
+		// If not approved, then exit
+		if ( !( TRREQ.TRRSPOPT & R_APPROVED ) )
+			break;
+
+
+		// See if Initialize is complete
+		if ( TRRSP.TRPROC[2] & BIT_0_SET )
+		{
+			// No; Continue with Initialization
+			// Set Continuation Indicator
+			TRREQ.TRAGAIN = True;
+			continue;
+		}
+		else
+		{
+			break;				// done
+		}
+
+
+	}
+	while ( 1 );				// end do loop
+
+	// Look up Response in TRREQ
+	RspLookUp( &TRREQ );
+
+
+	// Mark the Transaction as ready and 
+	// move data back to input record
+	CopyFromReqReady(  );
+
+	// Hang-Up
+	Hang_Up ();
+}
+
+
+
+//=============================================================================
+// Private function definitions
+//=============================================================================
+
+//-----------------------------------------------------------------------------
+//! \brief
+//!     Special Code for INITIALIZE
+//!
+//! \return
+//!     None
+//-----------------------------------------------------------------------------
+static void SpecialInit( void )
+{
+	while ( True )
+	{
+		// IF not approved, then go back to caller
+		if ( !( TRREQ.TRRSPOPT & R_APPROVED ) )
+		{
+			if ( Chk_Recovery( ) )
+			{
+				/* Continue with initialisation */
+	            InitAgain( );
+			}
+			else
+			{
+				/* Go back to caller */
+	        	break;
+			}
+		}
+
+		// See if Initialize is complete
+		if ( TRRSP.TRPROC[2] & BIT_0_SET )
+		{
+			// No; Continue with Initialization
+			InitAgain(  );
+		}
+		else
+		{
+			// Yes; set INIT done flag
+			Set_TermInit(  );
+
+			// Go back to the caller
+			break;
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+//! \brief
+//!     Sends Another Initialize Request
+//!
+//! \return
+//!     None
+//-----------------------------------------------------------------------------
+static void InitAgain( void )
+{
+	OS_RETURN_VALS CommStatus;
+
+	// Set the transaction type
+	TRREQ.TRKEY = INITIALIZE;
+
+	// Increment System Trace Number
+	IncTraceNum( TRREQ.TRSTAN );
+
+	// Set Continuation Indicator
+	TRREQ.TRAGAIN = True;
+
+	// Reset the Message Communication Flags
+	MsgComFlag = 0x00;
+
+	// Send the Request
+	CommStatus = ReqInit(  );
+
+	// Wait for a Response
+	RspInit( CommStatus );
+
+	// IF approved, then go back to Special
+	if ( TRREQ.TRRSPOPT & R_APPROVED )
+		return;
+
+	// Look up Response in TRREQ
+	RspLookUp( &TRREQ );
+}
+
+//-----------------------------------------------------------------------------
+//! \brief
+//!     Checks if Init recovery is allowed
+//!
+//! \return
+//!     True if Retry else False (Recovery not allowed)
+//-----------------------------------------------------------------------------
+static Bool Chk_Recovery( void )
+{
+	Bool retval = False;
+
+	/* If not cancelled by user and TNMS supports recovery and terminal supports recovery */
+	if ( (!OnlineCancelled) && (!NullComp((char *)TRREQ.TRRRN, S_TRRRN)) && (0xFF != TFTAB.TFMAXTRY) )
+	{
+		/* If not exceeded the max tries limit */
+		if ( Retries++ < TFTAB.TFMAXTRY )
+		{
+			/* Give it another try */
+			retval = True;
+			TRREQ.TRRSPOPT = 0;
+			Hang_Up ();
+			OS_Wait( ONESECOND );
+		}
+	}
+
+	return( retval );
+}
+

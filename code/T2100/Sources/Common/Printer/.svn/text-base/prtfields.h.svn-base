@@ -1,0 +1,424 @@
+
+#ifndef _PRTFIELDS_H_
+#define _PRTFIELDS_H_
+//=============================================================================
+//                       Hypercom Inc
+//                      (c) Copyright 2002
+//=============================================================================
+//
+// Module overview:             prtfields.h
+//      Printer fields definitions header file
+//
+//=============================================================================
+
+
+//=============================================================================
+// Public defines and typedefs
+//=============================================================================
+//
+//      The following #defines are used for field definitions
+//
+
+//
+//      ADDRESSING TYPES ENUMERATION
+//
+
+enum ADDRTYPE
+{
+	A_NONE,						// NOT AN ADDRESS
+	A_ACT = 1,					// ACTUAL ADDRESS
+	A_ACQ,						// OFFSET INTO THE ACQUIRER TABLE
+	A_CRD,                      // OFFSET INTO THE CARD TABLE
+	A_ISS,						// OFFSET INTO THE ISSUER TABLE
+	A_TRN,						// OFFSET INTO THE TRANSDEF TABLE
+	A_BAT,						// OFFSET INTO THE BATCH TABLE
+	A_DSC,						// DESCRIPTION TABLE ENTRY
+	A_RTC,						// OFFSET INTO RTCBUF AFTER RD_RTC CALL
+	A_TR,						// OFFSET INTO TRANS. BUFFER (TRINP, ...)
+	A_CUS,						// CUSTOM ROUTINE (FOR DIFFER. REPORTS)
+	A_V2						// OFFSET INTO THE VISA 2 TABLE
+};
+
+//
+//      EDIT TYPE (HOW DATA IS STORED) ENUMERATION
+//
+
+enum EDITTYPE
+{
+	E_NONE,						// NOT AN EDIT TYPE
+	E_CHR = 1,					// ASCII FIELD -- JUST MOVE THE FIELD
+	E_PAN,						// PAN EDIT
+	E_BCD,						// BCD FIELD
+        E_HEX,		             	// HEX Field 
+	E_AMT1,						// AMOUNT FIELD--RECEIPTS
+	E_AMT2,						// AMOUNT FIELD--NORMAL AMOUNTS
+	E_AMT3,						// AMOUNT FIELD--POSSIBLY NEGATIVE AMOUNT
+	E_ASCYMD,					// ASC DATE FIELD IN YMD FORMAT
+	E_BCDYMD,					// BCD DATE FIELD IN YMD FORMAT
+	E_NAME,						// EDIT ROUTINE FORMAT TRACK 1 NAME
+	E_CHRTRNC,					// ASCII FIELD -- TRUNCATED TO PRT WIDTH
+	E_TIPPCT,					// EDIT ROUTINE FOR TIP
+#ifdef	MAKE_EMV
+	E_VARHEX,		/* VAR LEN HEX FIELD WITH LEN IN FIRST BYTE */
+#endif	// MAKE_EMV
+	E_PREVENT_WARNING_ON_ARM
+};
+
+//
+//      FIELD FORMATS (AFTER EDITING) ENUMERATION
+//
+
+enum FLDFRMAT
+{
+	F_NONE,						// NOT A FORMAT
+	F_CHR = 1,					// CHARACTER FORMAT
+	F_AMT,						// AMOUNT FORMAT
+	F_NUM,						// NUMERIC FORMAT
+	F_DATE,						// DATE FORMAT
+	F_TIME						// TIME FORMAT
+};
+
+//
+//      HOW TO TEST THE FIELD (FOR IF STATEMENTS)
+//
+
+#define T_NULL      0			// NULLS
+#define T_SPC       ' '			// SPACE
+#define T_NOS       'N'			// NULLS OR SPACES
+#define T_ALWAYS    'A'			// ALWAYS
+#define T_FLAG      'F'			// FLAG
+#define T_FF        0xFF		// FF'S
+#define T_FLAGX     'X'     /* FLAG Extended       */
+
+//
+//      The following is a list of FORMATS that can be used
+//      to reformat a field.  Formats grouped and available by
+//      a fields original format.
+//
+
+#define FC_LEFT     0			// CHR - LEFT JUSTIFY
+#define FC_RIGHT    1			// CHR - RIGHT JUSTIFY
+#define FC_CENTER   2			// CHR - CENTER
+#define FC_TRIM     3			// CHR - TRIM
+#define FC_CLRFF    4			// CHR - CLEAR FF
+
+#define FD_MDY      10			// DATE - MMDDYY or MMYY
+#define FD_DMY      11			// DATE - DDMMYY or MMYY
+#define FD_YMD      12			// DATE - YYMMDD or YYMM
+#define FD_MDYS     13			// DATE - MM/DD/YY or MM/YY
+#define FD_DMYS     14			// DATE - DD/MM/YY or MM/YY
+#define FD_YMDS     15			// DATE - YY/MM/DD or YY/MM
+#define FD_TEXT     16			// DATE - MON, DD YY or MON YY
+
+#define FT_MIL      21			// TIME - MILITARY TIME HH:MM:SS
+#define FT_STDS     22			// TIME - STANDARD TIME HH:MM AM
+#define FT_STDL     23			// TIME - STANDARD TIME HH:MM:SS AM
+
+#define FA_TRIM     30			// AMOUNT - TRIM
+#define FA_POS      31			// AMOUNT - FORCE POSITIVE
+#define FA_NEG      32			// AMOUNT - FORCE NEGATIVE
+#define FA_CHG      33			// AMOUNT - SWITCH THE SIGN
+#define FA_TPOS     34			// AMOUNT - FORCE POSITIVE $ TRIM
+#define FA_TNEG     35			// AMOUNT - FORCE NEGATIVE $ TRIM
+#define FA_TCHG     36			// AMOUNT - SWITCH THE SIGN $ TRIM
+#define FA_TDR		37      /* AMOUNT - SET ' DR' AT THE END			*/
+#define FA_TCR		38      /* AMOUNT - SET ' CR' AT THE END			*/
+#define FA_TCRDR	39      /* AMOUNT - SET ' CR' OR ' DR' INSTEAD OF SIGN  */
+
+#define FN_LDZ      40			// NUMERIC - CHANGE LEADING ZEROS TO SPACES
+#define FN_TRIM     41			// NUMERIC - TRIM LEADING ZEROS
+
+#define MARKER1 159		        // (set bounder up to 160 
+#define MARKER2 254				// set bounder up to 254 
+
+//
+// Structure for Field Definition Table
+//
+
+struct FLDDEF
+{
+	UBYTE *F_ADR;				// ADDRESS OR OFFSET OF THE FIELD
+	UBYTE F_LEN;				// LENGTH OF THE FIELD OR INDEX
+	enum ADDRTYPE F_ADRTYP;		// ADDRESSING TYPE OF THE FIELD
+	enum EDITTYPE F_EDIT;		// EDIT TYPE FOR THE FIELD
+	enum FLDFRMAT F_TYPE;		// FIELD TYPE
+	UBYTE F_TEST;				// TEST TYPE FOR THE FIELD
+};
+
+#define F_SZE sizeof(struct FLDDEF)	// DEFINE STRUCTURE SIZE
+
+//
+//      Field Table Enumeration
+//
+
+// The order of the following enumeration should not be altered!!!
+// Otherwise, downloaded reports will not print properly.
+// Furthermore FLDTAB[] must also be in the same order.
+// Not that a range from 160 to 230 has been reserved
+typedef enum 
+{
+	not_used,	
+	FLD_CNAME,
+	FLD_SRVID,
+	FLD_EXPDT,
+	FLD_SYSDT,
+	FLD_SYSTM,
+	FLD_RRN,
+	FLD_AUTH,
+	FLD_RSPC,
+	FLD_AMT1,
+	FLD_TIP,
+	FLD_DCD1,
+	FLD_DTX1,
+	FLD_DCD2,
+	FLD_DTX2,
+	FLD_DCD3,
+	FLD_DTX3,
+	FLD_DCD4,
+	FLD_DTX4,
+	FLD_NAME,
+	FLD_VISATID,
+	FLD_AQID,
+	FLD_AQNAME,
+	FLD_SERNO,
+	FLD_TILLNO,
+	FLD_SALEVCNT,
+	FLD_SALEVAMT,
+	FLD_HOSTTEXT1,
+	FLD_HOSTTEXT2,
+	FLD_FEE,
+	FLD_TOTF,
+	FLD_CUSTOM1,
+	FLD_CUSTOM2,
+	FLD_CUSTOM3,
+	FLD_CUSTOM4,
+	FLD_AQNUM,
+	FLD_PNAME,
+	FLD_DMODE,
+	FLD_PTTEL,
+	FLD_PTTRY,
+	FLD_PTCON,
+	FLD_STTEL,
+	FLD_STTRY,
+	FLD_STCON,
+	FLD_PSTEL,
+	FLD_PSTRY,
+	FLD_PSCON,
+	FLD_SSTEL,
+	FLD_SSTRY,
+	FLD_SSCON,
+	FLD_MODEM,
+	FLD_SMODEM,
+
+	FLD_V2MID,
+	FLD_V2NUM,
+	FLD_V2AQID,
+	FLD_V2NAME,
+	FLD_V2CITYST,
+	FLD_V2STATE,
+	FLD_V2BNUM,
+	FLD_V2CAT,
+	FLD_V2LOC,
+	FLD_V21STLOC,
+	FLD_V2SER,
+	FLD_V2CITY,
+	FLD_V2CTRY,
+	FLD_V2SEC,
+	FLD_V2CUR,
+	FLD_V2ZONE,
+	FLD_V2APPID,
+	FLD_V2APPVER,
+	FLD_V2STORE,
+	FLD_V2TERM,
+
+        FLD_TDBAL,
+	FLD_TAX,
+	FLD_BASEAMT,
+	FLD_TAXAMT,
+	FLD_HSTPRDATA1,
+	FLD_HSTPRDATA2,
+	FLD_AMT3,
+	FLD_BARAMT,
+	FLD_CASH,
+	FLD_MSURC,
+	FLD_AVSRSP,
+	FLD_CASHCNT,
+	FLD_CASHAMT,
+	FLD_CUSTOM5,
+	FLD_CUSTOM6,
+	FLD_CUSTOM7,
+	FLD_CUSTOM8,
+	FLD_RCPTHDR4,
+	FLD_SHIFT,
+	FLD_ACHSVC,        
+	FLD_MARKER = MARKER1,					// Must be less than 160
+// Second range of fields
+// The order of the following enumeration should not be altered!!!
+	FLD_AMTDUE = 231,
+	FLD_RCPTFTR1,
+	FLD_RCPTFTR2,
+	FLD_RCPTFTR3,
+	FLD_RCPTFTR4,
+	FLD_TIPPCT1,
+	FLD_TIPPCT2,
+	FLD_TIPPCT3,
+	FLD_SUGTIP1,
+	FLD_SUGTIP2,
+	FLD_SUGTIP3,
+	FLD_CSTMSG,
+	FLD_CSTMSG2,
+	FLD_CSTMSG3,
+	FLD_CSTMSG4,
+	FLD_CSTMSG5,
+	FLD_CSTMSG6,	
+	FLD_MARKER2 = MARKER2					// Must be the last entry and less than 255
+}ENFLDDEF;
+
+
+
+
+// The order of the following enumeration should not be altered!!! 
+// Otherwise, downloaded reports will not print properly.          
+// Furthermore FLDTAB[] must also be in the same order.            
+// Not that a range from 160 to 230 has been reserved			   
+
+
+typedef enum 
+{
+   	not_used_ex = 0,			   
+	FLD_TOTAPPROVAL,				   // PERFORMANCE REPORT
+	FLD_TOTDENIALS,
+	FLD_TOTMANUAL,
+	FLD_TOTSWIPE,
+	FLD_TOTCOUNT,
+	FLD_TOTREDIALS,
+	FLD_TOTTIMEOUT,
+	FLD_TOTRETRANS,
+    FLD_APPROV_PERC,
+    FLD_DENIAL_PERC,
+    FLD_MANUAL_PERC,
+    FLD_SWIPE_PERC,
+	FLD_FLOOR,
+	FLD_ISREAUTH,
+	FLD_ISID,
+	FLD_NII,						   // ACQUIRER TABLE
+	FLD_CURRBATCH,
+	FLD_NEXTBATCH,
+	FLD_MAX_SETTLE,
+	FLD_ACQUID,
+	FLD_CRNUM,
+	FLD_CRPANL,
+	FLD_CRPANH,
+	FLD_CRISID,
+	FLD_CRAQID,
+	FLD_CRPLEN,
+	FLG_CRD,
+  
+
+	FLD_MARKER_EX = MARKER1,					// Must be the last entry and less than 255
+	FLD_PERIOD = 231,
+
+	FLD_MARKER2_EX = MARKER2					// Must be the last entry and less than 255
+ }ENFLDEXT;
+
+typedef enum
+{
+	FLD_TCNAM1,		// MERCHANT NAME 1 FROM TCONF
+	FLD_TCNAM2,		// MERCHANT NAME 2 FROM TCONF
+	FLD_TCNAM3,		// MERCHANT NAME 3 FROM TCONF
+
+	FLD_AQACCID,	// ACQUIRER ACCEPTOR ID FROM acquirer_rec
+	FLD_AQTID,		// ACQUIRER TERMINAL ID FROM acquirer_rec
+
+	FLD_TRYEAR,		// TRANSACTION YEAR FROM trandata_rec
+	FLD_TRTIME,
+
+	FLD_TRSTAN,
+	FLD_TRBATNO,	// CURRENT BATCH NUMBER
+	FLD_TRINV,		// INVOICE NUMBER
+
+
+	FLD_TRSRC,
+	FLD_TRCRDTYPE,
+
+	FLD_TRPAN,
+	FLD_TRNAME,
+	FLD_TRNTEXT,
+	FLD_TRNTEXTC,
+	FLD_TRTOTAM,
+
+	FLD_TRRRN,		// RRN (Retrival Reference Number)
+
+	FLD_ISNAME,		// Issuer Name
+
+	//Settlement fields
+	FLD_TOTALCNT,		// Total count
+	FLD_TOTALAMT,		// Total amount
+	FLD_SALECNT,		// Sale count
+	FLD_SALEAMT,		// Sale amount
+	FLD_REFUNDCNT,		// Refund count 
+	FLD_REFUNDAMT,		// Refund amount
+	FLD_VOIDCNT,		// Void count 
+	FLD_VOIDAMT,		// Void amount
+	FLD_PAYCNT,			// Payment count 
+	FLD_PAYAMT,			// Payment amount
+	FLD_DMCRCNT,		// Domestic Credit count 
+	FLD_DMCRAMT,		// Domestic Credit amount
+	FLD_INTVISACRCNT,	// International Visa Credit count
+	FLD_INTVISACRAMT,	// International Visa Credit amount
+	FLD_INTEUROCRCNT,	// International Euro Credit count
+	FLD_INTEUROCRAMT,	// International Euro Credit amount
+	FLD_DMDBCNT,		// Domestic Debit count 
+	FLD_DMDBAMT,		// Domestic Debit amount 
+	FLD_INTDBCNT,		// International Debit count 
+	FLD_INTDBAMT,		// International Debit amount
+
+	// FOOTERS
+	FLD_FTFOOTER1,
+	FLD_FTFOOTER2,
+	FLD_FTFOOTER3,
+	FLD_FTFOOTER4,
+
+	//FLAGS	
+        FLG_TCONF,
+	FLG_TRSTATUS,
+#ifdef MAKE_EMV
+        FLD_AID,
+        FLD_TRAC,
+        FLD_APPLABEL,
+#endif
+	FLD_HSTPRDATA,		// Additional Host Print Data
+        FLD_TCRCNT,
+        FLD_TCRAMT,
+        FLD_REFCNT,
+	FLD_REFAMT,
+	FLD_HOSTTEXT0,		
+	FLD_HOSTTEXT20,
+	FLD_RSPTXT,          // Response Text
+	FLD_TRFLAG,          // flag 
+	FLD_INSTNUM,        // taksit sayýsý
+	FLD_EXTREAMOUNT,    // taksit tutarý 
+	FLD_BILLINGDATE,    // ilk hesap  kesim tarihi 
+#ifdef MAKE_KIB
+        FLD_AVAIL_LOYALTY_AMT, // kullanýlabilir puan 
+        FLG_TRLOYALTYSTATUS,
+        FLD_TRUSEDLOYALTYAMOUNT,
+        FLD_TRTOTAMAFTPOINT,
+        FLD_TRTOTAMAFTDISCOUNT,
+        FLD_TRDISCOUNTTOTAM,
+        FLD_TRDISCOUNTRATIO,
+#endif
+}ENFLDSERVUS;
+
+//=============================================================================
+// Public data declarations
+//=============================================================================
+
+
+//=============================================================================
+// Public function declarations
+//=============================================================================
+
+
+#endif	// _PRTFIELDS_H_
+

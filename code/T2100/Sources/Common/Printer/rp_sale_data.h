@@ -1,0 +1,108 @@
+#ifndef RP_SALE_DATA_H
+#define RP_SALE_DATA_H
+
+#include "pcltext.h"
+#include "prtdef.h"
+#include "prtdef_defines.h"
+#include "rp_common_data.h"
+
+//
+//--------------------------------------------------------------------
+//       SALE TRANSACTION REPORT
+//--------------------------------------------------------------------
+//
+
+const UBYTE RP_TRANS_SALE_DATA[] =
+{
+	EXTTXT, TX_SERVUS,
+	EXTFLD, FX_SERVUS,
+
+	REPORT, RP_HEADER_COMMON, 
+
+	PPSTOP,
+
+	EXTFLD, FX_SERVUS,
+	EXTTXT, TX_SERVUS,
+
+	// ÝÞLEM BAÞARILI ÝSE
+	IF, NOT, CND_ROLL, OR, NOT, CND_REJ,                                
+
+                // TODO
+		// EKSTRA YAZI ALANLARINI BAS		
+                //TXT, ExtText1, LINE,				
+                //TXT, ExtText2, LINE,				
+		//TXT, ExtText3, LINE,		
+                              
+		// Eðer þifre kullanýlmamýþsa imza iste
+		IF, NOT, CND_USEDPIN,
+			REPORT, RP_SIGN,
+		// Þifre kullanýlmýþsa þifreli iþlem yazýsýný bas
+		ELSE,
+				FONT, SMALL_FONT, MLTCHR, 50, '-',
+				LINE,
+
+				CNTR, FONT, BOLD_ON, TXT, ByEnterPin, FONT, BOLD_OFF, LINE,
+
+				CNTR, TXT, MakeSecureTrans, LINE,
+
+				CNTR, TXT, Thanks, LINE,
+
+				FONT, SMALL_FONT, MLTCHR, 50, '-',
+				LINE,
+		ENDIF,
+
+		REPORT, RP_NO_INVOICE,
+		REPORT, RP_CODE_AUTH,
+		REPORT, RP_NO_RRN, 
+		REPORT, RP_NO_STAN,
+		RGHT, REPORT, RP_NO_BATCH,
+		LINE,
+
+		REPORT, RP_NAME_VERSION,
+		RGHT, REPORT, RP_NAME_SOURCE, LINE,	
+                LINE,                
+		REPORT, RP_AVAILABLE_LOYALTY_TOTAL,                                 
+		CNTR, BOLD_ON, TXT, Thanks,
+		LINE,
+	// ÝÞLEM BAÞARISIZ ÝSE
+	ELSE,
+            LINE,
+            CNTR, TXT, TransactFailed,
+            LINE,        
+	ENDIF,
+        /*
+        IF, FLD_HOSTTEXT0,
+            CNTR, FLD_F, FLD_HOSTTEXT0, FC_TRIM,
+			LINE,
+            CNTR, FLD_F, FLD_HOSTTEXT20, FC_TRIM,
+        ELSE,
+            CNTR, FLD_F, FLD_RSPTXT, FC_TRIM,
+        ENDIF,
+        LINE,
+	*/
+
+	REPORT, RP_TXT_FOOTERS,	
+
+	REPORT, RP_TXT_HOST,
+	LINE,
+
+        GRPH, 0x60, 0x00,
+
+	IF, OPT5,
+		CNTR,
+		FONT, ITALIC_ON,
+		TXT, SecondSlip, ' ', 
+		'(', TXT, ItsOfCardHolder, ')', 
+		FONT, ITALIC_OFF,
+		LINE,
+
+	ENDIF,
+
+
+    FORM,
+
+	EXTTXT, TX_DEFAULT,
+	EXTFLD, FX_DEFAULT,
+};
+
+#endif

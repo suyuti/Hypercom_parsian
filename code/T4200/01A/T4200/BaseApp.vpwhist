@@ -1,0 +1,249 @@
+[Global]
+CurrentProject=BaseApp.vpj
+[ProjectDates]
+BaseApp.vpj=20080108142728229
+[TreeExpansion2]
+- BaseApp.vpj
+  - Source Files
+    + _Main
+    + Batch
+    + Comms
+    + Data
+    + EMV
+    + EmvL2
+    + Hosts
+    + HostUtil
+    + Images
+    + PinPad
+    + Printer
+    + T4200
+      + Main
+      + Comm
+      + UI
+      + Profile
+      + _PinPad
+    + Texts
+    + Txn_flow
+    + Utils
+    + Farsi
+  + Resource Files
+scroll:0
+[State]
+SCREEN: 1280 800 66 87 960 577 0 0 M 0 0 0 0 986 603
+CWD: ..\T4200
+BUFFER: BN="..\Common\Printer\prtdef_farisi.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=1
+VIEW: LN=.54 CL=7 LE=0 CX=6 CY=2 WI=5 BI=23 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Txn_flow\findtran.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.4081 CL=1 LE=0 CX=0 CY=10 WI=5 BI=28 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Hosts\hstprint.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.32353 CL=30 LE=0 CX=29 CY=17 WI=5 BI=24 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\NucleusInterface\Comms\comm_c.cpp"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.50556 CL=1 LE=0 CX=0 CY=10 WI=5 BI=31 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Hosts\hyper.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.9216 CL=1 LE=0 CX=0 CY=10 WI=5 BI=32 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Hosts\is8583.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.6721 CL=1 LE=0 CX=0 CY=13 WI=5 BI=4 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Txn_flow\transdef.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.5693 CL=19 LE=0 CX=18 CY=3 WI=5 BI=29 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\NucleusInterface\Comms\comm.cpp"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.3650 CL=1 LE=0 CX=0 CY=10 WI=5 BI=25 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Data\aqtab.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.2671 CL=1 LE=0 CX=0 CY=10 WI=5 BI=26 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Hosts\bit8583.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.96884 CL=1 LE=0 CX=0 CY=10 WI=5 BI=33 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Hosts\bit8583.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.2915 CL=25 LE=0 CX=24 CY=20 WI=5 BI=22 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Hosts\reqhyp.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.4830 CL=11 LE=0 CX=10 CY=19 WI=5 BI=34 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Texts\pclentext.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.6355 CL=62 LE=0 CX=61 CY=17 WI=5 BI=35 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Texts\pclestext.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.6340 CL=6 LE=0 CX=5 CY=17 WI=5 BI=36 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Hosts\hstprint2.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.3590 CL=22 LE=0 CX=21 CY=17 WI=5 BI=37 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Txn_flow\app1.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.8864 CL=1 LE=0 CX=0 CY=10 WI=5 BI=39 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Printer\receipt.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.5074 CL=1 LE=0 CX=0 CY=19 WI=5 BI=38 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Printer\prtdrv.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.18041 CL=1 LE=0 CX=0 CY=10 WI=5 BI=40 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Printer\prtdef.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.0 CL=1 LE=0 CX=0 CY=0 WI=5 BI=41 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="Farsi\Farsi_print.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.6860 CL=18 LE=0 CX=17 CY=7 WI=5 BI=42 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Txn_flow\loyalty.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.6523 CL=13 LE=0 CX=12 CY=21 WI=5 BI=43 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Printer\prtdef.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.63791 CL=49 LE=0 CX=48 CY=20 WI=5 BI=44 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Data\struct.h"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.48571 CL=30 LE=0 CX=29 CY=21 WI=5 BI=45 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="..\Common\Texts\hdtestext.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.14705 CL=44 LE=0 CX=43 CY=6 WI=5 BI=46 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="Farsi\pclfatext.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.514 CL=20 LE=0 CX=19 CY=17 WI=5 BI=47 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="Farsi\rspfatext.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.0 CL=1 LE=0 CX=0 CY=0 WI=5 BI=48 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="Farsi\evtfatext.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=0 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.0 CL=1 LE=0 CX=0 CY=0 WI=5 BI=49 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="Farsi\hdtfatext.c"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=0 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C	HM=0 MF=608 TL=0 MLL=0 ASE=0 LNL=6 LCF=0 CAPS=0 E=0 ESBU2=-1
+VIEW: LN=.22256 CL=33 LE=0 CX=32 CY=19 WI=5 BI=50 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 854 429 -1 -1 N  WF=0 WT=23 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Printer\prtdef_farisi.h"
+VIEW: LN=.54 CL=7 LE=0 CX=6 CY=2 WI=214 BI=23 HT=0 HN=0 HF=0 HC=4
+WINDOW: 22 29 903 252 -1 -1 N  WF=0 WT=8 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Txn_flow\findtran.c"
+VIEW: LN=.4081 CL=1 LE=0 CX=0 CY=10 WI=167 BI=28 HT=0 HN=0 HF=0 HC=4
+WINDOW: 66 87 854 429 -1 -1 N  WF=0 WT=19 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Hosts\hstprint.c"
+VIEW: LN=.32353 CL=30 LE=0 CX=29 CY=17 WI=103 BI=24 HT=0 HN=0 HF=0 HC=4
+WINDOW: 88 116 903 252 -1 -1 N  WF=0 WT=11 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\NucleusInterface\Comms\comm_c.cpp"
+VIEW: LN=.50556 CL=1 LE=0 CX=0 CY=10 WI=144 BI=31 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 903 252 -1 -1 N  WF=0 WT=12 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Hosts\hyper.c"
+VIEW: LN=.9216 CL=1 LE=0 CX=0 CY=10 WI=202 BI=32 HT=0 HN=0 HF=0 HC=4
+WINDOW: 66 87 903 300 -1 -1 N  WF=0 WT=5 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Hosts\is8583.c"
+VIEW: LN=.6721 CL=1 LE=0 CX=0 CY=13 WI=219 BI=4 HT=0 HN=0 HF=0 HC=4
+WINDOW: 110 145 854 429 -1 -1 N  WF=0 WT=7 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Txn_flow\transdef.h"
+VIEW: LN=.5693 CL=19 LE=0 CX=18 CY=3 WI=102 BI=29 HT=0 HN=0 HF=0 HC=4
+WINDOW: 66 87 903 252 -1 -1 N  WF=0 WT=10 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\NucleusInterface\Comms\comm.cpp"
+VIEW: LN=.3650 CL=1 LE=0 CX=0 CY=10 WI=200 BI=25 HT=0 HN=0 HF=0 HC=4
+WINDOW: 44 58 903 252 -1 -1 N  WF=0 WT=9 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Data\aqtab.c"
+VIEW: LN=.2671 CL=1 LE=0 CX=0 CY=10 WI=247 BI=26 HT=0 HN=0 HF=0 HC=4
+WINDOW: 44 58 903 300 -1 -1 N  WF=0 WT=4 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Hosts\bit8583.c"
+VIEW: LN=.96884 CL=1 LE=0 CX=0 CY=10 WI=101 BI=33 HT=0 HN=0 HF=0 HC=4
+WINDOW: 88 116 854 429 -1 -1 N  WF=0 WT=6 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Hosts\bit8583.h"
+VIEW: LN=.2915 CL=25 LE=0 CX=24 CY=20 WI=95 BI=22 HT=0 HN=0 HF=0 HC=4
+WINDOW: 22 29 854 429 -1 -1 N  WF=0 WT=3 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Hosts\reqhyp.c"
+VIEW: LN=.4830 CL=11 LE=0 CX=10 CY=19 WI=138 BI=34 HT=0 HN=0 HF=0 HC=4
+WINDOW: 110 145 854 429 -1 -1 N  WF=0 WT=14 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Texts\pclentext.c"
+VIEW: LN=.6355 CL=62 LE=0 CX=61 CY=17 WI=89 BI=35 HT=0 HN=0 HF=0 HC=4
+WINDOW: 132 174 854 429 -1 -1 N  WF=0 WT=15 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Texts\pclestext.c"
+VIEW: LN=.6340 CL=6 LE=0 CX=5 CY=17 WI=77 BI=36 HT=0 HN=0 HF=0 HC=4
+WINDOW: 44 58 854 429 -1 -1 N  WF=0 WT=18 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Hosts\hstprint2.c"
+VIEW: LN=.3590 CL=22 LE=0 CX=21 CY=17 WI=87 BI=37 HT=0 HN=0 HF=0 HC=4
+WINDOW: 88 116 854 429 -1 -1 N  WF=0 WT=13 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Txn_flow\app1.c"
+VIEW: LN=.8864 CL=1 LE=0 CX=0 CY=10 WI=140 BI=39 HT=0 HN=0 HF=0 HC=4
+WINDOW: 88 116 854 429 -1 -1 N  WF=0 WT=20 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Printer\receipt.c"
+VIEW: LN=.5074 CL=1 LE=0 CX=1 CY=19 WI=195 BI=38 HT=0 HN=0 HF=0 HC=4
+WINDOW: 88 116 903 252 -1 -1 N  WF=0 WT=21 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Printer\prtdrv.c"
+VIEW: LN=.18041 CL=1 LE=0 CX=0 CY=10 WI=91 BI=40 HT=0 HN=0 HF=0 HC=4
+WINDOW: 22 29 854 429 -1 -1 N  WF=0 WT=17 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Printer\prtdef.h"
+VIEW: LN=.0 CL=1 LE=0 CX=0 CY=0 WI=217 BI=41 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 903 252 -1 -1 N  WF=0 WT=22 "Default Fixed Font,10,0,1"
+BUFFER: BN="Farsi\Farsi_print.c"
+VIEW: LN=.6860 CL=18 LE=0 CX=18 CY=7 WI=218 BI=42 HT=0 HN=0 HF=0 HC=4
+WINDOW: 22 29 854 429 -1 -1 N  WF=0 WT=24 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Txn_flow\loyalty.c"
+VIEW: LN=.6523 CL=13 LE=0 CX=12 CY=21 WI=187 BI=43 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 854 429 -1 -1 N  WF=0 WT=16 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Printer\prtdef.c"
+VIEW: LN=.63791 CL=49 LE=0 CX=48 CY=20 WI=235 BI=44 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 854 429 -1 -1 N  WF=0 WT=2 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Data\struct.h"
+VIEW: LN=.48571 CL=30 LE=0 CX=29 CY=21 WI=131 BI=45 HT=0 HN=0 HF=0 HC=4
+WINDOW: 44 58 854 429 -1 -1 N  WF=0 WT=25 "Default Fixed Font,10,0,1"
+BUFFER: BN="..\Common\Texts\hdtestext.c"
+VIEW: LN=.14705 CL=44 LE=0 CX=43 CY=6 WI=190 BI=46 HT=0 HN=0 HF=0 HC=4
+WINDOW: 88 116 854 429 -1 -1 N  WF=0 WT=27 "Default Fixed Font,10,0,1"
+BUFFER: BN="Farsi\pclfatext.c"
+VIEW: LN=.514 CL=20 LE=0 CX=19 CY=17 WI=198 BI=47 HT=0 HN=0 HF=0 HC=4
+WINDOW: 110 145 854 429 -1 -1 N  WF=0 WT=28 "Default Fixed Font,10,0,1"
+BUFFER: BN="Farsi\rspfatext.c"
+VIEW: LN=.0 CL=1 LE=0 CX=0 CY=0 WI=178 BI=48 HT=0 HN=0 HF=0 HC=4
+WINDOW: 132 174 854 429 -1 -1 N  WF=0 WT=29 "Default Fixed Font,10,0,1"
+BUFFER: BN="Farsi\evtfatext.c"
+VIEW: LN=.0 CL=1 LE=0 CX=0 CY=0 WI=186 BI=49 HT=0 HN=0 HF=0 HC=4
+WINDOW: 66 87 854 429 -1 -1 M  WF=0 WT=26 "Default Fixed Font,10,0,1"
+BUFFER: BN="Farsi\hdtfatext.c"
+VIEW: LN=.22256 CL=33 LE=0 CX=32 CY=19 WI=260 BI=50 HT=0 HN=0 HF=0 HC=4
+FILEHIST: 9
+..\Common\Printer\prtdef_farisi.h
+..\Common\Txn_flow\loyalty.c
+..\Common\Printer\prtdef.c
+..\Common\Data\struct.h
+..\Common\Texts\hdtestext.c
+Farsi\pclfatext.c
+Farsi\rspfatext.c
+Farsi\evtfatext.c
+Farsi\hdtfatext.c
+BOOKMARK2: 0
+DEBUG: 13 16 4 0 3 0
+2TERMTOTALS0
+1TRINP0
+1AQTAB[0]0
+1TRINP.TRAQPTR0
+1SENDBUF0
+1TRREQ0
+1pTBitMap0
+1ReqHyperTPDU_SZE0
+2pSendData0
+1GetNextLineFarsi_prnCodePage_table[ chr ]0
+2Farsi_prnCodePage_table0
+1BuildFixedBufferLineBuf0
+3pCurrentLine[i]0
+..\Common\_Main\
+..\NucleusInterface\Main\
+..\Common\Data\
+..\NucleusInterface\Profile\
+..\Common\Hosts\
+..\Common\Txn_flow\
+UI\
+..\Common\Utils\
+..\NucleusInterface\Comms\
+..\Common\Texts\
+Farsi\
+PinPad\
+..\Common\Batch\
+..\Common\Comms\
+..\Common\PinPad\
+..\Common\Printer\
+00Receipt..\Common\Printer\receipt.c13510x20a672580
+00Farsi_PrintFarsi\Farsi_print.c10610x20aa62f40
+00Farsi_PrintFarsi\Farsi_print.c21310x20aa68100
+00BuildFixedBufferFarsi\Farsi_print.c57510x20aa80ec0
+printf
+strcpy
+std::*

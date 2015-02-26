@@ -1,0 +1,28 @@
+Release/SysData.o:  \
+ F:/Firmalar/Parsian/SourceCode/Parsian/Sources/T2100/../Common/_Main/SysData.c \
+  ../../HSDK/T2100/Release/include/eftos.h \
+  ../../HSDK/T2100/Release/include/eftos9.h \
+  ../../HSDK/T2100/Release/include/SswDef.h \
+  ../../HSDK/T2100/Release/include/44b.h \
+  ../../HSDK/T2100/Release/include/Buz.h \
+  ../../HSDK/T2100/Release/include/Ch.h \
+  ../../HSDK/T2100/Release/include/PrsHw.h \
+  ../../HSDK/T2100/Release/include/Dsp.h \
+  ../../HSDK/T2100/Release/include/Kbd.h \
+  ../../HSDK/T2100/Release/include/Key.h \
+  ../../HSDK/T2100/Release/include/Msr.h \
+  ../../HSDK/T2100/Release/include/Os.h \
+  ../../HSDK/T2100/Release/include/Printer.h \
+  ../../HSDK/T2100/Release/include/PrsAp.h \
+  ../../HSDK/T2100/Release/include/PrsSc.h \
+  ../../HSDK/T2100/Release/include/Raut.h \
+  ../../HSDK/T2100/Release/include/Res.h \
+  ../../HSDK/T2100/Release/include/Rtc.h \
+  ../../HSDK/T2100/Release/include/Sec.h \
+  ../../HSDK/T2100/Release/include/Spb.h \
+  ../../HSDK/T2100/Release/include/Scr.h \
+  ../../HSDK/T2100/Release/include/Th.h \
+  ../../HSDK/T2100/Release/include/G1s.h \
+  ../../HSDK/T2100/Release/include/SysData.h \
+  ../../HSDK/T2100/Release/include/kbddev.inc \
+  ../../HSDK/T2100/Release/include/kbddev.h

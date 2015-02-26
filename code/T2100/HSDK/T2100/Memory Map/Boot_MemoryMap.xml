@@ -1,0 +1,52 @@
+<!DOCTYPE Board_Memory_Definition_File>
+<Root name="RAM at Zero" >
+  <MemorySegment size="0x100" access="Read/Write" start="0x04000000" name="SRAM_1" >
+    <ProgramSection load="No" inputsections="*(Version) *(HWconfig) *(Restart)" name=".sram1" />
+  </MemorySegment>
+  <MemorySegment size="0x100" access="Read/Write" start="0x04000100" name="SRAM_2" >
+    <ProgramSection load="No" inputsections="*(Prodconfig)" name=".sram2" />
+  </MemorySegment>
+  <MemorySegment size="0x100" access="Read/Write" start="0x04000200" name="SRAM_3" >
+    <ProgramSection load="No" inputsections="*(ldrdata)" name=".sram3" />
+  </MemorySegment>
+  <MemorySegment size="0x100" access="Read/Write" start="0x04000300" name="SRAM_4" >
+    <ProgramSection load="No" inputsections="*(AppData)" name=".sram4" />
+  </MemorySegment>
+  <MemorySegment size="0x600" access="Read/Write" name="SRAM_5" start="0x4000400" >
+    <ProgramSection load="No" inputsections="*(CryptoServiceData)" name=".sram5" />
+  </MemorySegment>
+  <MemorySegment size="0x600" access="Read/Write" start="0x4000a00" name="SRAM_COMMON" >
+    <ProgramSection load="No" inputsections="*(fixdata) *(RS232data) *(fixdata2)" name=".sram_common" />
+  </MemorySegment>
+  <MemorySegment size="0xe000" access="Read/Write" name="NVRAM" start="0x04001000" >
+  </MemorySegment>
+  <MemorySegment size="0x4000" access="Read/Write" start="0x400f000" name="SRAM_MULTIAPP" >
+    <ProgramSection load="No" inputsections="*(MultiAppData2)" name=".multiappdata2" />
+  </MemorySegment>
+  <MemorySegment size="0x6d000" access="Read/Write" start="0x4013000" name="FILESYSTEM" >
+    <ProgramSection load="No" inputsections="" name=".filesystem" />
+  </MemorySegment>
+  <MemorySegment size="0x10000" access="Read/Write" start="0x0C000000" name="SDRAM" />
+  <MemorySegment size="0xf0000" access="Read/Write" start="0x0C010000" name="SDRAM_SW" >
+    <ProgramSection load="Yes" inputsections="*(.reset)" name=".reset" />
+    <ProgramSection size="0xffc" load="Yes" inputsections="*(.nocache)" name=".nocache" />
+    <ProgramSection load="Yes" inputsections="*(.cstart) *(.text .text.*) *(.glue_7 .glue_7t) *(.gnu.linkonce.t.*) *(.gcc_except_table)" name=".text" />
+    <ProgramSection load="Yes" inputsections="*(.ctors)" name=".ctors" />
+    <ProgramSection load="Yes" inputsections="*(.dtors)" name=".dtors" />
+    <ProgramSection load="Yes" inputsections="*(.rodata .rodata.*) *(.gnu.linkonce.r.*)" name=".rodata" />
+    <ProgramSection load="No" inputsections="*(.data_load)" name=".data_load" />
+    <ProgramSection load="Yes" inputsections="*(.data .data.*)" name=".data" />
+	<ProgramSection load="Yes" inputsections="*(.data_alignment)" name=".data_alignment" />
+    <ProgramSection load="No" inputsections="*(.bss .bss.*) *(COMMON)" name=".bss" />
+  </MemorySegment>
+  <MemorySegment size="0x100000" access="Read/Write" start="0x0C700000" name="SDRAM_STACK" >
+    <ProgramSection size="0xf000" load="No" name=".stack_svc" />
+    <ProgramSection size="0x100" load="No" name=".stack_und" />
+    <ProgramSection size="0x100" load="No" name=".stack_abt" />
+    <ProgramSection size="0xd00" load="No" name=".stack_irq" />
+    <ProgramSection size="0x100" load="No" name=".stack_fiq" />
+  </MemorySegment>
+  <MemorySegment size="0x1000" access="Read/Write" start="0x10001000" name="CACHE_1" >
+    <ProgramSection load="No" inputsections="*(SecureMemory)" name=".cache1" />
+  </MemorySegment>
+</Root>

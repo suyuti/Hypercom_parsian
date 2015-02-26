@@ -1,0 +1,1302 @@
+<!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/10.0/vpj.dtd">
+<Project
+	Version="10.0"
+	VendorName="SlickEdit"
+	WorkingDir="."
+	BuildSystem="vsbuild"
+	VCSProject="Subversion:">
+	<Config
+		Name="Debug"
+		Type="gnuc"
+		DebugCallbackName="gdb"
+		Version="1"
+		OutputFile="%bdBaseApp.elf"
+		CompilerConfigName="Latest Version"
+		Defines='"/DMAKE_OPTIMUM" "/DDDL_MODULE" "/DC_DEV" "/DMAKE_VHDT" "/DMAKE_ENGLISH" "/DMAKE_GERMAN" "/DMAKE_SWEDISH" "/DMAKE_SPANISH" "/DMAKE_PORTUGUESE" "/DMAKE_FARSI" "/DDEFAULT_LANGUAGE=0" "/DSUPP_ADDICCTAGS" "/D_INCLUDE_NUCLEUS_FILE_" "/DMAKE_DEBUG" "/D_DEBUG" "/DDBGTRACING" "/DUSING_AAE" "/DAAE_MODEM" "/DVMOD=0x34" "/DVREV=0x31,0x32" "/DDYNAMIC_MEMORY_SIZE=%(DYNAMIC_MEMORY_SIZE)" "/DAPPLICATION_STACK_SIZE=%(APPLICATION_STACK_SIZE)" "/DMAKE_EMV" "/DVRELEASE=""FW500H_ """'>
+		<Menu>
+			<Target
+				Name="Compile"
+				MenuCaption="&amp;Compile"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				OutputExts="*.o"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw">
+				<Exec
+					CmdLine='%(CC) -c %xup %defd -g -fpic -o "%bd%n%oe" %i "%f" %~other'
+					OtherOptions="%(CCFLAGS_DEBUG)"/>
+			</Target>
+			<Target
+				Name="Link"
+				MenuCaption="&amp;Link"
+				ShowOnMenu="Never"
+				Dialog="_gnuc_options_form Link"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw">
+				<Exec
+					CmdLine='%(LINK) %xup -o "%o" %objs %~other'
+					OtherOptions='-shared --allow-multiple-definition --no-undefined --defsym HEAPSIZE=%(HEAPSIZE_DEBUG) -T %(DBG_LINKSCRIPT) -M -Map "%bd%on.map"'/>
+			</Target>
+			<Target
+				Name="Build"
+				MenuCaption="&amp;Build"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw"
+				Verbose="1"
+				DependsRef="Debug">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t build'/>
+			</Target>
+			<Target
+				Name="Rebuild"
+				MenuCaption="&amp;Rebuild"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw"
+				Verbose="1"
+				DependsRef="Debug">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t rebuild'/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveNone"
+				RunFromDir="%rw">
+				<Exec CmdLine='vsdebugio -prog "%o"'/>
+			</Target>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o"'/>
+			</Target>
+			<Target
+				Name="dash"
+				MenuCaption="-"
+				Deletable="0">
+				<Exec/>
+			</Target>
+			<Target
+				Name="GNU C Options"
+				MenuCaption="GNU C &amp;Options..."
+				ShowOnMenu="HideIfNoCmdLine"
+				Deletable="0"
+				SaveOption="SaveNone">
+				<Exec
+					CmdLine="gnucoptions"
+					Type="Slick-C"/>
+			</Target>
+		</Menu>
+		<Includes>
+			<Include Dir="../NucleusInterface/Main"/>
+			<Include Dir="../NucleusInterface/Comms"/>
+			<Include Dir="../NucleusInterface/Profile"/>
+			<Include Dir="./UI"/>
+			<Include Dir="./Farsi"/>
+			<Include Dir="../Common/_Main"/>
+			<Include Dir="../Common/Batch"/>
+			<Include Dir="../Common/Comms"/>
+			<Include Dir="../Common/Data"/>
+			<Include Dir="../Common/EMV"/>
+			<Include Dir="../Common/Hosts"/>
+			<Include Dir="../Common/HostUtil"/>
+			<Include Dir="../Common/Images"/>
+			<Include Dir="../Common/PinPad"/>
+			<Include Dir="../Common/Printer"/>
+			<Include Dir="../Common/Texts"/>
+			<Include Dir="../Common/Txn_flow"/>
+			<Include Dir="../Common/Utils"/>
+			<Include Dir="../EmvL2"/>
+			<Include Dir="%(HSDK_ROOT_DEBUG)"/>
+			<Include Dir="%(HFC_ROOT)/Inc"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/Plus"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/Security"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/PXA25x_HW"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/MainAppForAppMgr"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/API_Interface/inc"/>
+			<Include Dir="%(AAE_ROOT)/Inc"/>
+			<Include Dir="%(SECPROV_ROOT)"/>
+		</Includes>
+		<Libs PreObjects="0">
+			<Lib File="--start-group"/>
+			<Lib File="../EmvL2/EmvLib.lib"/>
+			<Lib File="%(SECPROV_ROOT)/CSLib.a"/>
+			<Lib File="%(HSDK_LIBS_DEBUG)"/>
+			<Lib File="%(HFC_LIBS_DEBUG)"/>
+			<Lib File="%(OS_LIBS)"/>
+			<Lib File="%(AAE_LIBS)"/>
+			<Lib File="%(LIBC_DIRS)"/>
+			<Lib File="-lstdc++"/>
+			<Lib File="-lc"/>
+			<Lib File="-lgcc"/>
+			<Lib File="--end-group"/>
+		</Libs>
+		<PostBuildCommands>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\fixjmp" "%bd%on.elf" "%bd%on.rel"'/>
+			<Exec CmdLine='%(OBJCOPY) --srec-len=255 -R .interp -R .hash -R .dynsym -R .dynstr -R .rel.init -R .rela.init -R .rel.text -R .rela.text -R .rel.fini -R .rela.fini -R .rel.rodata -R .rela.rodata -R .rel.data -R .rela.data -R .rel.tdata -R .rela.tdata -R .rel.tbss -R .rela.tbss -R .rel.ctors -R .rela.ctors -R .rel.dtors -R .rela.dtors -R .rel.got -R .rela.got -R .rel.sdata -R .rela.sdata -R .rel.sbss -R .rela.sbss -R .rel.sdata2 -R .rela.sdata2 -R .rel.sbss2 -R .rela.sbss2 -R .rel.bss -R .rela.bss -R .rel.plt -R .rela.plt -R .dynamic -O srec "%bd%on.elf" "%bd%on.src"'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\fixup" "%bd%on.src" "%bd%on.txt" "%bd%on.map" "%bd%on.rel" %(BINFORMAT)'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\rm" -f "%bd%on.rel"'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\DDLCompress" "%bd%on.txt" "%bd%on.app" %(BINFORMAT)'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\gawk" -f GenGDBScript.awk "%bd%on.elf" %(LOADADDR) &lt; "%bd%on.map" &gt; "%on.gdb"'/>
+			<Exec CmdLine='echo ^&lt;Application Title="%(APPNAME)" Version="%(FREV)" Icon="%(FICON)" Company="Hypercom" DestinationDir="T4100" Main="%(FAPP).app" MainAttributes="0" UniqueName="%(APPNAME)" ^&gt; &gt; "%(FAPP)".xml'/>
+			<Exec CmdLine="echo 	^&lt;Files^&gt; &gt;&gt; %(FAPP).xml"/>
+			<Exec CmdLine='echo		 	^&lt;File URL="%b\%(FAPP).app"^/^&gt; &gt;&gt; %(FAPP).xml'/>
+			<Exec CmdLine='echo		 	^&lt;File URL="%(FICON)"^/^&gt; &gt;&gt; %(FAPP).xml'/>
+			<Exec CmdLine='echo		 	^&lt;File URL="debugflags"^/^&gt; &gt;&gt; %(FAPP).xml'/>
+			<Exec CmdLine="echo 	^&lt;^/Files^&gt; &gt;&gt; %(FAPP).xml"/>
+			<Exec CmdLine='echo	 	^&lt;StartUp CommandLine=""^/^&gt; &gt;&gt; %(FAPP).xml'/>
+			<Exec CmdLine="echo ^&lt;^/Application^&gt; &gt;&gt; %(FAPP).xml"/>
+			<Exec CmdLine='"%(PACKINGLISTBUILDER)" -g -x %(FAPP).xml -n %(FAPP)_%b.hxp'/>
+			<Exec CmdLine='copy %(FAPP)_%b.hxp "%rn.hxp"'/>
+			<Exec CmdLine='copy "%rn.hxp" "%bd"'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\rm" -f %(FAPP).xml'/>
+		</PostBuildCommands>
+	</Config>
+	<Config
+		Name="Release"
+		Type="gnuc"
+		DebugCallbackName="gdb"
+		Version="1"
+		OutputFile="%bdBaseApp.elf"
+		CompilerConfigName="Latest Version"
+		Defines='"/DMAKE_OPTIMUM" "/DDDL_MODULE" "/DC_DEV" "/DMAKE_VHDT" "/DMAKE_ENGLISH" "/DMAKE_GERMAN" "/DMAKE_SWEDISH" "/DMAKE_SPANISH" "/DMAKE_PORTUGUESE" "/DMAKE_FARSI" "/DDEFAULT_LANGUAGE=0" "/DSUPP_ADDICCTAGS" "/D_INCLUDE_NUCLEUS_FILE_" "/DUSING_AAE" "/DAAE_MODEM" "/DVMOD=0x34" "/DVREV=0x31,0x32" "/DDYNAMIC_MEMORY_SIZE=%(DYNAMIC_MEMORY_SIZE)" "/DAPPLICATION_STACK_SIZE=%(APPLICATION_STACK_SIZE)" "/DMAKE_EMV" "/DVRELEASE=""FW500H_ """'>
+		<Menu>
+			<Target
+				Name="Compile"
+				MenuCaption="&amp;Compile"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				OutputExts="*.o"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw">
+				<Exec
+					CmdLine='%(CC) -c %xup %defd -g -fpic -o "%bd%n%oe" %i "%f" %~other'
+					OtherOptions="%(CCFLAGS_RELEASE)"/>
+			</Target>
+			<Target
+				Name="Link"
+				MenuCaption="&amp;Link"
+				ShowOnMenu="Never"
+				Dialog="_gnuc_options_form Link"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw">
+				<Exec
+					CmdLine='%(LINK) %xup -o "%o" %objs %~other'
+					OtherOptions='-shared --allow-multiple-definition --no-undefined --defsym HEAPSIZE=%(HEAPSIZE_RELEASE) -T %(REL_LINKSCRIPT) -M -Map "%bd%on.map"'/>
+			</Target>
+			<Target
+				Name="Build"
+				MenuCaption="&amp;Build"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw"
+				DependsRef="Release">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t build'/>
+			</Target>
+			<Target
+				Name="Rebuild"
+				MenuCaption="&amp;Rebuild"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw"
+				DependsRef="Release">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t rebuild'/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveNone"
+				RunFromDir="%rw">
+				<Exec CmdLine='vsdebugio -prog "%o"'/>
+			</Target>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o"'/>
+			</Target>
+			<Target
+				Name="dash"
+				MenuCaption="-"
+				Deletable="0">
+				<Exec/>
+			</Target>
+			<Target
+				Name="GNU C Options"
+				MenuCaption="GNU C &amp;Options..."
+				ShowOnMenu="HideIfNoCmdLine"
+				Deletable="0"
+				SaveOption="SaveNone">
+				<Exec
+					CmdLine="gnucoptions"
+					Type="Slick-C"/>
+			</Target>
+		</Menu>
+		<Includes>
+			<Include Dir="../NucleusInterface/Main"/>
+			<Include Dir="../NucleusInterface/Comms"/>
+			<Include Dir="../NucleusInterface/Profile"/>
+			<Include Dir="./UI"/>
+			<Include Dir="./Farsi"/>
+			<Include Dir="../Common/_Main"/>
+			<Include Dir="../Common/Batch"/>
+			<Include Dir="../Common/Comms"/>
+			<Include Dir="../Common/Data"/>
+			<Include Dir="../Common/EMV"/>
+			<Include Dir="../Common/Hosts"/>
+			<Include Dir="../Common/HostUtil"/>
+			<Include Dir="../Common/Images"/>
+			<Include Dir="../Common/PinPad"/>
+			<Include Dir="../Common/Printer"/>
+			<Include Dir="../Common/Texts"/>
+			<Include Dir="../Common/Txn_flow"/>
+			<Include Dir="../Common/Utils"/>
+			<Include Dir="../EmvL2"/>
+			<Include Dir="%(HSDK_ROOT)"/>
+			<Include Dir="%(HFC_ROOT)/Inc"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/Plus"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/Security"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/PXA25x_HW"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/MainAppForAppMgr"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/API_Interface/inc"/>
+			<Include Dir="%(AAE_ROOT)/Inc"/>
+			<Include Dir="%(SECPROV_ROOT)"/>
+		</Includes>
+		<Libs PreObjects="0">
+			<Lib File="--start-group"/>
+			<Lib File="../EmvL2/EmvLib.lib"/>
+			<Lib File="%(SECPROV_ROOT)/CSLib.a"/>
+			<Lib File="%(HSDK_LIBS)"/>
+			<Lib File="%(HFC_LIBS)"/>
+			<Lib File="%(OS_LIBS)"/>
+			<Lib File="%(AAE_LIBS)"/>
+			<Lib File="%(LIBC_DIRS)"/>
+			<Lib File="-lstdc++"/>
+			<Lib File="-lc"/>
+			<Lib File="-lgcc"/>
+			<Lib File="--end-group"/>
+		</Libs>
+		<PostBuildCommands>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\fixjmp" "%bd%on.elf" "%bd%on.rel"'/>
+			<Exec CmdLine='%(OBJCOPY) --srec-len=255 -R .interp -R .hash -R .dynsym -R .dynstr -R .rel.init -R .rela.init -R .rel.text -R .rela.text -R .rel.fini -R .rela.fini -R .rel.rodata -R .rela.rodata -R .rel.data -R .rela.data -R .rel.tdata -R .rela.tdata -R .rel.tbss -R .rela.tbss -R .rel.ctors -R .rela.ctors -R .rel.dtors -R .rela.dtors -R .rel.got -R .rela.got -R .rel.sdata -R .rela.sdata -R .rel.sbss -R .rela.sbss -R .rel.sdata2 -R .rela.sdata2 -R .rel.sbss2 -R .rela.sbss2 -R .rel.bss -R .rela.bss -R .rel.plt -R .rela.plt -R .dynamic -O srec "%bd%on.elf" "%bd%on.src"'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\fixup" "%bd%on.src" "%bd%on.txt" "%bd%on.map" "%bd%on.rel" %(BINFORMAT)'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\rm" -f "%bd%on.rel"'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\DDLCompress" "%bd%on.txt" "%bd%on.app" %(BINFORMAT)'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\gawk" -f GenGDBScript.awk "%bd%on.elf" %(LOADADDR) &lt; "%bd%on.map" &gt; "%on.gdb"'/>
+			<Exec CmdLine='echo ^&lt;Application Title="%(APPNAME)" Version="%(FREV)" Icon="%(FICON)" Company="Hypercom" DestinationDir="T4100" Main="%(FAPP).app" MainAttributes="0" UniqueName="%(APPNAME)" ^&gt; &gt; "%(FAPP)".xml'/>
+			<Exec CmdLine="echo 	^&lt;Files^&gt; &gt;&gt; %(FAPP).xml"/>
+			<Exec CmdLine='echo		 	^&lt;File URL="%b\%(FAPP).app"^/^&gt; &gt;&gt; %(FAPP).xml'/>
+			<Exec CmdLine='echo		 	^&lt;File URL="%(FICON)"^/^&gt; &gt;&gt; %(FAPP).xml'/>
+			<Exec CmdLine="echo 	^&lt;^/Files^&gt; &gt;&gt; %(FAPP).xml"/>
+			<Exec CmdLine='echo	 	^&lt;StartUp CommandLine=""^/^&gt; &gt;&gt; %(FAPP).xml'/>
+			<Exec CmdLine="echo ^&lt;^/Application^&gt; &gt;&gt; %(FAPP).xml"/>
+			<Exec CmdLine='"%(PACKINGLISTBUILDER)" -g -x %(FAPP).xml -n %(FAPP)_%b.hxp'/>
+			<Exec CmdLine='copy %(FAPP)_%b.hxp "%rn.hxp"'/>
+			<Exec CmdLine='copy "%rn.hxp" "%bd"'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\rm" -f %(FAPP).xml'/>
+		</PostBuildCommands>
+	</Config>
+	<Config
+		Name="SSL_Debug"
+		Type="gnuc"
+		DebugCallbackName="gdb"
+		Version="1"
+		OutputFile="%bdBaseApp.elf"
+		CompilerConfigName="Latest Version"
+		Defines='"/DMAKE_SSL" "/DMAKE_OPTIMUM" "/DDDL_MODULE" "/DC_DEV" "/DMAKE_VHDT" "/DMAKE_ENGLISH" "/DMAKE_GERMAN" "/DMAKE_SWEDISH" "/DMAKE_SPANISH" "/DMAKE_PORTUGUESE" "/DMAKE_FARSI" "/DDEFAULT_LANGUAGE=0" "/DSUPP_ADDICCTAGS" "/D_INCLUDE_NUCLEUS_FILE_" "/DMAKE_DEBUG" "/D_DEBUG" "/DDBGTRACING" "/DUSING_AAE" "/DAAE_MODEM" "/DVMOD=0x34" "/DVREV=0x31,0x32" "/DDYNAMIC_MEMORY_SIZE=%(DYNAMIC_MEMORY_SIZE)" "/DAPPLICATION_STACK_SIZE=%(APPLICATION_STACK_SIZE)" "/DMAKE_EMV" "/DVRELEASE=""FW500H_ """'>
+		<Menu>
+			<Target
+				Name="Compile"
+				MenuCaption="&amp;Compile"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				OutputExts="*.o"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw">
+				<Exec
+					CmdLine='%(CC) -c %xup %defd -g -fpic -o "%bd%n%oe" %i "%f" %~other'
+					OtherOptions="%(CCFLAGS_DEBUG)"/>
+			</Target>
+			<Target
+				Name="Link"
+				MenuCaption="&amp;Link"
+				ShowOnMenu="Never"
+				Dialog="_gnuc_options_form Link"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw">
+				<Exec
+					CmdLine='%(LINK) %xup -o "%o" %objs %~other'
+					OtherOptions='-shared --allow-multiple-definition --no-undefined --defsym HEAPSIZE=%(HEAPSIZE_DEBUG) -T %(DBG_LINKSCRIPT) -M -Map "%bd%on.map"'/>
+			</Target>
+			<Target
+				Name="Build"
+				MenuCaption="&amp;Build"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw"
+				DependsRef="SSL_Debug"
+				Verbose="1">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t build'/>
+			</Target>
+			<Target
+				Name="Rebuild"
+				MenuCaption="&amp;Rebuild"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw"
+				DependsRef="SSL_Debug">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t rebuild'/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveNone"
+				RunFromDir="%rw">
+				<Exec CmdLine='vsdebugio -prog "%o"'/>
+			</Target>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o"'/>
+			</Target>
+			<Target
+				Name="dash"
+				MenuCaption="-"
+				Deletable="0">
+				<Exec/>
+			</Target>
+			<Target
+				Name="GNU C Options"
+				MenuCaption="GNU C &amp;Options..."
+				ShowOnMenu="HideIfNoCmdLine"
+				Deletable="0"
+				SaveOption="SaveNone">
+				<Exec
+					CmdLine="gnucoptions"
+					Type="Slick-C"/>
+			</Target>
+		</Menu>
+		<Includes>
+			<Include Dir="../NucleusInterface/Main"/>
+			<Include Dir="../NucleusInterface/Comms"/>
+			<Include Dir="../NucleusInterface/Profile"/>
+			<Include Dir="./UI"/>
+			<Include Dir="./Farsi"/>
+			<Include Dir="../Common/_Main"/>
+			<Include Dir="../Common/Batch"/>
+			<Include Dir="../Common/Comms"/>
+			<Include Dir="../Common/Data"/>
+			<Include Dir="../Common/EMV"/>
+			<Include Dir="../Common/Hosts"/>
+			<Include Dir="../Common/HostUtil"/>
+			<Include Dir="../Common/Images"/>
+			<Include Dir="../Common/PinPad"/>
+			<Include Dir="../Common/Printer"/>
+			<Include Dir="../Common/Texts"/>
+			<Include Dir="../Common/Txn_flow"/>
+			<Include Dir="../Common/Utils"/>
+			<Include Dir="../EmvL2"/>
+			<Include Dir="%(HSDK_ROOT_DEBUG)"/>
+			<Include Dir="%(HFC_ROOT)/Inc"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/Plus"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/Security"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/PXA25x_HW"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/MainAppForAppMgr"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/API_Interface/inc"/>
+			<Include Dir="%(AAE_ROOT)/Inc"/>
+			<Include Dir="%(SECPROV_ROOT)"/>
+		</Includes>
+		<Libs PreObjects="0">
+			<Lib File="--start-group"/>
+			<Lib File="../EmvL2/EmvLib.lib"/>
+			<Lib File="%(SECPROV_ROOT)/CSLib.a"/>
+			<Lib File="%(HSDK_LIBS_DEBUG)"/>
+			<Lib File="%(HFC_LIBS_DEBUG)"/>
+			<Lib File="%(OS_LIBS)"/>
+			<Lib File="%(AAE_LIBS)"/>
+			<Lib File="%(LIBC_DIRS)"/>
+			<Lib File="-lstdc++"/>
+			<Lib File="-lc"/>
+			<Lib File="-lgcc"/>
+			<Lib File="--end-group"/>
+		</Libs>
+		<PostBuildCommands>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\fixjmp" "%bd%on.elf" "%bd%on.rel"'/>
+			<Exec CmdLine='%(OBJCOPY) --srec-len=255 -R .interp -R .hash -R .dynsym -R .dynstr -R .rel.init -R .rela.init -R .rel.text -R .rela.text -R .rel.fini -R .rela.fini -R .rel.rodata -R .rela.rodata -R .rel.data -R .rela.data -R .rel.tdata -R .rela.tdata -R .rel.tbss -R .rela.tbss -R .rel.ctors -R .rela.ctors -R .rel.dtors -R .rela.dtors -R .rel.got -R .rela.got -R .rel.sdata -R .rela.sdata -R .rel.sbss -R .rela.sbss -R .rel.sdata2 -R .rela.sdata2 -R .rel.sbss2 -R .rela.sbss2 -R .rel.bss -R .rela.bss -R .rel.plt -R .rela.plt -R .dynamic -O srec "%bd%on.elf" "%bd%on.src"'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\fixup" "%bd%on.src" "%bd%on.txt" "%bd%on.map" "%bd%on.rel" %(BINFORMAT)'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\rm" -f "%bd%on.rel"'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\DDLCompress" "%bd%on.txt" "%bd%on.app" %(BINFORMAT)'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\gawk" -f GenGDBScript.awk "%bd%on.elf" %(LOADADDR) &lt; "%bd%on.map" &gt; "%on.gdb"'/>
+			<Exec CmdLine='echo ^&lt;Application Title="%(APPNAME)" Version="%(FREV)" Icon="%(FICON)" Company="Hypercom" DestinationDir="T4100" Main="%(FAPP).app" MainAttributes="0" UniqueName="%(APPNAME)" ^&gt; &gt; "%(FAPP)".xml'/>
+			<Exec CmdLine="echo 	^&lt;Files^&gt; &gt;&gt; %(FAPP).xml"/>
+			<Exec CmdLine='echo		 	^&lt;File URL="%b\%(FAPP).app"^/^&gt; &gt;&gt; %(FAPP).xml'/>
+			<Exec CmdLine='echo		 	^&lt;File URL="%(FICON)"^/^&gt; &gt;&gt; %(FAPP).xml'/>
+			<Exec CmdLine='echo		 	^&lt;File URL="debugflags"^/^&gt; &gt;&gt; %(FAPP).xml'/>
+			<Exec CmdLine="echo 	^&lt;^/Files^&gt; &gt;&gt; %(FAPP).xml"/>
+			<Exec CmdLine='echo	 	^&lt;StartUp CommandLine=""^/^&gt; &gt;&gt; %(FAPP).xml'/>
+			<Exec CmdLine="echo ^&lt;^/Application^&gt; &gt;&gt; %(FAPP).xml"/>
+			<Exec CmdLine='"%(PACKINGLISTBUILDER)" -g -x %(FAPP).xml -n %(FAPP)_%b.hxp'/>
+			<Exec CmdLine='copy %(FAPP)_%b.hxp "%rn.hxp"'/>
+			<Exec CmdLine='copy "%rn.hxp" "%bd"'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\rm" -f %(FAPP).xml'/>
+		</PostBuildCommands>
+	</Config>
+	<Config
+		Name="SSL_Release"
+		Type="gnuc"
+		DebugCallbackName="gdb"
+		Version="1"
+		OutputFile="%bdBaseApp.elf"
+		CompilerConfigName="Latest Version"
+		Defines='"/DMAKE_SSL" "/DMAKE_OPTIMUM" "/DDDL_MODULE" "/DC_DEV" "/DMAKE_VHDT" "/DMAKE_ENGLISH" "/DMAKE_GERMAN" "/DMAKE_SWEDISH" "/DMAKE_SPANISH" "/DMAKE_PORTUGUESE" "/DMAKE_FARSI" "/DDEFAULT_LANGUAGE=0" "/DSUPP_ADDICCTAGS" "/D_INCLUDE_NUCLEUS_FILE_" "/DUSING_AAE" "/DAAE_MODEM" "/DVMOD=0x34" "/DVREV=0x31,0x32" "/DDYNAMIC_MEMORY_SIZE=%(DYNAMIC_MEMORY_SIZE)" "/DAPPLICATION_STACK_SIZE=%(APPLICATION_STACK_SIZE)" "/DMAKE_EMV" "/DVRELEASE=""FW500H_ """'>
+		<Menu>
+			<Target
+				Name="Compile"
+				MenuCaption="&amp;Compile"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				OutputExts="*.o"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw">
+				<Exec
+					CmdLine='%(CC) -c %xup %defd -g -fpic -o "%bd%n%oe" %i "%f" %~other'
+					OtherOptions="%(CCFLAGS_RELEASE)"/>
+			</Target>
+			<Target
+				Name="Link"
+				MenuCaption="&amp;Link"
+				ShowOnMenu="Never"
+				Dialog="_gnuc_options_form Link"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw">
+				<Exec
+					CmdLine='%(LINK) %xup -o "%o" %objs %~other'
+					OtherOptions='-shared --allow-multiple-definition --no-undefined --defsym HEAPSIZE=%(HEAPSIZE_RELEASE) -T %(REL_LINKSCRIPT) -M -Map "%bd%on.map"'/>
+			</Target>
+			<Target
+				Name="Build"
+				MenuCaption="&amp;Build"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw"
+				DependsRef="SSL_Release"
+				Verbose="1">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t build'/>
+			</Target>
+			<Target
+				Name="Rebuild"
+				MenuCaption="&amp;Rebuild"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw"
+				DependsRef="SSL_Release">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t rebuild'/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveNone"
+				RunFromDir="%rw">
+				<Exec CmdLine='vsdebugio -prog "%o"'/>
+			</Target>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o"'/>
+			</Target>
+			<Target
+				Name="dash"
+				MenuCaption="-"
+				Deletable="0">
+				<Exec/>
+			</Target>
+			<Target
+				Name="GNU C Options"
+				MenuCaption="GNU C &amp;Options..."
+				ShowOnMenu="HideIfNoCmdLine"
+				Deletable="0"
+				SaveOption="SaveNone">
+				<Exec
+					CmdLine="gnucoptions"
+					Type="Slick-C"/>
+			</Target>
+		</Menu>
+		<Includes>
+			<Include Dir="../NucleusInterface/Main"/>
+			<Include Dir="../NucleusInterface/Comms"/>
+			<Include Dir="../NucleusInterface/Profile"/>
+			<Include Dir="./UI"/>
+			<Include Dir="./Farsi"/>
+			<Include Dir="../Common/_Main"/>
+			<Include Dir="../Common/Batch"/>
+			<Include Dir="../Common/Comms"/>
+			<Include Dir="../Common/Data"/>
+			<Include Dir="../Common/EMV"/>
+			<Include Dir="../Common/Hosts"/>
+			<Include Dir="../Common/HostUtil"/>
+			<Include Dir="../Common/Images"/>
+			<Include Dir="../Common/PinPad"/>
+			<Include Dir="../Common/Printer"/>
+			<Include Dir="../Common/Texts"/>
+			<Include Dir="../Common/Txn_flow"/>
+			<Include Dir="../Common/Utils"/>
+			<Include Dir="../EmvL2"/>
+			<Include Dir="%(HSDK_ROOT)"/>
+			<Include Dir="%(HFC_ROOT)/Inc"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/Plus"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/Security"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/PXA25x_HW"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/MainAppForAppMgr"/>
+			<Include Dir="%(APPMGR_ROOT)/Inc/API_Interface/inc"/>
+			<Include Dir="%(AAE_ROOT)/Inc"/>
+			<Include Dir="%(SECPROV_ROOT)"/>
+		</Includes>
+		<Libs PreObjects="0">
+			<Lib File="--start-group"/>
+			<Lib File="../EmvL2/EmvLib.lib"/>
+			<Lib File="%(SECPROV_ROOT)/CSLib.a"/>
+			<Lib File="%(HSDK_LIBS)"/>
+			<Lib File="%(HFC_LIBS)"/>
+			<Lib File="%(OS_LIBS)"/>
+			<Lib File="%(AAE_LIBS)"/>
+			<Lib File="%(LIBC_DIRS)"/>
+			<Lib File="-lstdc++"/>
+			<Lib File="-lc"/>
+			<Lib File="-lgcc"/>
+			<Lib File="--end-group"/>
+		</Libs>
+		<PostBuildCommands>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\fixjmp" "%bd%on.elf" "%bd%on.rel"'/>
+			<Exec CmdLine='%(OBJCOPY) --srec-len=255 -R .interp -R .hash -R .dynsym -R .dynstr -R .rel.init -R .rela.init -R .rel.text -R .rela.text -R .rel.fini -R .rela.fini -R .rel.rodata -R .rela.rodata -R .rel.data -R .rela.data -R .rel.tdata -R .rela.tdata -R .rel.tbss -R .rela.tbss -R .rel.ctors -R .rela.ctors -R .rel.dtors -R .rela.dtors -R .rel.got -R .rela.got -R .rel.sdata -R .rela.sdata -R .rel.sbss -R .rela.sbss -R .rel.sdata2 -R .rela.sdata2 -R .rel.sbss2 -R .rela.sbss2 -R .rel.bss -R .rela.bss -R .rel.plt -R .rela.plt -R .dynamic -O srec "%bd%on.elf" "%bd%on.src"'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\fixup" "%bd%on.src" "%bd%on.txt" "%bd%on.map" "%bd%on.rel" %(BINFORMAT)'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\rm" -f "%bd%on.rel"'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\DDLCompress" "%bd%on.txt" "%bd%on.app" %(BINFORMAT)'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\gawk" -f GenGDBScript.awk "%bd%on.elf" %(LOADADDR) &lt; "%bd%on.map" &gt; "%on.gdb"'/>
+			<Exec CmdLine='echo ^&lt;Application Title="%(APPNAME)" Version="%(FREV)" Icon="%(FICON)" Company="Hypercom" DestinationDir="T4100" Main="%(FAPP).app" MainAttributes="0" UniqueName="%(APPNAME)" ^&gt; &gt; "%(FAPP)".xml'/>
+			<Exec CmdLine="echo 	^&lt;Files^&gt; &gt;&gt; %(FAPP).xml"/>
+			<Exec CmdLine='echo		 	^&lt;File URL="%b\%(FAPP).app"^/^&gt; &gt;&gt; %(FAPP).xml'/>
+			<Exec CmdLine='echo		 	^&lt;File URL="%(FICON)"^/^&gt; &gt;&gt; %(FAPP).xml'/>
+			<Exec CmdLine="echo 	^&lt;^/Files^&gt; &gt;&gt; %(FAPP).xml"/>
+			<Exec CmdLine='echo	 	^&lt;StartUp CommandLine=""^/^&gt; &gt;&gt; %(FAPP).xml'/>
+			<Exec CmdLine="echo ^&lt;^/Application^&gt; &gt;&gt; %(FAPP).xml"/>
+			<Exec CmdLine='"%(PACKINGLISTBUILDER)" -g -x %(FAPP).xml -n %(FAPP)_%b.hxp'/>
+			<Exec CmdLine='copy %(FAPP)_%b.hxp "%rn.hxp"'/>
+			<Exec CmdLine='copy "%rn.hxp" "%bd"'/>
+			<Exec CmdLine='"%(GNU_TOOLS_BIN)\rm" -f %(FAPP).xml'/>
+		</PostBuildCommands>
+	</Config>
+	<Files>
+		<Folder
+			Name="Source Files"
+			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl">
+			<Folder
+				Name="_Main"
+				Filters="">
+				<F N="../Common/_Main/hypertcf.c"/>
+				<F N="../Common/_Main/hypertcf.h"/>
+				<F N="../Common/_Main/initcryp.c"/>
+				<F N="../Common/_Main/initcryp.h"/>
+				<F N="../Common/_Main/ProcessTable.h"/>
+				<F N="../Common/_Main/release.c"/>
+				<F N="../Common/_Main/schdoverride.c"/>
+				<F N="../Common/_Main/schdoverride.h"/>
+				<F N="../Common/_Main/schedule.c"/>
+			</Folder>
+			<Folder
+				Name="Batch"
+				Filters="">
+				<F N="../Common/Batch/batcntl.c"/>
+				<F N="../Common/Batch/batcntl.h"/>
+				<F N="../Common/Batch/batpend.c"/>
+				<F N="../Common/Batch/batpend.h"/>
+				<F N="../Common/Batch/chkbatch.c"/>
+				<F N="../Common/Batch/chkbatch.h"/>
+				<F N="../Common/Batch/hstjs.c"/>
+				<F N="../Common/Batch/hstjs.h"/>
+				<F N="../Common/Batch/incbatno.c"/>
+				<F N="../Common/Batch/incbatno.h"/>
+				<F N="../Common/Batch/journal.c"/>
+				<F N="../Common/Batch/journal.h"/>
+				<F N="../Common/Batch/jrnapps.c"/>
+				<F N="../Common/Batch/jrnapps.h"/>
+			</Folder>
+			<Folder
+				Name="Comms"
+				Filters="">
+				<F N="../Common/Comms/predial.c"/>
+				<F N="../Common/Comms/predial.h"/>
+			</Folder>
+			<Folder
+				Name="Data"
+				Filters="">
+				<F N="../Common/Data/appdata.c"/>
+				<F N="../Common/Data/appdata.h"/>
+				<F N="../Common/Data/aptab.c"/>
+				<F N="../Common/Data/aptab.h"/>
+				<F N="../Common/Data/aqtab.c"/>
+				<F N="../Common/Data/aqtab.h"/>
+				<F N="../Common/Data/battab.c"/>
+				<F N="../Common/Data/battab.h"/>
+				<F N="../Common/Data/collect.h"/>
+				<F N="../Common/Data/comdata.c"/>
+				<F N="../Common/Data/comdata.h"/>
+				<F N="../Common/Data/crtab.c"/>
+				<F N="../Common/Data/crtab.h"/>
+				<F N="../Common/Data/defines.h"/>
+				<F N="../Common/Data/delreprt.c"/>
+				<F N="../Common/Data/delreprt.h"/>
+				<F N="../Common/Data/dstab.c"/>
+				<F N="../Common/Data/dstab.h"/>
+				<F N="../Common/Data/fttab.c"/>
+				<F N="../Common/Data/fttab.h"/>
+				<F N="../Common/Data/ibtab.c"/>
+				<F N="../Common/Data/ibtab.h"/>
+				<F N="../Common/Data/ipctab.c"/>
+				<F N="../Common/Data/ipctab.h"/>
+				<F N="../Common/Data/iptab.c"/>
+				<F N="../Common/Data/iptab.h"/>
+				<F N="../Common/Data/isdebit.c"/>
+				<F N="../Common/Data/isdebit.h"/>
+				<F N="../Common/Data/istab.c"/>
+				<F N="../Common/Data/istab.h"/>
+				<F N="../Common/Data/loctab.c"/>
+				<F N="../Common/Data/loctab.h"/>
+				<F N="../Common/Data/pdntab.c"/>
+				<F N="../Common/Data/pdntab.h"/>
+				<F N="../Common/Data/PFlrc.c"/>
+				<F N="../Common/Data/PFlrc.h"/>
+				<F N="../Common/Data/rs232.c"/>
+				<F N="../Common/Data/rs232tab.h"/>
+				<F N="../Common/Data/schtab.c"/>
+				<F N="../Common/Data/schtab.h"/>
+				<F N="../Common/Data/struct.h"/>
+				<F N="../Common/Data/tables.c"/>
+				<F N="../Common/Data/tables.h"/>
+				<F N="../Common/Data/tabutil.c"/>
+				<F N="../Common/Data/tabutil.h"/>
+				<F N="../Common/Data/tconf.c"/>
+				<F N="../Common/Data/tconf.h"/>
+				<F N="../Common/Data/TERMtab.c"/>
+				<F N="../Common/Data/TERMtab.h"/>
+				<F N="../Common/Data/tftab.c"/>
+				<F N="../Common/Data/tftab.h"/>
+				<F N="../Common/Data/V2tab.c"/>
+				<F N="../Common/Data/V2tab.h"/>
+			</Folder>
+			<Folder
+				Name="EMV"
+				Filters="">
+				<F N="../Common/EMV/app4.c"/>
+				<F N="../Common/EMV/app4.h"/>
+				<F N="../Common/EMV/app_at.c"/>
+				<F N="../Common/EMV/app_pk.c"/>
+				<F N="../Common/EMV/autotest.c"/>
+				<F N="../Common/EMV/emvaptag.c"/>
+				<F N="../Common/EMV/emvaptag.h"/>
+				<F N="../Common/EMV/emvtabs2.c"/>
+				<F N="../Common/EMV/emvtabs2.h"/>
+				<F N="../Common/EMV/emvutils.c"/>
+				<F N="../Common/EMV/emvutils.h"/>
+				<F N="../Common/EMV/iccdebug.c"/>
+				<F N="../Common/EMV/iccdebug.h"/>
+			</Folder>
+			<Folder
+				Name="EmvL2"
+				Filters="">
+				<F N="../EmvL2/cryptoutils.c"/>
+				<F N="../EmvL2/emv_atdata.c"/>
+				<F N="../EmvL2/emv_keydata.c"/>
+				<F N="../EmvL2/emvdata.c"/>
+			</Folder>
+			<Folder
+				Name="Hosts"
+				Filters="">
+				<F N="../Common/Hosts/bit8583.c"/>
+				<F N="../Common/Hosts/bit8583.h"/>
+				<F N="../Common/Hosts/demo.c"/>
+				<F N="../Common/Hosts/demo.h"/>
+				<F N="../Common/Hosts/flaghost.c"/>
+				<F N="../Common/Hosts/flaghost.h"/>
+				<F N="../Common/Hosts/host.c"/>
+				<F N="../Common/Hosts/host.h"/>
+				<F N="../Common/Hosts/HostTable.c"/>
+				<F N="../Common/Hosts/hstcopy.c"/>
+				<F N="../Common/Hosts/hstcopy.h"/>
+				<F N="../Common/Hosts/hstmsg.c"/>
+				<F N="../Common/Hosts/hstmsg.h"/>
+				<F N="../Common/Hosts/hstprint.c"/>
+				<F N="../Common/Hosts/hstprint.h"/>
+				<F N="../Common/Hosts/hstprint2.c"/>
+				<F N="../Common/Hosts/hstprint2.h"/>
+				<F N="../Common/Hosts/hstresp.c"/>
+				<F N="../Common/Hosts/hstresp.h"/>
+				<F N="../Common/Hosts/hyper.c"/>
+				<F N="../Common/Hosts/hyper.h"/>
+				<F N="../Common/Hosts/i8583utl.c"/>
+				<F N="../Common/Hosts/I8583utl.h"/>
+				<F N="../Common/Hosts/i_host.h"/>
+				<F N="../Common/Hosts/icepak.c"/>
+				<F N="../Common/Hosts/icepak.h"/>
+				<F N="../Common/Hosts/icepak1.c"/>
+				<F N="../Common/Hosts/init.c"/>
+				<F N="../Common/Hosts/init.h"/>
+				<F N="../Common/Hosts/is8583.c"/>
+				<F N="../Common/Hosts/is8583.h"/>
+				<F N="../Common/Hosts/reqhyp.c"/>
+				<F N="../Common/Hosts/reqhyp.h"/>
+				<F N="../Common/Hosts/reqicepk.c"/>
+				<F N="../Common/Hosts/reqicepk.h"/>
+				<F N="../Common/Hosts/reqinit.c"/>
+				<F N="../Common/Hosts/reqinit.h"/>
+				<F N="../Common/Hosts/reqvisa1.c"/>
+				<F N="../Common/Hosts/reqvisa1.h"/>
+				<F N="../Common/Hosts/reqvisad.c"/>
+				<F N="../Common/Hosts/reqvisad.h"/>
+				<F N="../Common/Hosts/respdsp.c"/>
+				<F N="../Common/Hosts/respdsp.h"/>
+				<F N="../Common/Hosts/rsphyp.c"/>
+				<F N="../Common/Hosts/rsphyp.h"/>
+				<F N="../Common/Hosts/rspinit.c"/>
+				<F N="../Common/Hosts/rspinit.h"/>
+				<F N="../Common/Hosts/rspunp.c"/>
+				<F N="../Common/Hosts/rspunp.h"/>
+				<F N="../Common/Hosts/rspvisa1.c"/>
+				<F N="../Common/Hosts/rspvisa1.h"/>
+				<F N="../Common/Hosts/rspvisad.c"/>
+				<F N="../Common/Hosts/rspvisad.h"/>
+				<F N="../Common/Hosts/updttime.c"/>
+				<F N="../Common/Hosts/updttime.h"/>
+				<F N="../Common/Hosts/visa1.c"/>
+				<F N="../Common/Hosts/visa1.h"/>
+				<F N="../Common/Hosts/visad.c"/>
+				<F N="../Common/Hosts/visad.h"/>
+			</Folder>
+			<Folder
+				Name="HostUtil"
+				Filters="">
+				<F N="../Common/HostUtil/appd2chr.c"/>
+				<F N="../Common/HostUtil/appdac3p.c"/>
+				<F N="../Common/HostUtil/appdacc2.c"/>
+				<F N="../Common/HostUtil/appdamt.c"/>
+				<F N="../Common/HostUtil/appdchar.c"/>
+				<F N="../Common/HostUtil/appdcnmc.c"/>
+				<F N="../Common/HostUtil/appdcnmp.c"/>
+				<F N="../Common/HostUtil/appdedat.c"/>
+				<F N="../Common/HostUtil/appdfs.c"/>
+				<F N="../Common/HostUtil/appdmicr.c"/>
+				<F N="../Common/HostUtil/appdmta.c"/>
+				<F N="../Common/HostUtil/appdmtta.c"/>
+				<F N="../Common/HostUtil/appdpanm.c"/>
+				<F N="../Common/HostUtil/appdpant.c"/>
+				<F N="../Common/HostUtil/appdrout.c"/>
+				<F N="../Common/HostUtil/appdvtid.c"/>
+				<F N="../Common/HostUtil/appdvtpd.c"/>
+				<F N="../Common/HostUtil/appdwcc.c"/>
+				<F N="../Common/HostUtil/hostutil.h"/>
+			</Folder>
+			<Folder
+				Name="Images"
+				Filters="">
+				<F N="../Common/Images/fdwnld.c"/>
+				<F N="../Common/Images/fdwnld.h"/>
+				<F N="../Common/Images/img.c"/>
+				<F N="../Common/Images/img.h"/>
+				<F N="../Common/Images/ImgAchcheck16.h"/>
+				<F N="../Common/Images/ImgAddrmv16.h"/>
+				<F N="../Common/Images/ImgAdjust16.h"/>
+				<F N="../Common/Images/ImgAll16.h"/>
+				<F N="../Common/Images/ImgAmex16.h"/>
+				<F N="../Common/Images/ImgAtm16.h"/>
+				<F N="../Common/Images/ImgAudit16.h"/>
+				<F N="../Common/Images/ImgAuth16.h"/>
+				<F N="../Common/Images/ImgBalance16.h"/>
+				<F N="../Common/Images/ImgBank16.h"/>
+				<F N="../Common/Images/ImgBatch16.h"/>
+				<F N="../Common/Images/ImgBattary_0.h"/>
+				<F N="../Common/Images/ImgBattary_100.h"/>
+				<F N="../Common/Images/ImgBattary_20.h"/>
+				<F N="../Common/Images/ImgBattary_40.h"/>
+				<F N="../Common/Images/ImgBattary_60.h"/>
+				<F N="../Common/Images/ImgBattary_80.h"/>
+				<F N="../Common/Images/ImgBlueTooth.h"/>
+				<F N="../Common/Images/ImgBrowser16.h"/>
+				<F N="../Common/Images/ImgCard16.h"/>
+				<F N="../Common/Images/ImgCash16.h"/>
+				<F N="../Common/Images/ImgChange16.h"/>
+				<F N="../Common/Images/ImgCheck16.h"/>
+				<F N="../Common/Images/ImgChkrdr16.h"/>
+				<F N="../Common/Images/ImgClear16.h"/>
+				<F N="../Common/Images/ImgClock16.h"/>
+				<F N="../Common/Images/ImgClose16.h"/>
+				<F N="../Common/Images/ImgContrast16.h"/>
+				<F N="../Common/Images/ImgCrdr16.h"/>
+				<F N="../Common/Images/ImgCustomer16.h"/>
+				<F N="../Common/Images/ImgDb16.h"/>
+				<F N="../Common/Images/ImgDetail16.h"/>
+				<F N="../Common/Images/ImgDialtype16.h"/>
+				<F N="../Common/Images/ImgDisplay16.h"/>
+				<F N="../Common/Images/ImgEye16.h"/>
+				<F N="../Common/Images/ImgFind16.h"/>
+				<F N="../Common/Images/ImgFingerPrint16.h"/>
+				<F N="../Common/Images/ImgFunction16.h"/>
+				<F N="../Common/Images/ImgGSMsignal_0.h"/>
+				<F N="../Common/Images/ImgGSMsignal_100.h"/>
+				<F N="../Common/Images/ImgGSMsignal_20.h"/>
+				<F N="../Common/Images/ImgGSMsignal_40.h"/>
+				<F N="../Common/Images/ImgGSMsignal_60.h"/>
+				<F N="../Common/Images/ImgGSMsignal_80.h"/>
+				<F N="../Common/Images/ImgHandset16.h"/>
+				<F N="../Common/Images/ImgHost16.h"/>
+				<F N="../Common/Images/ImgIcepac16.h"/>
+				<F N="../Common/Images/ImgInit16.h"/>
+				<F N="../Common/Images/ImgInitphone16.h"/>
+				<F N="../Common/Images/ImgInvoice16.h"/>
+				<F N="../Common/Images/ImgKbd500016.h"/>
+				<F N="../Common/Images/ImgKeyAsc.h"/>
+				<F N="../Common/Images/ImgKeyAscSmall.h"/>
+				<F N="../Common/Images/ImgKeyNum.h"/>
+				<F N="../Common/Images/ImgKeySym.h"/>
+				<F N="../Common/Images/ImgLanguage16.h"/>
+				<F N="../Common/Images/ImgLast16.h"/>
+				<F N="../Common/Images/ImgLogon16.h"/>
+				<F N="../Common/Images/ImgMemory16.h"/>
+				<F N="../Common/Images/ImgMorder16.h"/>
+				<F N="../Common/Images/ImgNew16.h"/>
+				<F N="../Common/Images/ImgNmsphone16.h"/>
+				<F N="../Common/Images/ImgNoimage16.h"/>
+				<F N="../Common/Images/ImgOffline16.h"/>
+				<F N="../Common/Images/ImgOnoff16.h"/>
+				<F N="../Common/Images/ImgOpen16.h"/>
+				<F N="../Common/Images/ImgPabx16.h"/>
+				<F N="../Common/Images/ImgPhone16.h"/>
+				<F N="../Common/Images/ImgPinpad16.h"/>
+				<F N="../Common/Images/ImgPrint16.h"/>
+				<F N="../Common/Images/ImgPriorachcheck16.h"/>
+				<F N="../Common/Images/ImgProgload16.h"/>
+				<F N="../Common/Images/ImgPwd16.h"/>
+				<F N="../Common/Images/ImgQuit16.h"/>
+				<F N="../Common/Images/ImgReceipt16.h"/>
+				<F N="../Common/Images/ImgReferral16.h"/>
+				<F N="../Common/Images/ImgRefund16.h"/>
+				<F N="../Common/Images/ImgRelease16.h"/>
+				<F N="../Common/Images/ImgReport16.h"/>
+				<F N="../Common/Images/ImgReset16.h"/>
+				<F N="../Common/Images/ImgReview16.h"/>
+				<F N="../Common/Images/ImgSalCash16.h"/>
+				<F N="../Common/Images/ImgSale16.h"/>
+				<F N="../Common/Images/ImgServer16.h"/>
+				<F N="../Common/Images/ImgSetup16.h"/>
+				<F N="../Common/Images/ImgShift16.h"/>
+				<F N="../Common/Images/ImgSummary16.h"/>
+				<F N="../Common/Images/ImgTab16.h"/>
+				<F N="../Common/Images/ImgTerm16.h"/>
+				<F N="../Common/Images/ImgTermid16.h"/>
+				<F N="../Common/Images/ImgTest16.h"/>
+				<F N="../Common/Images/ImgTill16.h"/>
+				<F N="../Common/Images/ImgToll16.h"/>
+				<F N="../Common/Images/ImgTotal16.h"/>
+				<F N="../Common/Images/ImgTrain16.h"/>
+				<F N="../Common/Images/ImgTxrx16.h"/>
+				<F N="../Common/Images/ImgUnadjusted16.h"/>
+				<F N="../Common/Images/ImgUp16.h"/>
+				<F N="../Common/Images/ImgVoid16.h"/>
+			</Folder>
+			<Folder
+				Name="PinPad"
+				Filters="">
+				<F N="../Common/PinPad/pinattackdelay.c"/>
+				<F N="../Common/PinPad/pinattackdelay.h"/>
+				<F N="../Common/PinPad/pinpad.h"/>
+				<F N="../Common/PinPad/pinutils.c"/>
+				<F N="../Common/PinPad/pinutils.h"/>
+			</Folder>
+			<Folder
+				Name="Printer"
+				Filters="">
+				<F N="../Common/Printer/AcqTableVarName.h"/>
+				<F N="../Common/Printer/CardTableVarName.h"/>
+				<F N="../Common/Printer/chkprinter.h"/>
+				<F N="../Common/Printer/chkprntr.c"/>
+				<F N="../Common/Printer/debugprt.c"/>
+				<F N="../Common/Printer/debugprt.h"/>
+				<F N="../Common/Printer/doprtlst.c"/>
+				<F N="../Common/Printer/doprtlst.h"/>
+				<F N="../Common/Printer/IssTableVarName.h"/>
+				<F N="../Common/Printer/prtdata.c"/>
+				<F N="../Common/Printer/prtdata.h"/>
+				<F N="../Common/Printer/prtdef.c"/>
+				<F N="../Common/Printer/prtdef.h"/>
+				<F N="../Common/Printer/prtdef2.h"/>
+				<F N="../Common/Printer/prtDetayli.c"/>
+				<F N="../Common/Printer/prtDetayli.h"/>
+				<F N="../Common/Printer/prtdrv.c"/>
+				<F N="../Common/Printer/prtdrv.h"/>
+				<F N="Farsi/prtfadef.c"/>
+				<F N="../Common/Printer/prttable.c"/>
+				<F N="../Common/Printer/prttable.h"/>
+				<F N="../Common/Printer/receipt.c"/>
+				<F N="../Common/Printer/receipt.h"/>
+				<F N="../Common/Printer/TermTableVarName.h"/>
+				<F N="../Common/Printer/testprnt.c"/>
+				<F N="../Common/Printer/testprnt.h"/>
+			</Folder>
+			<Folder
+				Name="T4200"
+				Filters="">
+				<Folder
+					Name="Main"
+					Filters="">
+					<F N="../NucleusInterface/Main/_main.c"/>
+					<F N="../NucleusInterface/Main/AppStart.c"/>
+					<F N="../NucleusInterface/Main/AppStart.h"/>
+					<F N="../NUCLEU~1/Main/events.h"/>
+					<F N="../NucleusInterface/Main/MSRArb.c"/>
+					<F N="../NUCLEU~1/Main/timer.cpp"/>
+					<F N="../NUCLEU~1/Main/timer.h"/>
+				</Folder>
+				<Folder
+					Name="Comm"
+					Filters="">
+					<F N="../NucleusInterface/Comms/comm.cpp"/>
+					<F N="../NucleusInterface/Comms/comm.h"/>
+					<F N="../NucleusInterface/Comms/comm_c.cpp"/>
+					<F N="../NucleusInterface/Comms/comm_c.hpp"/>
+					<F N="../NucleusInterface/Comms/HostTransport.cpp"/>
+					<F N="../NucleusInterface/Comms/HostTransport.hpp"/>
+				</Folder>
+				<Folder
+					Name="UI"
+					Filters="">
+					<F N="UI/disproc.c"/>
+					<F N="UI/disproc.h"/>
+					<F N="UI/menu.c"/>
+					<F N="UI/menu.h"/>
+					<F N="UI/review.c"/>
+					<F N="UI/review.h"/>
+					<F N="UI/runtime.c"/>
+					<F N="UI/runtime.h"/>
+					<F N="UI/screen.c"/>
+					<F N="UI/screen.h"/>
+					<F N="UI/screentab.h"/>
+					<F N="UI/sdl.c"/>
+					<F N="UI/sdl.h"/>
+					<F N="UI/sdlcalls.c"/>
+					<F N="UI/sprite.c"/>
+					<F N="UI/sprite.h"/>
+				</Folder>
+				<Folder
+					Name="Profile"
+					Filters="">
+					<F N="../NucleusInterface/Profile/fileinit.c"/>
+					<F N="../NucleusInterface/Profile/fileinit.h"/>
+					<F N="../NucleusInterface/Profile/persistence.c"/>
+					<F N="../NucleusInterface/Profile/persistence.h"/>
+					<F N="../NucleusInterface/Profile/system_calls.c"/>
+					<F N="../NucleusInterface/Profile/system_calls.h"/>
+				</Folder>
+				<Folder
+					Name="_PinPad"
+					Filters="">
+					<F N="PinPad/pinpad.c"/>
+					<F N="PinPad/virtualped.c"/>
+					<F N="PinPad/virtualped.h"/>
+				</Folder>
+			</Folder>
+			<Folder
+				Name="Texts"
+				Filters="">
+				<F N="../Common/Texts/evtentext.c"/>
+				<F N="../Common/Texts/evtestext.c"/>
+				<F N="../Common/Texts/evtgrtext.c"/>
+				<F N="../Common/Texts/evtpttext.c"/>
+				<F N="../Common/Texts/evtswtext.c"/>
+				<F N="../Common/Texts/evttextinit.c"/>
+				<F N="../Common/Texts/evttextinit.h"/>
+				<F N="../Common/Texts/fnt_custom_de.h"/>
+				<F N="../Common/Texts/hdtentext.c"/>
+				<F N="../Common/Texts/hdtestext.c"/>
+				<F N="../Common/Texts/hdtgrtext.c"/>
+				<F N="../Common/Texts/hdtpttext.c"/>
+				<F N="../Common/Texts/hdtswtext.c"/>
+				<F N="../Common/Texts/hdttextinit.c"/>
+				<F N="../Common/Texts/hdttextinit.h"/>
+				<F N="../Common/Texts/msg.c"/>
+				<F N="../Common/Texts/msg.h"/>
+				<F N="../Common/Texts/msg1.c"/>
+				<F N="../Common/Texts/msgfunc.c"/>
+				<F N="../Common/Texts/msgfunc.h"/>
+				<F N="../Common/Texts/pclentext.c"/>
+				<F N="../Common/Texts/pclestext.c"/>
+				<F N="../Common/Texts/pclgrtext.c"/>
+				<F N="../Common/Texts/pclpttext.c"/>
+				<F N="../Common/Texts/pclswtext.c"/>
+				<F N="../Common/Texts/pcltext.h"/>
+				<F N="../Common/Texts/pcltextinit.c"/>
+				<F N="../Common/Texts/pcltextinit.h"/>
+				<F N="../Common/Texts/rspentext.c"/>
+				<F N="../Common/Texts/rspestext.c"/>
+				<F N="../Common/Texts/rspgrtext.c"/>
+				<F N="../Common/Texts/rsppttext.c"/>
+				<F N="../Common/Texts/rspswtext.c"/>
+				<F N="../Common/Texts/rsptext.h"/>
+				<F N="../Common/Texts/rsptextinit.c"/>
+				<F N="../Common/Texts/rsptextinit.h"/>
+				<F N="../Common/Texts/syserr.c"/>
+				<F N="../Common/Texts/syserr.h"/>
+				<F N="../Common/Texts/text.c"/>
+				<F N="../Common/Texts/text.h"/>
+				<F N="../Common/Texts/TextInit.c"/>
+				<F N="../Common/Texts/TextInit.h"/>
+			</Folder>
+			<Folder
+				Name="Txn_flow"
+				Filters="">
+				<F N="../Common/Txn_flow/aapallow.c"/>
+				<F N="../Common/Txn_flow/aapallow.h"/>
+				<F N="../Common/Txn_flow/acctproc.c"/>
+				<F N="../Common/Txn_flow/acctproc.h"/>
+				<F N="../Common/Txn_flow/addprmpt.c"/>
+				<F N="../Common/Txn_flow/addprmpt.h"/>
+				<F N="../Common/Txn_flow/adjust.c"/>
+				<F N="../Common/Txn_flow/adjust.h"/>
+				<F N="../Common/Txn_flow/amtentry.c"/>
+				<F N="../Common/Txn_flow/amtentry.h"/>
+				<F N="../Common/Txn_flow/amtproc.c"/>
+				<F N="../Common/Txn_flow/amtproc.h"/>
+				<F N="../Common/Txn_flow/app1.c"/>
+				<F N="../Common/Txn_flow/app1.h"/>
+				<F N="../Common/Txn_flow/app2.c"/>
+				<F N="../Common/Txn_flow/app2.h"/>
+				<F N="../Common/Txn_flow/autosetl.c"/>
+				<F N="../Common/Txn_flow/autosetl.h"/>
+				<F N="../Common/Txn_flow/cashier.c"/>
+				<F N="../Common/Txn_flow/cashier.h"/>
+				<F N="../Common/Txn_flow/checkCurrency.c"/>
+				<F N="../Common/Txn_flow/checkCurrency.h"/>
+				<F N="../Common/Txn_flow/chkleng.c"/>
+				<F N="../Common/Txn_flow/chkleng.h"/>
+				<F N="../Common/Txn_flow/close.c"/>
+				<F N="../Common/Txn_flow/close.h"/>
+				<F N="../Common/Txn_flow/cndmtamt.c"/>
+				<F N="../Common/Txn_flow/cndmtamt.h"/>
+				<F N="../Common/Txn_flow/crdrange.c"/>
+				<F N="../Common/Txn_flow/crdrange.h"/>
+				<F N="../Common/Txn_flow/creauth.c"/>
+				<F N="../Common/Txn_flow/cstmamnt.c"/>
+				<F N="../Common/Txn_flow/cstmamnt.h"/>
+				<F N="../Common/Txn_flow/cvtamt.c"/>
+				<F N="../Common/Txn_flow/cvtamt.h"/>
+				<F N="../Common/Txn_flow/cvv2proc.c"/>
+				<F N="../Common/Txn_flow/cvv2proc.h"/>
+				<F N="../Common/Txn_flow/discount.c"/>
+				<F N="../Common/Txn_flow/discount.h"/>
+				<F N="../Common/Txn_flow/eventbl.c"/>
+				<F N="../Common/Txn_flow/eventbl.h"/>
+				<F N="../Common/Txn_flow/findtran.c"/>
+				<F N="../Common/Txn_flow/findtran.h"/>
+				<F N="../Common/Txn_flow/floor.c"/>
+				<F N="../Common/Txn_flow/floor.h"/>
+				<F N="../Common/Txn_flow/forceSettlement.c"/>
+				<F N="../Common/Txn_flow/forceSettlement.h"/>
+				<F N="../Common/Txn_flow/funct2.c"/>
+				<F N="../Common/Txn_flow/function.c"/>
+				<F N="../Common/Txn_flow/function.h"/>
+				<F N="../Common/Txn_flow/genauth.c"/>
+				<F N="../Common/Txn_flow/genauth.h"/>
+				<F N="../Common/Txn_flow/getaqid.c"/>
+				<F N="../Common/Txn_flow/getaqid.h"/>
+				<F N="../Common/Txn_flow/getdate.c"/>
+				<F N="../Common/Txn_flow/getdate.h"/>
+				<F N="../Common/Txn_flow/getrninv.c"/>
+				<F N="../Common/Txn_flow/getrninv.h"/>
+				<F N="../Common/Txn_flow/gettime.c"/>
+				<F N="../Common/Txn_flow/gettime.h"/>
+				<F N="../Common/Txn_flow/idlebutt.c"/>
+				<F N="../Common/Txn_flow/idlebutt.h"/>
+				<F N="../Common/Txn_flow/inadjinv.c"/>
+				<F N="../Common/Txn_flow/inadjinv.h"/>
+				<F N="../Common/Txn_flow/inpmpswd.c"/>
+				<F N="../Common/Txn_flow/inpmpswd.h"/>
+				<F N="../Common/Txn_flow/inputcsh.c"/>
+				<F N="../Common/Txn_flow/inputcsh.h"/>
+				<F N="../Common/Txn_flow/inputpwd.c"/>
+				<F N="../Common/Txn_flow/inputpwd.h"/>
+				<F N="../Common/Txn_flow/inputspw.c"/>
+				<F N="../Common/Txn_flow/inputspw.h"/>
+				<F N="../Common/Txn_flow/isrest.c"/>
+				<F N="../Common/Txn_flow/isrest.h"/>
+				<F N="../Common/Txn_flow/loyalty.c"/>
+				<F N="../Common/Txn_flow/loyalty.h"/>
+				<F N="../Common/Txn_flow/manuexp.c"/>
+				<F N="../Common/Txn_flow/manuexp.h"/>
+				<F N="../Common/Txn_flow/manuissn.c"/>
+				<F N="../Common/Txn_flow/manuissn.h"/>
+				<F N="../Common/Txn_flow/manustd.c"/>
+				<F N="../Common/Txn_flow/manustd.h"/>
+				<F N="../Common/Txn_flow/offline.c"/>
+				<F N="../Common/Txn_flow/perfutil.c"/>
+				<F N="../Common/Txn_flow/perfutil.h"/>
+				<F N="../Common/Txn_flow/refproc.c"/>
+				<F N="../Common/Txn_flow/refproc.h"/>
+				<F N="../Common/Txn_flow/reports.c"/>
+				<F N="../Common/Txn_flow/reports.h"/>
+				<F N="../Common/Txn_flow/settime.c"/>
+				<F N="../Common/Txn_flow/settime.h"/>
+				<F N="../Common/Txn_flow/settle.c"/>
+				<F N="../Common/Txn_flow/settle.h"/>
+				<F N="../Common/Txn_flow/settlesum.c"/>
+				<F N="../Common/Txn_flow/settlesum.h"/>
+				<F N="../Common/Txn_flow/setup.c"/>
+				<F N="../Common/Txn_flow/setup.h"/>
+				<F N="../Common/Txn_flow/shift.c"/>
+				<F N="../Common/Txn_flow/shift.h"/>
+				<F N="../Common/Txn_flow/show.c"/>
+				<F N="../Common/Txn_flow/show.h"/>
+				<F N="../Common/Txn_flow/showtrk2.c"/>
+				<F N="../Common/Txn_flow/showtrk2.h"/>
+				<F N="../Common/Txn_flow/tabclose.c"/>
+				<F N="../Common/Txn_flow/tabclose.h"/>
+				<F N="../Common/Txn_flow/tabproc.c"/>
+				<F N="../Common/Txn_flow/tabproc.h"/>
+				<F N="../Common/Txn_flow/totals.c"/>
+				<F N="../Common/Txn_flow/totals.h"/>
+				<F N="../Common/Txn_flow/totlook.c"/>
+				<F N="../Common/Txn_flow/totlook.h"/>
+				<F N="../Common/Txn_flow/trainmod.c"/>
+				<F N="../Common/Txn_flow/trainmod.h"/>
+				<F N="../Common/Txn_flow/transdef.h"/>
+				<F N="../Common/Txn_flow/trinpclr.c"/>
+				<F N="../Common/Txn_flow/trinpclr.h"/>
+				<F N="../Common/Txn_flow/validexp.c"/>
+				<F N="../Common/Txn_flow/validexp.h"/>
+				<F N="../Common/Txn_flow/validstd.c"/>
+				<F N="../Common/Txn_flow/validstd.h"/>
+				<F N="../Common/Txn_flow/void.c"/>
+				<F N="../Common/Txn_flow/void.h"/>
+				<F N="../Common/Txn_flow/wrrtc.c"/>
+				<F N="../Common/Txn_flow/wrrtc.h"/>
+			</Folder>
+			<Folder
+				Name="Utils"
+				Filters="">
+				<F N="../Common/Utils/bcdbinw.c"/>
+				<F N="../Common/Utils/bcdbinw.h"/>
+				<F N="../Common/Utils/binbcdb.c"/>
+				<F N="../Common/Utils/binbcdw.c"/>
+				<F N="../Common/Utils/datetime.c"/>
+				<F N="../Common/Utils/datetime.h"/>
+				<F N="../Common/Utils/getkey.c"/>
+				<F N="../Common/Utils/getkey.h"/>
+				<F N="../Common/Utils/negsign.c"/>
+				<F N="../Common/Utils/negsign.h"/>
+				<F N="../Common/Utils/read_io.c"/>
+				<F N="../Common/Utils/read_io.h"/>
+				<F N="../Common/Utils/readdata.c"/>
+				<F N="../Common/Utils/readdata.h"/>
+				<F N="../Common/Utils/util.c"/>
+				<F N="../Common/Utils/util.h"/>
+				<F N="../Common/Utils/util2.c"/>
+				<F N="../Common/Utils/util2.h"/>
+				<F N="../Common/Utils/utilfunc.c"/>
+				<F N="../Common/Utils/utilfunc.h"/>
+			</Folder>
+			<Folder
+				Name="_Farsi"
+				Filters="">
+				<F N="Farsi/evtfatext.c"/>
+				<F N="Farsi/Farsi_dspFont_06BN08.c"/>
+				<F N="Farsi/Farsi_dspFont_06BN08.h"/>
+				<F N="Farsi/Farsi_print.c"/>
+				<F N="Farsi/Farsi_print.h"/>
+				<F N="Farsi/Farsi_prnCodePage.c"/>
+				<F N="Farsi/Farsi_prnCodePage.h"/>
+				<F N="Farsi/Farsi_prnFont_H14.c"/>
+				<F N="Farsi/Farsi_prnFontNormal.h"/>
+				<F N="Farsi/hdtfatext.c"/>
+				<F N="Farsi/JalaliCalendarUtils.c"/>
+				<F N="Farsi/pclfatext.c"/>
+				<F N="Farsi/rspfatext.c"/>
+			</Folder>
+		</Folder>
+		<Folder
+			Name="Resource Files"
+			Filters="*.ico;*.cur;*.dlg">
+			<F N="debugflags"/>
+		</Folder>
+	</Files>
+	<Macro>
+		<ExecMacro CmdLine='set DBG_LINKSCRIPT="%RPpxa255.x"'/>
+		<ExecMacro CmdLine='set REL_LINKSCRIPT="%RPOptimum.x"'/>
+		<ExecMacro CmdLine="set LOADADDR=0xA07B9000"/>
+	</Macro>
+</Project>

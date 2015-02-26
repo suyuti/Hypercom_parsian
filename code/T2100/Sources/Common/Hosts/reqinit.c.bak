@@ -1,0 +1,255 @@
+
+//=============================================================================
+//                       Hypercom Inc
+//                      (c) Copyright 2002
+//=============================================================================
+//
+// Module overview:             reqinit.c
+//      Build an initialization request message.
+//
+//=============================================================================
+
+#include "string.h"
+
+#include "basictyp.h"
+#include "sdk.h"
+#include "sdkos.h"
+#include "sdkio.h"
+#include "fixdata.h"
+#include "utllib.h"
+#include "hyputils.h"
+
+#include "defines.h"
+#include "struct.h"
+#include "appdata.h"
+#include "comdata.h"
+#include "comm.h"
+#include "rspinit.h"
+
+#include "reqinit.h"
+
+//=============================================================================
+// External variables / declarations
+//=============================================================================
+
+
+//=============================================================================
+// Private defines and typedefs
+//=============================================================================
+
+
+//=============================================================================
+// Private function declarations
+//=============================================================================
+
+
+//=============================================================================
+// Public data definitions
+//=============================================================================
+
+UBYTE *pSendBuf;			// Pointer into transmit buffer 
+
+
+//=============================================================================
+// Private data definitions
+//=============================================================================
+
+// Request Header 
+static const UBYTE ReqHdr[] = 
+{
+	'\x60',							// TPDU ID                 
+	'\x00', '\x03',                 // Dest addr
+    '\x00', '\x00',                 // Source addr            
+	'\x08', '\x00',                 // Initialization Msg Type 
+	'\x20', '\x20', '\x01', '\x00',	// Bit Map                 
+	'\x00', '\x80', '\x00', '\x10',
+	'\x93', '\x00', '\x00'			// Processing Code         
+};
+
+
+#ifdef MAKE_SMARTINIT
+// Field 63, I2 table template 
+static const char F63_I2_Hdr[] = {
+	'\x00', '\x00',                 // BCD length of bit 63 - preliminary
+	'\x00', '\x18',                 // BCD length of I2 tag = 18 bytes constant
+	'I', '2'                        // 'I2' = All table hash
+};
+
+
+// Field 63, I1 table template 
+static const char F63_I1_Hdr[] = {
+	'\x00', '\x00',                 // BCD length of I1 tag - preliminary
+	'I', '1',                       // 'I1' = Per-table hash
+	'\x00',                         // BCD counter of tables
+};
+#endif // MAKE_SMARTINIT
+
+//=============================================================================
+// Public function definitions
+//=============================================================================
+
+//-----------------------------------------------------------------------------
+//	ReqInit			Build an initialization request message
+//
+//	Parameters: 	None.
+//
+//	Global Inputs:	None.
+//
+//	Returns:		OS_RETURN_VALS			Comm Status of Request send.
+//
+//	Notes:			MsgComFlag is updated.
+//
+//-----------------------------------------------------------------------------
+
+extern OS_RETURN_VALS ReqInit( void )
+{
+#ifdef MAKE_SMARTINIT
+    UBYTE *p63;
+    UBYTE *p63I1;
+    int len63 = 0; 
+    UBYTE I1count = 0; 
+#endif // MAKE_SMARTINIT
+
+    
+    // Reset Request Packet built okay flag 
+	MsgComFlag &= ~REQUEST_BUILT;
+
+	// Clear out transmit buffer 
+	memset( ( UBYTE * ) SENDBUF, 0, S_SENDBUF );
+
+	// Set pointer into transmit buffer 
+	pSendBuf = SENDBUF;
+
+	// Init Request Header 
+	memcpy( pSendBuf, &ReqHdr, sizeof( ReqHdr ) );
+
+	// Network International Identifier to Destination Address 
+	memcpy( &pSendBuf[1], (UBYTE *)TERM.TERMNII, sizeof( TERM.TERMNII ) );
+
+#ifdef MAKE_SMARTINIT
+    // Add bit 63 to bitmap for first requist only
+    if ( !TRREQ.TRAGAIN && SmartInitEnabled )  
+    {
+        pSendBuf[14] |= 0x02;
+    }
+#endif // MAKE_SMARTINIT
+
+	// Update pointer into transmit buffer 
+	pSendBuf += sizeof( ReqHdr );
+
+	// Check if continuation of initialization 
+	if ( TRREQ.TRAGAIN )
+	{
+		// Yes; indicate continuation of initialization 
+		pSendBuf--;
+		*pSendBuf = 0x01;
+		pSendBuf++;
+    }
+
+	// System Trace Audit Number 
+	memcpy( pSendBuf, TRREQ.TRSTAN, S_TRSTAN );
+
+	// Update pointer into transmit buffer 
+	pSendBuf += S_TRSTAN;
+
+	// Network International Identifier 
+	memcpy( pSendBuf, (UBYTE *)TERM.TERMNII, sizeof( TERM.TERMNII ) );
+
+	// Update pointer into transmit buffer 
+	pSendBuf += sizeof( TERM.TERMNII );
+
+	/* Check if we need to copy TRRRN (Recovery mechanism) */
+	if ( !NullComp((char *)TRREQ.TRRRN, S_TRRRN) )
+	{
+		memcpy( pSendBuf, TRREQ.TRRRN, S_TRRRN );
+
+		pSendBuf += S_TRRRN;
+
+		/* Add the RRN field bit into the 5th byte of the bitmap */
+		*(SENDBUF+11) |= 0x08;
+	}
+
+	// Terminal Serial Number 
+	memcpy( pSendBuf, (UBYTE *)TERM.TERMSer, sizeof( TERM.TERMSer ) );
+
+	// Update pointer into transmit buffer 
+	pSendBuf += sizeof( TERM.TERMSer ) + 1;
+
+	// Length (BCD) of Software Rev # Field and DLL Version 
+	*pSendBuf = 0x11;
+
+	// Update pointer into transmit buffer 
+	pSendBuf++;
+
+	// Software Rev # Field 
+	memcpy( pSendBuf, VERSION, 10 );
+
+	// Update pointer into transmit buffer 
+	pSendBuf += 10;
+
+	// The DLL Version 
+	*pSendBuf = TCONF.TCDLL;
+
+	// Update pointer into transmit buffer 
+	pSendBuf++;
+
+#ifdef MAKE_SMARTINIT
+
+    // Smart Init processing field 63
+    if ( !TRREQ.TRAGAIN && SmartInitEnabled )			 
+    {
+        // Save pointer to the length of bit 63
+        p63 = pSendBuf;
+
+        // Field 63, table I2 - All table hash field
+        memcpy( pSendBuf, F63_I2_Hdr, sizeof( F63_I2_Hdr ) );
+        pSendBuf += sizeof( F63_I2_Hdr ) ;
+        memcpy( pSendBuf, MAIN_HASH, SM_HASH_LEN );
+        pSendBuf += SM_HASH_LEN;
+
+        // Save pointer to the length of tag I1
+        p63I1 = pSendBuf; 
+        
+        // Field 63, table I1 - Per-table hash field
+        memcpy( pSendBuf, F63_I1_Hdr, sizeof( F63_I1_Hdr ) );
+        pSendBuf += sizeof( F63_I1_Hdr );
+
+        // Build the list of tables hash
+        I1count = Build_I1_hash ( );
+
+        // Calculate length of I1 tag (header + list of hashes)
+        len63 =  sizeof (F63_I1_Hdr) + I1count * ( 1 + SM_HASH_LEN );
+
+        // Insert it without 2 bytes of length in header
+        len63 -= 2;
+        *p63I1 = len63 / 100;
+        p63I1[1] = (UBYTE) bin2bcd ( len63 - 100 * ( len63 / 100 ) );
+
+        // Insert counter of tables
+        p63I1[4] = bin2bcd( I1count );
+
+        // Calculate and insert main length of 63 field
+        len63 += sizeof( F63_I2_Hdr ) + SM_HASH_LEN;
+        *p63 = len63 / 100;
+        p63[1] = (UBYTE) bin2bcd ( len63 - 100 * ( len63 / 100 ) );
+    }
+
+#endif // MAKE_SMARTINIT
+
+    // Indicate that the Request was built okay 
+	MsgComFlag |= REQUEST_BUILT;
+
+	// Calculate the send length 
+	SendMsgLen = pSendBuf - SENDBUF;
+
+	// Send the Transaction to the Line 
+	SendMessage ();
+
+	// Return the Comm status 
+	return ( HostOSRetval );
+}
+
+
+//=============================================================================
+// Private function definitions
+//=============================================================================

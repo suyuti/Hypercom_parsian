@@ -1,0 +1,863 @@
+
+#ifdef MAKE_TURKISH
+//=============================================================================
+//                       Hypercom Inc
+//                      (c) Copyright 2002, 2004
+//=============================================================================
+//
+// Module overview:             hdttrtext.c
+//      English message table
+//
+//=============================================================================
+
+#include "string.h"
+
+#include "basictyp.h"
+#include "sdk.h"
+#include "sdkos.h"
+#include "sdkmem.h"
+
+#include "struct.h"
+#include "appdata.h"
+#include "msg.h"
+#include "rsptext.h"
+#include "hdttextinit.h"
+#include "syserr.h"
+
+//=============================================================================
+// External variables / declarations
+//=============================================================================
+
+
+//=============================================================================
+// Private defines and typedefs
+//=============================================================================
+
+
+//=============================================================================
+// Private function declarations
+//=============================================================================
+
+
+//=============================================================================
+// Public data definitions
+//=============================================================================
+
+//====================================================
+//===  ENGLISH MESSAGE TABLE                       ===
+//====================================================
+//  Refer to msg.h for enum msg_id definition
+
+const char *const TurkishMessages[] = {
+	"CM",						// CustomMsg
+	"CM2",						// CustomMsg2
+	"CM3",						// CustomMsg3
+	"CM4",						// CustomMsg4
+	"CM5",						// CustomMsg5
+	"CM6",						// CustomMsg6
+	"CM7",						// CustomMsg7
+	"CM8",						// CustomMsg8
+	"KARTI GEÇÝRÝNÝZ",                   // Swipecard
+	"KART NO GÝRÝNÝZ  ",		// EnterCard
+        "KARTI TAKINIZ",                // InsertCard
+	"***KART HATASI**",			// CardErr
+	"DESTEKLENMEYEN KART",// UnsuppCard
+	"GEÇERSÝZ KART",		// InvalidCard
+	"*VADESÝ DOLMUÞ KART*",				// ExpiredCard
+    "PREVALID CARD",            // PrevalidCard @@@@
+	"ELLE GÝRÝÞ ÝZNÝ YOK",		// NoManEntry
+    "VADE TARÝHÝ     AAYY",     // ExpireDate
+    "START DATE MMYY",         	// StartDate
+    "ISSUE NUMBER",			    // IssueNum
+	"TAKE IMPRINT OF CARD",		// TakeImprint
+	"SON 4 RAKAMI GÝRÝNÝZ",		// EntPan4
+	"CUSTOMER CARD",			// CustomerCard
+	"ENTER CASHIER NUMBER",		// CashierNum
+	"GEÇERSÝZ GÝRÝÞ",		// InvalidEntry
+    "GEÇERSÝZ TUTAR",           // InvalidAmount
+	"TUTAR ",					// AmountEnt
+	"TUTAR TEKRAR",				// AmountAgain
+	"BASE AMOUNT",				// AmountBase
+	"BAR AMOUNT",				// AmountBar
+	"TAX AMOUNT",				// AmountTax
+	"TIP AMOUNT",				// AmountTip
+	"SALE AMOUNT",				// AmountSale
+	"CASH AMOUNT",				// AmountCash
+	"TENDER AMOUNT",			// AmountTender
+	"TOPLAM",				// AmountTotal
+	"DOÐRU ?",				// CorrectYN
+	"ENTER CREDIT PLAN",		// CreditPlan
+	"ENTER DESCRIPTOR NO",		// EntDescrip
+	"INVOICE NUMBER",			// InvoiceNum
+	"WAITING FOR APPROVAL",		// WaitApprov @@@@
+	"HAT BOÞ",				// LineIdle
+	"HATTI KONTROL ET",   // CheckingLine
+	"HAT MEÞGUL,BEKLEYÝN ",		// LineBusy
+	"DIAL TONE BEKLÝYOR",	// WaitDialTone
+	"ARIYOR",				// DialNow
+	"CEVAP BEKLÝYOR    ",		// WaitForAnswer
+	"HAT BEKLÝYOR    ",			// WaitForLine
+	"TRAINING MODEM",			// TrainModem
+	"ÝÞLEM YAPILIYOR",		// ProcNow
+	"TRANSMITTING",				// Transmitting
+	"ARIYOR     ",				// NowDialing
+	"MODEM HAZIRLANIYOR",		// InitModem
+        "NETWORK LOGON",            // NetworkLogon
+        "PAGING",                   // Paging
+        "GATE CONNECTING",          // GateConnecting
+        "BAÐLANIYOR...",            // Linking
+        "BAÐLANIYOR...",            // Connecting
+	"MEMORY PAGE STATUS:",		// MemPgStatus
+	"TERMÝNALÝ YAPILANDIR",		// ConfigTerm
+	" OR  CALL HELP - CO",		// CallHelp
+	"PARAMETRE YÜKLEYÝN",   // PleaseInit
+	" ",						// BlankMsg
+	"YAZICI HATASI",		// PrintError
+	"LÜTFEN YAPILANDIRIN",		// TransMemErr
+	"WAIT  SELF-TEST",			// SelfTest
+	"NOT ENOUGH MEMORY",		// NotEnoughMem
+	"TO RUN APPLICATION",		// ToRunApplic
+	"PARAMETRE YÜKLE",      // InitTran
+	"ÝÞYERÝ FONKSÝYONU",		// MerchantFunc
+	"GÜNSONU",				// SettleTran
+	"BALANCE",					// BalanceTran
+	"ÝADE  ",					// RefundTran
+	"REPRINT INVOICE",			// ReprintTran
+	"SON",						// ReprintLast
+	"INVOICE",					// ReprintInvoice
+	"** OFF-LINE MODE **",		// OfflineTran
+	"INVOICE NOSUNU GÝRÝN",		// EnterInvNum
+	"ENTER SOC NUMBER",			// EnterSOCNum
+	"P.O. / I.D. NUMBER",		// EnterPONum
+	"ÝÞYERÝ FONKSÝYONU",		// MercFunction
+	"BAKIM ÞÝFRESÝNÝ GÝRÝN",		// MaintPswd
+	"PASSWORD DOES NOT MATCH",	// PswdNotMatch @@@@
+	"DOÐRU ?",				// CorrectYesNo
+	"ÝÞYERÝ PROGRAMLAMA",				// MerchProg
+	"ÞÝFRE GÝRÝNÝZ ",			// EnterPswd
+	"TERMINAL NUMARASI",		// EnterTSer
+	"PARAMETRE YÜKLEME TEL",		// EnterInitTel
+	"NMS TELEFON NO.",		// EnterNMSTel
+	"DIAL MOD",				// EnterDialMode
+
+	"IP YAPILANDIRMA",			// EnterIpConfig
+	"NMS HEDEF IP",				// EnterNMSIp
+	"NMS HEDEF PORT",			// EnterNMSPort
+	"INIT HEDEF IP",			// EnterInitIp
+	"INIT HEDEF PORT",			// EnterInitPort
+	"YEREL IP",					// EnterLocalIp
+	"YEREL ALTAÐ",				// EnterLocalSubnet
+	"GATEWAY IP",				// EnterLocalGateway
+
+     "ÝMZA  ",             	// Signature
+	"Please sign below",		// SignaturePlease
+	"ENTERA BASINIZ ",			// PressEnter
+	"Retry signature?",			// RetrySigCap
+	"PABX ACCESS CODE",			// EnterPABX
+	"EXIT, PRESS 'CANCEL'",		// ExitPressCncl
+	"DUPLICATE TRANS",			// DuplicateTrans
+	"EKLE?",				// AddYesNo
+	"KAYIT BULUNAMADI",		// NoInvoice
+	"LÜTFEN BEKLEYÝNÝZ",    // aseWait
+	"ÝÞLEM TAMAMLANDI    ",		// TransComplete
+	"ÝÞLEM ONAYLANDI     ",		// TransAccepted
+	"PROG.YÜKLE ",				// ProgamLoad
+	"FONKSÝYON 99 ÞÝFRESÝ",		// Fun99Password
+	"PROGRAM FUNCTION",			// ProgFunction
+	"YEREL SEÇENEKLER",		// LocalOptSel
+	"BAÐLANTI AYARLARI",              // LocalConf
+	"EXCEEDED MAXIMUM COUNT",	// ExceedMax
+	"AYRINTILI",                 // EnhDial
+	"0-LL 1-DIAL 2,3-LAN",		// LDLPmt
+	"CU ADRS",					// CUAddrP
+	"ÞU ANDA",				// Currently
+	"SIGNON/OFF",				// SignOnOff
+	"ENTER TILL NUMBER",		// TillNum
+	"SIGN-ON?",					// SignOnYN
+	"ÝPTAL ÝÇÝN ÞÝFRE",		// VoidPassM
+	"ÝADE ÝÇÝN ÞÝFRE ",		// RefPassM
+	"KULLANILMAMAKTA",		// AdjPassM
+	"RAPOR ÝÇÝN ÞÝFRE ",		// RepPassM
+	"HANDSET DIAL ALLOWED",		// KbdDialM
+	"TOLL DIAL ALLOWED",		// TollDialM
+	"MEMORY (FAST) DIAL",		// MemDialM
+	"REFERRAL DIAL USED",		// RefDialM
+	"TERMINAL  L O C K ?",		// KeyLock
+	"ENTER ACCOUNT NUMBER",		// EnterAcct
+	"ESKÝ ÞÝFREYÝ GÝRÝNÝZ",		// OldPassword
+	"YENÝ ÞÝFREYÝ GÝRÝNÝZ",// NewPassword
+	"TEKRAR YENÝ ÞÝFRE ",		// NewPassAgn
+	"YAZICI YOK",                            // NoPrinter
+	"YENÝDEN BASIM OK",			// ReprintComplete
+	"INV. NUMBER EKSÝK",		// InvNumberMissing
+	"BASILIYOR",				// PrintingWait
+	"SERVERS SIGNED ON",		// ServerOn
+	"CASHIERS SIGNED ON",		// CashierOn
+	"KLAVYE TEST",			// KeyBrdTest
+	"CANCEL TWICE TO END",		// Cancel2End
+	"KEY = ",					// DispKeyP
+	"GÜNSONU YAPINIZ",		// SettlementRequired
+	"KARTI OKUTUNUZ ",			// CardRdT
+	"YAZICI AKTÝF",		// PrinterEP
+	"YAZICI ÝNAKTÝF ",		// PrinterDP
+	"AKTÝF   ?",				// EnablePP
+	"ÝNAKTÝF ?",				// DisablePP
+	"BATCH TARANIYOR",		// ScanningBatch
+	"BATCH TOPLAMI YOK",	// NoBatchTotals
+	"NO MORE TOTALS",			// NoMoreTotals
+	"PRINT TEST",				// TestPrnC
+	"C L O S E D",				// Closed
+	"TARÝH GÝRÝN AAGGYY",		// DateMDY
+	"SAAT GÝRÝN SSDD",			// TimeHM
+	"HOST   CURRENT BATCH",		// HostBatch
+	"ACQUÝRER YOK",			// NoAcq
+	"BATCH BAÞI  ",// StartOfBatch
+	"BATCH SONU  ",			// EndOfBatch
+	"SELECT SHIFT NUMBER",		// SelectShiftNum
+	"0 FOR ALL SHIFT",			// ZeroForAllShift
+	"TILL",						// ReportMenuTill
+	"CASHIER",					// ReportMenuCashier
+	"SERVER",					// ReportMenuServer
+	"DETAY",					// ReportMenuAudit
+	"ÖZET",					// ReportMenuSummary
+	"O TABS",					// ReportMenuOpenTabs
+	"1=DETAIL 3=UNADJUSTD",		// CashServMenuLine1
+	"2=SUMMARY",				// CashServMenuLine2
+	"ÝPTAL ÝZNÝ YOK  ",			// VoidNotAllowed
+	"ENTER HOST NUMBER",		// HostNum
+	"TYPE ?",					// Type
+	"ADJUST NOT ALLOWED",		// AdjustNotAllowed
+	"GÜNSONU YAPMALISINIZ",		// RetryBatchTrans
+	"TOPLAM",				// AmountTotals
+	"NEW AMOUNT ?",				// AmountNew
+	"ENTER RECEIPT TEXT",		// RecieptTXT
+	"ONAY KODUNU GÝRÝNÝZ",		// EnterApp
+	"***TRAINING  MODE***",		// TrainingMode
+	"SWITCH TO TRAIN MODE",		// GoToTrainingMode
+	"LEAVE TRAINING MODE",		// LeaveTrainingMode
+	"ÝADE ÝZNÝ YOK",		// RefundNotAllowed
+	"SALES TOTAL",				// SalesTotal
+	"SALES TOTALS WRONG",		// SalesTotalsWrong
+	"REFUND TOTAL",				// RefundTotal
+	"REFUND TOTALS WRONG",		// RefundTotalsWrong
+	"TOPLAM",					// BatchTotals
+	"RELEASE",					// BatchRelease
+	"TEST ÝÞLEMÝ",				// TestTransactions
+	"NO TRANSACTIONS",			// NoTransactions
+	"INCRMENT",					// IncrementShift
+	"RESET",					// ResetShift
+	"NO COMMS",					// NoComms
+        "TEL HATTI YOK",            // NoPhoneline
+	"ENTER TIP",				// EnterTip
+	"ENTER TOTAL",				// EnterTotal
+	"1-OPEN TAB 3-TAB RPT",		// TabProcMsg1
+	"2-CLOSE TAB",				// TabProcMsg2
+	"ENTER SERVER NUMBER",		// ServerNum
+	"CLOSE ALL OPEN TABS",		// CloseOpenTabs
+	"INVOICE NOT OPEN TAB",		// NotOpenTab
+	"YAPILANDIR",				// N_Configure 
+	"PARAMETRE YÜKLE",    // N_Initialize
+	"ANA MENÜ",                // N_Main
+	"ÝÞLEMLER",		// N_NewTrans
+        "ÝADE",                 // N_Refund
+	"BATCH",					// N_Batch
+	"RAPORLAR",				// N_Reports
+	"TERMINAL",					// N_Terminal
+	"MORE",						// N_More
+	"MENU",						// N_Menu
+	"TARÝH/SAAT",			// N_Datime
+	"YAZICI",					// N_Printer
+	"BAÐLANTI",					// N_Comms
+	"DIAL OP",					// N_Dial
+	"ÞÝFRE",					// N_Passwords
+	"SPEEDIAL",					// N_Speedial
+	"OKUYUCU",				// N_CardRdr
+	"PARLAKLK",					// N_Contras
+	"SATIÞ",					// N_Sale
+	"SALE+CASH",				// N_SalCash
+	"MAIL ORDER",				// N_MailOrder
+	"OFFLINE",                  // N_Force
+	"AUTHORIZE",				// N_Auth
+	"CARD VERIF",				// N_CardVer
+	"TARA",		// N_Review
+	"FIND",						// N_Find
+	"OK",					// N_Adjust
+	"ÝPTAL",						// N_Void
+	"CASH",						// N_Cash
+	"PROGRAM YÜKLE",				// N_ProgLoad
+	"SHIFT",					// N_Shift
+	"ÝNCELE",						// N_View
+	"DEMO MODU",					// N_TrainMode
+	"AYARLAR",			// N_Setup
+	"FONKSIYON",				// N_Function
+	"TEST",					// N_Tests
+	"TAB",						// N_Tab
+	"EK NÜSHA",					// N_Reprint
+	"HATA ",					// N_Error
+	"SÝL  ",					// N_Clear
+	"CLEAR CASHIER TABLE",		// N_ClearChsTbl
+	"CLEAR SERVER TABLE",		// N_ClearSerTbl
+	"TAMAM",					// N_Enter
+	"CANCEL",					// N_Cancel	
+        "OK",                                           // N_Reset
+        "KAPAT/AÇ",					// N_ResetMenü
+	"VAZGEÇ",					// N_Quick
+	"EKLE/KALDIR",			// N_AddRmv
+	"DETAY ",					// N_Detail
+	"ÖZET   ",					// N_Summary
+	"UNADJUSTED",				// N_Unadjusted
+	"HOST",						// N_Host
+	"GÖRÜNTÜLE",			// N_Display
+	"KLAVYE",					// N_Keyboard
+	"PINPAD",					// N_Pinpad
+	"INIT TEL",				// N_InitPhone
+	"NMS TEL",				// N_NMSPhone
+	"DIAL MOD",				// N_DialType
+	"PABX",						// N_PABX
+
+	"IP CONFIG",				// N_IpCon	
+	"NMS IP",					// N_NMSIp
+	"NMS PORT",					// N_NMSPort
+	"INIT IP",					// N_InitIp
+	"INIT PORT",				// N_InitPort
+	"YEREL IP",					// N_LocalIp
+	"YEREL ALT.",				// N_LocalSubnetMask
+	"GATEWAY IP",				// N_GatewayIp
+
+	"OTOMATÝK",					// N_IpAuto
+	"EL ÝLE",					// N_IpManual
+
+	"TERM ID",					// N_TermId
+	"HEPSÝ",				// N_All
+	"AÇ/KAPA",					// N_OnOff
+	"FÝÞ",					// N_Receipt
+	"TEXT",						// N_Text
+	"KAÐIT ÝLERLET",	// N_PaperFeed
+	"VAZGEÇ",				// N_Quit
+	"DEÐÝÞTÝR",					// N_Change
+	"",							// N_NullStr
+	"COMMUNICATIONS",			// N_Communications
+	"ÞÝFRE DEÐÝÞTÝRME",			// N_PswdChange
+	"ARTTIR",					// N_Higher
+	"AZALT",					// N_Lower
+	"YEREL SEÇENEKLER",			// N_LocalOpts
+	"YANIT   ",					// N_Response
+	"OPEN",						// N_Open
+	"CLOSE",					// N_Close
+	"BASIM",					// N_Print
+	"DETAY",					// N_Scroll
+	"FONKSÝYON NO",			// N_EnterFunction
+	"HOST RPT",					// N_PrintHost
+	"DB RPT",					// N_DBRpt
+	"TX/RX RPT",				// N_TxRxRpt
+	"VIEW TABLE",				// N_ViewTable
+	"GÖRÜNTÜ TEST",				// N_DisplayTest
+	"FONK. DESTEKLENMEZ",       //FuncNotSupported
+	"VERSÝYON",					// N_Version
+	"LAST RESPONSE",			// N_LastRsp
+	"SON YANIT",				// N_Last
+	"NO DATA",					// N_NoData
+	"BATCH INFO",				// N_BatchInfo
+	"HOST ID   : ",				// N_HostId
+	"HOST NAME : ",				// N_HostName
+	"BATCH #   : ",				// N_BatchNumber
+	"0 FOR ALL HOST",			// N_ZeroForAllHost
+	"RAPOR",					// N_Report
+	"DEBIT",					// N_Debit
+	"KREDIT",					// N_Credit
+	"AUTH NO. GÝRÝNÝZ",			// N_EnterAuth
+	"GENERATION NUMBER",		// N_EnterGenNum
+	"JOURNAL TESTING",			// JournalTesting
+	"ENTER NUM OF ENTRIES",		// NumEntries
+	"KAÐIT BÝTTÝ",		// PaperOut
+        "YAZICI ISINDI    ",         // PrinterOverheat
+	"WAITING FOR ACCT. NO",		// WaitingForAcct
+	"WAITING FOR APPROVAL",		// WaitingForApproval
+	"WAITING FOR PIN",			// WaitingForPin
+	"SWIPE CARD ON PINPAD",		// SwipeCardPin
+	"CHANGE TO PIN READ?",		// ChangeToPinRead
+	"CHANGE TO TERM READ?",		// ChangeToTermRead
+	"INVALID ACCOUNT",			// InvalidAccount
+	"AVAIL BAL.",				// AvailBal
+	"     TODAY",				// Today
+	"CARD # DOESN'T MATCH",		// CardNoMatch
+	"PINPAD TEST",				// PinPadTest
+	"PINPAD ARANIYOR",		// PinPadAutoDetect
+	"SELECT ACCOUNT",			// SelectAccount
+	"ACCOUNT",					// N_Account
+	"0",						// N_0
+	"1",						// N_1
+	"2",						// N_2
+	"3",						// N_3
+	"4",						// N_4
+	"PIN GÝRÝN",				// EnterPin
+	"NO EXTERNAL PINPAD",		// ExtPinNot
+	"ÞÝFRELEME HATASI",			// EncryptError
+	"LOGON",					// N_Logon
+	"BAKIM",				// MaintFunction
+	"ENTER ORIGINAL DATE",		// N_OrigDate
+	"IDENTIFICATION",			// N_Identification
+	"SOFTWARE",					// N_Software
+	"DLL",						// N_DLL
+	"BOOTER",					// N_EPROM
+	"REFER",					// N_Referral
+	"ALL HOSTS",				// N_AllHosts
+	"ICEPAC",					// N_IcePac
+	"ENTER FOR ALL",			// PressEnterForAll
+	"FOR LAST INVOICE",			// ForLastInv
+	"ZAMAN AÞIMI",	// N_Timeout
+	"KULLANICI ÝPTALÝ",     // N_UserCancelled
+	"TERS ÝÞLEM",		// N_Reversals
+	"PINPAD BULUNAMADI",		// PinpadNotFound
+	"EVET",					// N_YES
+	"HAYIR",			// N_NO
+	"OK",						// N_OK
+	"VAZGEÇ",				// N_QUIT
+	"SONRA",					// N_NEXT
+	"KARTI TAKINIZ",   // N_SwipeOrInsertCard
+	"X",						// N_X
+	"DEVAM   ",					// N_Continue
+	"KEY",						// N_KEY
+	"BAÞARILI",			// N_Passed
+	"BAÞARISIZ",		// N_Failed
+	"TEST",						// N_Test
+	"TONE",						// N_Tone
+	"PULSE",					// N_Pulse
+	"PIN PAD OKUMA HATASI",//PinReadErr
+	"PIN PAD YAZMA HATASI",	// PinWriteErr
+	"SIGN-OFF?",				// SignOffYN
+	"OCAK",						// Month_1
+	"ÞBT",						// Month_2
+	"MART",						// Month_3
+	"NSN",						// Month_4
+	"MAY",						// Month_5
+	"HAZ",						// Month_6
+	"TEM",						// Month_7
+	"AÐU",						// Month_8
+	"EYL",						// Month_9
+	"EKÝM",						// Month_10
+	"KSM",						// Month_11
+	"ARL",						// Month_12
+	"PÝN TEKRAR ",				// Msg_Reenter_Pin
+	"PIN?",						// Msg_Pin
+	"HARÝCÝ  : ",				// Msg_External
+	"DAHÝLÝ  : ",				// Msg_Internal
+	"CKSUM: ",					// Msg_Chksum
+	"DOÐRU   ?",				// Msg_Correct
+	"SVR:",						// Msg_SVR
+	"CSH:",						// Msg_CSH
+	"INV:",						// Msg_INV
+	"TERS ÝÞLEM",			// Msg_reversal
+	"ÝPTAL ",					// Msg_voided
+	"advice",					// Msg_advice
+	"SEQUENCE NO.: ",			// Msg_SequenceNo
+	"ITEMS",					// Msg_Items
+	"SATIÞLAR",		// Msg_Sales
+	"HATA  **********",			// Msg_Error
+	"AVAILABLE HOSTS",			// Msg_AvailHosts
+	"Cash   : ",				// Msg_Cash
+	"Tender : ",				// Msg_Tender
+	"OPTIONAL AMT",				// AmountOpt
+	"CVV2 INDICATOR",			// N_CVV2Indicator
+	"0=SKIP",					// N_CVV2IndEntry1
+	"1=PRESENT",				// N_CVV2IndEntry2
+	"2=ILLEGBL",				// N_CVV2IndEntry3
+	"9=ABSENT",					// N_CVV2IndEntry4
+	"GÜVENLiK KARAKTERi",			// N_CVV2Entry
+	"CARD PRESENT ?",			// Msg_CardPresent
+	"HEADER 4",					// Msg_HeaderLine
+	"FOOTER ",					// Msg_FooterLine
+	"KARTI GEÇÝRÝNÝZ  ",			// Msg_SwipeYourCard
+	"CHOOSE TIP OPTION",		// Msg_PreTip
+	"OTHER",					// Msg_Other
+	"Program Error:",			// Msg_ProgramError
+	"TIPS",						// Msg_Tips
+	"TIP    %",					// Msg_TipPct
+	"SUGGESTED TIP PERCENT",	// Msg_Sug_Tip
+	"YEREL S.",				// Msg_LocalOpt
+	"TX/RX ERRORS",				// Msg_TxRxErrors
+	"TRANSMIT ERRORS:",			// Msg_TranErrors
+	"RECEIVE ERRORS :",			// Msg_RecvErrors
+	"FILE DOWNLOAD",			// N_FileDownLoad
+	"GÜNSONU",				// N_Settle
+	"OFFLINE",					// N_Offline
+	"TRANS",					// N_Trans
+	"TARÝH/SAAT AYAR",			// N_DateTimeSetup
+	"CONTRAST",					// N_Contrast
+	"KAÐIT ÝLERLET",  // N_PaperFd
+	"GÜNSONU DURUMU   ",		// N_SettleStat
+	"Choose Summary Option",	// Msg_ChooseSummary
+	"AUTO   ",					// Msg_Auto
+	"GROUP   ",					// Msg_Group
+	"MANUAL   ",				// Msg_Manual
+	"NEVER",					// Msg_Never
+	"SALE ITEMS",				// Msg_SaleItems
+	"REFUND ITEMS",				// Msg_RefundItems
+	"ATTEMPT # ",				// Msg_Attempt
+	"RESP ",					// Msg_Resp
+	"HEPSÝ",					// Msg_Evrythg
+	"EVERYTHING",				// Msg_Everything
+	"SERVER TABLE EMPTY",		// Msg_SrvTabEmpty
+	"CASHIER TABLE EMPTY",		// Msg_CshTabEmpty
+	"STATUS",					// Msg_Status
+	"fopen error: ",			// Msg_fopenerror
+	"Down loading file: ",		// Msg_DownloadingFile
+	"DÝL SEÇÝMÝ",			// Msg_SelectLanguage
+	"DÝL",					// Msg_Language
+	"ÝNGÝLÝZCE",			// Lng_English
+        "TÜRKÇE ",                                      // Lng_Turkish
+	"GERMAN",					// Lng_German
+	"SWEDISH",					// Lng_Swedish
+	"ESPANOL",					// Lng_Spanish
+	"PORTUGUESE",				// Lng_Portugues
+	"ACCEPT CURRENT LANGUAGE",	// Msg_CurrentLang
+	"LANG",						// Msg_Lang
+	"KEY TABLE INVALID",		// Msg_KeyTableInvalid
+	"DATABASE RAPORU\n",		// Prt_DatabaseReport
+	"---------------\n",		// Prt_Dashes
+	"TERMINAL EPROM CONFIG\n",	// Prt_TermEpromCfg
+	"TERMINAL CONFIGURATION\n",	// Prt_TermConfig
+	"ACQUIRER ID:",				// Prt_AcquirerID
+	"ISSUER ID:",				// Prt_IssuerID
+	"CARD RANGE ID:",			// Prt_CardRangeID
+	"DESCRIPTOR ID:",			// Prt_DescriptorID
+	"RECEIVED DATA:\n",			// Prt_ReceivedData
+	"SEND DATA:\n",				// Prt_SendData
+	"RAW DATA (HEX BYTES):\n",	// Prt_RawDataHexBytes
+	"Waiting for LAN cable",	// WaitingForLanCable
+	"Line mode canceled",		// LineModeCanceled
+	"YENÝDEN BAÞLAT",			// RestartTerminal
+	"ONLY 0-9 A-F VALID",		// N_Only09AFvalid
+	"ANA EKRAN BUTONU",		// N_IdleButton
+	"SELECT BUTTON",			// SelectButton
+	"SELECT EVENT TYPE",		// EventType
+	"BUTTON",					// N_Button
+	"ÝÞLEM ÝZÝNLÝ       ",		// ConfirmTrans
+	"FONKSÝYON ÝZÝNLÝ",			// ConfirmFunc
+	"BÞL BUTON TABLOSU",		// N_InitButTab
+	"ÞU ANDA ÝNAKTÝF",		// Init_Dis
+	"ÞU ANDA AKTÝF",			// Init_Ena
+	"ANAEKRAN",					// N_IdlBtn
+	"BAÞLANGIÇ",				// N_InitIdlBtn
+	"DEÐÝÞTÝR",					// N_ChgIdlBtn
+	"CHG EVENT BUTTON 1",		// Chang_Btn1
+	"CHG EVENT BUTTON 2",		// Chang_Btn2
+	"CHG EVENT BUTTON 3",		// Chang_Btn3
+	"CHG EVENT BUTTON 4",		// Chang_Btn4
+	"BUTTON 1",					// B_1
+	"BUTTON 2",					// B_2
+	"BUTTON 3",					// B_3
+	"BUTTON 4",					// B_4
+	"REMOVE MERCHANT COPY",     // RemoveMerchantCopy
+	"NO FIELD TABLE TO PRINT",	// PclTabError
+	"PERFORMANS",				// Prt_PerformBtn
+	"YAPILAN.",                             // Prt_ConfigBtn   
+	"YAPILANDIRMA RAPORU",		// Config_RPT
+	"TERMINAL",					// Terminal_Tab 
+	"ISSUER",					// Issuer_Tab 
+	"ACQUIRER",					// Acq_Tab 
+	"CARD",						// Card_Tab 
+	"HEPSÝ",						// All_Tab
+	"LIBS VERSION",				// N_LibsVersion
+	"SDK",						// N_SDKVersion
+	"O/S VER",					// N_OSVersion
+	"O/S REV",					// N_OSRevision
+	"HISTORY REPORT",			// History_RPT
+	"fread error: ",			// Msg_freaderror
+	"Entry # Exceeds Max",		// N_EntryNumExceedsMax
+	"Table ID: ",				// N_TableId
+	"HFS",						// N_HFS
+	"No enougth space in HFS",	// N_NoEnougthSpaceInHFS
+	"SUPERVISOR ÞÝFRESÝ",      // SVPassword
+	"CALL AUTH CENTRE",         // CallAuthCentre
+	"AUTH CODE ?",              // AuthCode
+        "CASH NOT ALLOWED",         // N_CashNotAllowed
+	"SWIPE NOT ALLOWED",        // SwipeNotAllowed
+	"TRANS. NOT ALLOWED",       // TranNotAllowed 
+        "INIT MAX TRIES",			// InitMaxTries
+	"YKR",						// N_Up
+	"AÞÐ",						// N_Down
+	"SEÇ",						// N_Select
+	"Bas",						// N_ReprintShort
+	"HEAD",						// Msg_HeaderLine
+	"Vertic",					// N_Veritcal
+	"Horiz"	,					// N_Horizontal
+	"LINE",                     // N_Modem
+	"COM1",                     // N_RS232RS0
+	"COM2",                     // N_RS232RS1
+	"CU ADRES",        // N_RS232   
+	"AYAR",             // N_RS232Config
+	"ARAYÜZ",         // N_EnableComm 
+	"PROTOKOL",          // N_RS232Prot	
+	"BIT RATE, bps",     // N_RS232Baud  
+	"1200",                     // N_Baud1200   
+	"2400",                     // N_Baud2400   
+	"4800",                     // N_Baud4800   
+	"9600",                     // N_Baud9600   
+	"19200",                    // N_Baud19200  
+	"38400",                    // N_Baud38400  
+	"57600",                    // N_Baud57600  
+	"115200",                   // N_Baud115200 
+	"STOP BÝTLERÝ",         // N_RS232Stop  
+	"1  bit",                   // N_RS232Stop1 
+	"2 bits",                   // N_RS232Stop2 
+	"DATA BÝTLERÝ",         // N_RS232Data  
+	"7 bits",                   // N_RS232Data7 
+	"8 bits",                   // N_RS232Data8 
+	"PARITY",            // N_RS232Parity
+	"None",                     // N_RS232None  
+	"Odd",                      // N_RS232Odd   
+	"Even",                     // N_RS232Even  
+	"KARAKTER SETÝ",                 // N_CharMap	
+    "ARAMA MESAJLARI",         // N_DialMsgs
+	"FLOW CONTROL",      // N_RS232FlowC
+    "RX",                       // N_RX
+    "RX / TX",                  // N_RXTX
+    "MODEM MOD",        // N_CommsModemMode
+    "DB MODEM MOD",     // N_CommsDBModemMode
+    "COMMS CHANGED",            // N_CommsChanged
+    "YENÝDEN BAÞLAT  ",         // N_RestartTerminal
+    "CANCEL'A BASINIZ",     // MsgPressCancelToExit
+    "UYG. DEÐÝÞ",               // N_ChangeApp
+    "SELECT APP",               // N_SelectApplication
+    "TRACE LOG",                // N_TraceLog
+    "START NEW",                // N_StartNew
+    "SEND VIA COM1",            // N_Send1
+    "SEND VIA COM2",            // N_Send
+    "STOP",                     // N_Stop
+    "TRACE IS EMPTY",           // N_TraceIsEmpty,
+    "*** TRACING ***",          // Tracing
+    "** TRACE OVERFLOW **",     // TraceOverflow
+	"GSM",                      // N_GSM
+    "ETHERNET",                 // N_Ethernet
+    "LAN",                      // N_LAN
+    "BLUETOOTH",                // N_Bluetooth
+    "ISDN",                     // N_ISDN
+    "DIAL BACKUP",              // N_DialBackUp    
+	"DB INIT TELEPHONE NO.",		// EnterDBInitTel
+	"DB NMS TELEPHONE NO.",		// EnterDBNMSTel
+	"INIT. PREF. SERVICE",		// InitPrefService
+	"NMS PREFERRED SERVICE",      	// NMSPrefService
+	"LOW SIGNAL",			// LowSignal
+	"INIT PREF",     			// N_DBInitPref
+	"NMS PREF",				// N_DBNMSPref
+	"DB INIT",     				// N_DBInitPhone
+	"DB NMS",				// N_DBNMSPhone
+	"GSM with DB",    			// N_GSMwDial
+	"DB with GSM",			// N_DialwGSM
+	"GSM only",     			// N_GSMonly
+	"DB only",				// N_Dialonly
+	"Starting GSM modem",	// StartGSMModem
+	"Procedure is canceled",   //ProcWasCanel
+	"NO SIM card",			// NoSIM	
+	"Forbidden SIM status",   // ForbSIMStatus
+	"INSERT YOUR CARD",   // Msg_InsertYourCard
+    "LAST IP ADDRESS",          // N_LastIPaddr
+    "BATTERY LOW",              // BatteryLow
+    "UNLOCKING ERROR",          // UnlockingError
+
+#ifdef	MAKE_EMV
+	"EMV BÝLGÝ AKTÝF",         // EmvInfoEna 
+	"EMV BÝLGÝ ÝNAKTÝF",        // EmvInfoDis 
+	"BÝLGÝLENDÝRME ÝNAKTÝF ?",      // DisEmvInfo 
+	"BÝLGÝLENDÝRME AKTÝF ?",      // EnaEmvInfo
+	"ÝÞLEM YAPILIYOR",			// ProcCard
+	"SMART KART",				// SmartCard
+	"KARTI ÇIKARTINIZ",		// PlsRemoveCared
+	"KART REDDETTÝ",		// CardDeclined
+	"HATALI SiFRE",                   // PINFailed
+	"KARTI TAKINIZ    ",		// SwipeInsert
+	"KART HATASI",			// CardFail
+	"UYGULAMA YOK",			// NoMoreApps
+	"KARD BLOKE",			// CardBlocked
+	"PIN BLOKE",			// PinBlocked
+	"UYGULAMA BLOKE",		// AppBlocked
+	"EMV",						// N_EMV
+	"APP SELECTION",			// AppSelection
+	"AUTHENTICATION",			// Authentication
+	"EMV DEBUG",				// EMVdebug
+	"CHIP NOT SUPPORTED",		// ChipNotSupported
+	"ON PINPAD",				// OnPinpad
+	"WAITING FOR PIN",			// WaitingForPin
+        "BYPASS",                   // N_Bypass 
+        "PINPAD AKTÝF",		// PinpadEP 
+        "PINPAD ÝNAKTÝF",		// PinpadDP 
+	"ACCEPTED",                 // Accepted
+        
+        "EASY ENTRY",           // "EASY ENTRY"
+        "LAST TRY LEFT",        // "LAST TRY LEFT"
+        "DENEME SAYISI: ",         // "TRIES LEFT: "
+        "KART HATASI",            // "CARD FAIL"
+        "PIN DENEME SAYISI AÞIMI",   // "PIN TRIES EXCEEDED"
+        "PIN BLOKE",          // "PIN BLOCKED"
+        "LAST PIN TRY LEFT",    // "LAST PIN TRY LEFT"
+        "PRESS OK TO CONTINUE", // "PRESS OK TO CONTINUE"
+        "SEÇÝM YAPILIYOR",            // "SELECTING"
+        "BLOKE",              // "BLOCKED"
+        "SMART KART",            // "CHIP CARD"
+        "KARTI TAKINIZ",   // "PLEASE INSERT CARD"
+        "DEVAM ?",            // "CONTINUE?"
+        
+        "APP BLOCKED",          // "APP BLOCKED"
+        "LISTE BOÞ",           // "LIST EMPTY"
+        "APPLICATION SELECT",   // "APPLICATION SELECT"
+        "SELECT",               // "SELECT"
+        "KART REDDETTi",         // "CARD DECLINE"
+        "OVERRIDE?",            // "OVERRIDE?"
+        "UPDFIELDSPOSTGENAC",   // UpdFieldsPostGenACMsg //@A - BC
+        "REFERRAL DECLINE",	// ReferralDeclineMsg    //@A - BC
+        "CARD REFERRAL",	// CardReferralMsg       //@A - BC
+        "AUTHORISED",           // AuthorisedMsg         //@A - BC
+        "POSTGENAC FAIL",	// PostGenACFail         //@A - BC
+        "REDDEDÝLDÝ",		// DeclinedMsg           //@A - BC
+        "RESULT",		// ResultMsg             //@A - BC
+        "EASY ENTRY",		// EasyEntry             //@A - BC
+        "ÖNEMLÝ DATA KAYBI",   // MndtyDataMissing      //@A - BC
+        "FORCE ONLINE",		// ForceOnlineMsg        //@A - BC
+        "FORCE ONLINE?",	// IsForceOnlineMsg      //@A - BC
+        "AUTH CODE OBTAINED ?",	// IsAuthCodeObtainedMsg //@A - BC
+        "REFERRAL",	        // ReferralMsg           //@A - BC
+#endif // MAKE_EMV
+
+#ifdef	MAKE_SMARTINIT                
+        "SMART INIT ENABLED",         // SmartInitEna 
+	"SMART INIT DISABLED",        // SmartInitDis 
+	" DISABLE SMART INIT?",      // DisSmartInit 
+	" ENABLE SMART INIT ?",      // EnaSmartInit
+#endif // MAKE_SMARTINIT
+        "TERMINAL ÝZNÝ YOK",        // N_TerminalNotAllowed
+        "ÝÞLEM ÝZNÝ YOK",           // TranUnsupported
+        "TAKSÝT",                 // N_Installment
+        "YYYY/AA/GG",              // gg_aa_yy
+        "ÝÞLEM TARÝHÝ    ",        // TarihGir
+        "TAKSÝTLÝ ÝADE",              // N_InstalRefund
+        "ÖNPROV.",                 // N_PreAuth
+        "ÖNPROVÝZYON",             // N_PreAuth_Long
+        "ÖNPRV. KAPAMA ",          // N_ClosedPreAuth
+        "ÖNPRV. ÝPTAL  ",          // N_CancelPreAuth
+        "ÖNPRV KAPA. ÝPT.",        // N_CancelClosedPreAuth
+        "BÝR TUÞA BASIN",          // N_ClickKey
+        "ÝKÝNCÝ NÜSHA ÝÇÝN ",      // N_SecondReceipt
+        "MANYETÝK ÞERÝT KUL.",     // UseMagneticStripeMsg
+        "ELLE GÝRÝÞ ÝZNÝ YOK",     // Msg_NoManEntry,         // @ydeniz --  BC --   
+        "MAXIMUM TAKSÝT SAYISINI AÞTINIZ!",         // Msg_OverInsNum
+        "DAHA YÜKSEK TAKSÝT SAYISI GÝR",   // Msg_lowerInsNum
+        "TAKSÝT ADEDÝ",            // InstNum  "TAKSÝT ADETÝ:",			// 462	// 
+	"FORMATTED RPR",                // N_DBFormattedReport @erd 06.03.2007 !!!
+	"ACQ. TABLE RPR",              // N_AcqTableReport  @erd 06.03.2007
+	"TERM. TABLE RPR",             // N_TermTableReport @erd 06.03.2007
+	"ISS. TABLE RPR",            // N_IssTableReport  @erd 06.03.2007
+	"CARD TABLE RPR",              // N_CardTableReport @erd 06.03.2007
+	"SELECT = '.'",				// N_Selectkey
+	"YANLIÞ KART!",
+        "ÖNPROVÝZYON ÝZNÝ YOK",        // Msg_PreAuthNotAllowed
+        "ÖNPROVÝZYON KAPAMA ÝZNÝ YOK", // Msg_ClosedPreAuthNotAllowed
+        "TAKSÝTLÝ ÝÞLEM ÝZNÝ YOK",     // Msg_InstallmentNotAllowed
+        "MAIL ORDER ÝZNÝ YOK",
+        "SATIÞ ÝADE",                  // N_SaleRefund
+        "GÜNSONU",              // N_LastSettle,
+        "BAL. INQ.",                           // N_BalanceInq
+#ifdef MAKE_KIB
+        "PUANLI",                                 // N_LoyaltyInquiry,
+        "PUANLI ÝÞLEMLER",                        // N_LoyaltyList
+        "PUANLI SATIÞ",                           // N_SaleWithLoyalty
+        "PUAN TUTARI",                            // LoyaltyAmountEnt
+        "TÜM PUAN ÝLE TAKSÝTLÝ YAPILAMAZ",             // Msg_NotPermitLoyIns
+        "PUANLI TAKSÝT",                           // N_InstallmentWithLoyalty
+        "INDIRIMLI",                               // N_Discount
+        "IND. SATIÞ",                              // N_DiscountSale
+        "IND. TAKSÝTLÝ",                           // N_DiscountInst
+        "ÝNDÝRÝM YÜZDESÝNÝ GÝR",                 // N_RateEntry
+        "MAKSIMUM ÝNDÝRÝM ORANINI AÞTINIZ",        // Msg_OverDiscount
+        "S.PUANLI ",                              // N_point max=9
+        "IND ",                                    // N_Disc max= 4
+#endif        
+        
+};
+
+//====================================================
+//===  PINPAD MESSAGE TABLE                       ===
+//====================================================
+const char *const TrPinPadMessages[] = {
+	"                ",			//   Msg_ClrScrn
+	"    APPROVED    ",			//   Msg_Approved
+	"* PINPAD TEST * ",			//   Msg_PinTestM
+	"    DECLINED    ",			//   Msg_Declined
+	"  INCORRECT PIN ",			//   Msg_IncrtPin
+	"** CARD ERROR **",			//   Msg_PinCardErr
+	"UNSUPPORTED CARD",			//   Msg_UnspCard
+	"  INVALID CARD  ",			//   Msg_InvldCard
+	"   TRY AGAIN    ",			//   Msg_TryAgain
+	"READY           ",         //	 Msg_PinReady
+	"PROCESSING CARD ",         //	 Msg_ProcCard
+	"ENTER CARD      ",         //   Msg_EnterCard
+	"REMOVE CARD     ",         //   Msg_RemoveCard
+};
+
+
+//=============================================================================
+// Private data definitions
+//=============================================================================
+
+
+//=============================================================================
+// Public function definitions
+//=============================================================================
+
+
+
+//-----------------------------------------------------------------------------
+//  HdtTextTr_init  Add HDT and pinpad English messages tables for DML support 
+//
+//  Parameters:     None
+//
+//  Global Inputs:
+//
+//  Returns:        None
+//
+//  Notes:
+//
+//-----------------------------------------------------------------------------
+
+extern void HdtTextTr_Init( void )
+{
+	short pgnum;
+
+	// Verify the number of messages match
+	TableItemCount = MSG_SPECIAL;
+	if ( TableItemCount != ( sizeof( TurkishMessages ) / sizeof( char * ) ) )
+	{
+		strcpy( Dspbuf, "Turkish Messages" );
+		strcat( Dspbuf, MsgSizeMismatch );
+
+		// Yes; notify the user of this error condition
+		SystemErrMsg(  );
+	}
+
+	// Verify the number of messages match
+	TableItemCount = LAST_PINM_ID;
+	if ( TableItemCount != ( sizeof( TrPinPadMessages ) / sizeof( char * ) ) )
+	{
+		strcpy( Dspbuf, "TrPinPad Messages" );
+		strcat( Dspbuf, MsgSizeMismatch );
+
+		// Yes; notify the user of this error condition
+		SystemErrMsg(  );
+	}
+
+	// Get our page number
+	pgnum = SDK_ThisPage(  );
+
+	// Put text table EnglishMessages into database
+	TextIndexAddTable( hdttext_table_id, LNG_TR, TurkishMessages, pgnum );
+
+	// Put text table EnPinPadMessages into database
+	TextIndexAddTable( pintext_table_id, LNG_TR, TrPinPadMessages, pgnum );
+}
+
+
+//=============================================================================
+// Private function definitions
+//=============================================================================
+
+#endif 

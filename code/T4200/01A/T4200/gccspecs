@@ -1,0 +1,4 @@
+%rename cc1plus	std_cc1plus
+
+*cc1plus:
+-fno-rtti -fno-exceptions %(std_cc1plus)

@@ -1,0 +1,48 @@
+* $Workfile:   release.info  $
+* $Header:$
+*
+******************************************************************************
+
+Optimum HSDK Release
+
+DOS Base Directory:  N:\POS\Optimum.test\T_M2100\GNU\Test\20061213.I38
+                     N:\POS\Optimum.test\P2100\GNU\Test\20061213.I38
+                     N:\POS\Optimum.test\D2100\GNU\Test\20061213.I38
+                     N:\POS\Optimum.test\H2200\GNU\Test\20061213.I38
+SVN Repository:      https://svn.hypercom.com/svn/turbo/HypercomSDK/tags/OptimumA/I38
+
+EFTOS Version: T/M/D2100: 9.35, P2100/H2200: 8.26
+
+The major features of this HSDK release are as follows:
+
+-------------
+| Bug Fixes |
+-------------
+
+1) Corrected error handling in case of failure on MSR tracks.
+
+----------------
+| New Features |
+----------------
+
+1) None.
+
+---------------------
+| Enhanced Features |
+---------------------
+
+1) None.
+
+--------------------
+| Deleted Features |
+--------------------
+
+1) None.
+
+----------------
+| Known Issues |
+----------------
+
+1) EFTOS9 have broken MSR driver. It hangs after several transactions.
+
+******************************************************************************

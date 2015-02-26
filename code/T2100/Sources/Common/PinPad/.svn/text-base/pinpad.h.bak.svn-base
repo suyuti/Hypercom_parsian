@@ -1,0 +1,263 @@
+//=============================================================================
+//                       Hypercom Inc
+//                      (c) Copyright 2002
+//=============================================================================
+#ifndef _PINPAD_H_
+#define _PINPAD_H_
+
+//=============================================================================
+//
+// Module overview:             pinpad.h
+//      pinpad definitions, data, and functions
+//
+
+//=============================================================================
+//=============================================================================
+
+
+//=============================================================================
+// Public defines and typedefs
+//=============================================================================
+//====================================================
+//===  PINSTAT bit values                          ===
+//====================================================
+
+#define PinCard_Read		0x01	// Card read from pin.
+#define PinCardReadReqPend	0x02	// Card Read Request Pending Bit
+#define PinWaitUserAction	0x04	// Waiting for User Action
+#define PinWaitResetResp	0x08	// Wait for Reset Response
+#define PinCardReadError	0x10	// Card Read Error
+#define PinSmartCard_Read	0x40	/* Smart Card was read from pinpad		*/
+#define PinCancelCardSwipe	0x80	// Cancel Card Swipe
+
+//====================================================
+//===  PIN_TYPE values                             ===
+//====================================================
+
+#define PIN_TYPE_INVALID	0x00	// INVALID PIN PAD
+#define PIN_TYPE_INTERNAL	0x01	// INTEGRATED PINPAD
+#define PIN_TYPE_HFT106		0x10	// HFT 106 PINPAD
+#define PIN_TYPE_S9			0x20	// S9 PINPAD
+#define PIN_TYPE_P1100		0x30	// P1100 PINPAD (HFT PROTOCOL)
+
+//====================================================
+//===  PIN Buffer size                             ===
+//====================================================
+
+#define S_PINBUF 270
+
+//====================================================
+//===  Z8 Read Buffer size                         ===
+//====================================================
+// Note that the internal Z8 will not allow reads of more than      
+// 127 bytes.  An overflow error occurs on reads for more than 127. 
+#define S_Z8_READ 127
+
+//====================================================
+//===  CYPHER REGION DEFINITIONS - FOR INTERNAL Z8 ===
+//====================================================
+
+#define ALLOW_PIN_ENCR		0x01
+#define ALLOW_DISPLAY_ENCR	0x02
+#define ALLOW_DATA_ENCR		0x04
+#define ALLOW_MAC_ENCR		0x08
+#define ALLOW_SECURE_LOADS	0x80
+
+#define KEKMAX 16
+#define S_KEKKEY 16
+
+typedef struct kek_rec
+{
+	UBYTE KEKKEY[S_KEKKEY];		// Key Encrypting Key
+	UBYTE KEKTAG;				// Tag for Key Encrypting Key
+}
+KEKREC;
+
+#define KEKSIZE sizeof(struct kek_rec)
+
+#define PSWDSIZE 8
+
+typedef struct password_rec
+{
+	UBYTE PASSWORD[PSWDSIZE];
+}
+PASSWORDREC;
+
+#define	DUPKT_INIT	0x01		// DUKPT intial key has been loaded.
+#define DUKPT_MAX	0X02		// DUKPT maximum keys have been used.
+
+#define DUKPTKEYSIZE 	8
+#define NUM_DUKPT_KEYS	21
+
+typedef struct dukpt_rec
+{
+	UBYTE DukptKey[DUKPTKEYSIZE];
+	UBYTE DukptLRC;
+}
+DUKPTREC;
+
+#define DUKPTRECSIZE  sizeof(struct dukpt_rec);
+
+typedef struct dukpt_table
+{
+	DUKPTREC DukptKeys[NUM_DUKPT_KEYS];	// DUKPT key table.
+	UBYTE DukptFlag;					// DUKPT flags.
+	UBYTE DukptSerialNumber[10];		// DUKPT serial number.
+}
+DUKPTABLE;
+
+#define DUKPTTABLESIZE  sizeof(struct dukpt_table);
+
+typedef struct cypher_region
+{
+	UBYTE CY_Format;					// Format byte.
+	KEKREC KEKTable[KEKMAX];			// Key Encrypting Key Table.
+	PASSWORDREC PassWordTable[KEKMAX];	// Password table.
+	DUKPTABLE DukptTable;				// Dukpt table.
+}
+CYPHERREGION;
+
+#define CYPHERREGIONSIZE  sizeof(struct cypher_region);
+
+//====================================================
+//===  Z8 COMMAND DEFINITIONS - FOR INTERNAL Z8    ===
+//===  1L: SingleLengthKey                         ===
+//===  2L: DoubleLengthKey                         ===
+//===  3L: TripleLengthKey                         ===
+//====================================================
+#define Z8CMD_ReturnVersionNumber	  				0x00
+#define Z8CMD_Load1L								0x10
+#define Z8CMD_1LDesEncrypt							0x12
+#define Z8CMD_1LDesEncryptDerive					0x14
+#define Z8CMD_1LDesDecryptDerive					0x16
+#define Z8CMD_1LDesCBCDecipherDerive				0x18
+#define Z8CMD_1LCalculateMac						0x1A
+#define Z8CMD_1LVerifyCryptogram					0x1C
+#define Z8CMD_Load2L								0x20
+#define Z8CMD_2L3DesEncrypt							0x22
+#define Z8CMD_2L3DesEncryptDerive					0x24
+#define Z8CMD_2L3DesDecryptDerive					0x26
+#define Z8CMD_2LDesCBCDecipherDerive				0x28
+#define Z8CMD_2LCalculateMac						0x2A
+#define Z8CMD_2LVerifyCryptogram					0x2C
+#define Z8CMD_Load3L								0x30
+#define Z8CMD_3L3DesEncrypt							0x32
+#define Z8CMD_3L3DesEncryptDerive					0x34
+#define Z8CMD_3L3DesDecryptDerive					0x36
+#define Z8CMD_3LDesCBCDecipherDerive				0x38
+#define Z8CMD_3LCalculateMac						0x3A
+#define Z8CMD_3LVerifyCryptogram					0x3C
+#define Z8CMD_2LPresentDecryptedCode				0x40
+#define Z8CMD_3LPresentDecryptedCode				0x42
+#define Z8CMD_2LPresentCreditCryptogram 			0x44
+#define Z8CMD_3LPresentCreditCryptogram 			0x46
+#define Z8CMD_2LDecryptBulkData						0x48
+#define Z8CMD_3LDecryptBulkData						0x4A
+#define Z8CMD_LoadRsaKey							0x50
+#define Z8CMD_PerformRsaEncryption					0x52
+#define Z8CMD_DeriveDesKeyFromRsaEncryption			0x54
+#define Z8CMD_InitializeInternalKeyMemory			0x60
+#define Z8CMD_LoadDesKeyIntoInternalMemory			0x62
+#define Z8CMD_LoadDesKeyPasswordIntoInternalMemory	0x64
+#define Z8CMD_PinEntry								0x66
+
+//==========================================================================
+//===  Z8 COMMAND STRING LENGTH DEFINITIONS - FOR INTERNAL Z8            ===
+//===  1L: SingleLengthKey                                               ===
+//===  2L: DoubleLengthKey                                               ===
+//===  3L: TripleLengthKey                                               ===
+//===  THESE LENGTHS ARE STRAIGHT FROM THE Z8 DOCUMENTATION, SECPROC.DOC ===
+//==========================================================================
+//                                                                      CMD 
+#define Z8LEN_ReturnVersionNumber					1				// 0x00
+#define Z8LEN_Load1L								1+8+1+1			// 0x10
+#define Z8LEN_1LDesEncrypt							1+8+8+1+1		// 0x12
+#define Z8LEN_1LDesEncryptDerive					1+8+8+1+1+1+8+8	// 0x14
+#define Z8LEN_1LDesDecryptDerive					1+8+8+1+1+1+8+8	// 0x16
+#define Z8LEN_1LDesCBCDecipherDerive				1+8+8+1+1+1+8+8+8	// 0x18
+#define Z8LEN_1LCalculateMac						1+8+8+1+1			// 0x1A
+#define Z8LEN_1LVerifyCryptogram					1+8+8+1+1+8+1	// 0x1C
+#define Z8LEN_Load2L								1+16+1+1		// 0x20
+#define Z8LEN_2L3DesEncrypt							1+16+8+1+1		// 0x22
+#define Z8LEN_2L3DesEncryptDerive					1+16+8+1+1+1+8+8	// 0x24
+#define Z8LEN_2L3DesDecryptDerive					1+16+8+1+1+1+8+8	// 0x26
+#define Z8LEN_2LDesCBCDecipherDerive				1+16+8+1+1+1+8+8+8	// 0x28
+#define Z8LEN_2LCalculateMac						1+16+8+1+1			// 0x2A
+#define Z8LEN_2LVerifyCryptogram					1+16+8+1+1+8+1		// 0x2C
+#define Z8LEN_Load3L								1+24+1+1			// 0x30
+#define Z8LEN_3L3DesEncrypt							1+24+8+1+1			// 0x32
+#define Z8LEN_3L3DesEncryptDerive					1+24+8+1+1+1+8+8	// 0x34
+#define Z8LEN_3L3DesDecryptDerive					1+24+8+1+1+1+8+8	// 0x36
+#define Z8LEN_3LDesCBCDecipherDerive				1+24+8+1+1+1+8+8+8	// 0x38
+#define Z8LEN_3LCalculateMac						1+24+8+1+1			// 0x3A
+#define Z8LEN_3LVerifyCryptogram					1+24+8+1+1+8+1	// 0x3C
+#define Z8LEN_2LPresentDecryptedCode				1+16+8+1+1+8+8	// 0x40
+#define Z8LEN_3LPresentDecryptedCode				1+24+8+1+1+8+8	// 0x42
+#define Z8LEN_2LPresentCreditCryptogram 			1+16+8+1+1+8+8	// 0x44
+#define Z8LEN_3LPresentCreditCryptogram 			1+24+8+1+1+8+8	// 0x46
+#define Z8LEN_2LDecryptBulkData						1+16+8+1+1+1+8	// 0x48
+#define Z8LEN_3LDecryptBulkData						1+24+8+1+1+1+8	// 0x4A
+#define Z8LEN_LoadRsaKey							1+1+1+1+1+64	// 0x50
+#define Z8LEN_PerformRsaEncryption					1+1+1+64		// 0x52
+#define Z8LEN_DeriveDesKeyFromRsaEncryption			1+1+1+1+64		// 0x54
+#define Z8LEN_InitializeInternalKeyMemory			1+1+1			// 0x60
+#define Z8LEN_LoadDesKeyIntoInternalMemory			1+8+8+8+1+1+8+1	// 0x62
+#define Z8LEN_LoadDesKeyPasswordIntoInternalMemory	1+1+8+8+1		// 0x64
+#define Z8LEN_PinEntry								1+1+1+8+1+1+8+8+8	// 0x66
+
+
+//====================================================
+//===  Z8 FLAG DEFINITIONS - FOR INTERNAL Z8       ===
+//====================================================
+#define Z8Flag_FIRST     0x01	// First block of the MAC request
+#define Z8Flag_LAST      0x02	// Last block of the MAC request
+#define Z8Flag_ENCRYPTED 0x01	// Key is encrypted
+#define Z8Flag_INTERNKEY 0x20	// Use internal key
+#define Z8Flag_SPCDUKPT  0x01	// Special DUKPT (XOR key into DATA)
+#define Z8Flag_DUKPT     0x02	// DUKPT Key Variant (XOR key with 0xFF)
+#define Z8Flag_XOR	     0x08	// XOR data with result
+#define Z8Flag_ENCRLR    0x04	// Encrypt R-L-R with data
+#define Z8Flag_ENCRLR2   0x02	// Encrypt R-L-R with data 2
+#define Z8Flag_ENCRLR3   0x01	// Encrypt R-L-R with data 3
+#define Z8Flag_STEP1     0x00	// Step 1 - Present Encrypt Builk Data for MAC
+#define Z8Flag_STEP2     0x01	// Step 2 - Present the Builk Data MAC
+#define Z8Flag_STEP3     0x02	// Step 3 - Decrypt Bulk Data
+#define Z8Flag_RLRCBC    0x04	// Use R-L-R for CBC Decipherment
+#define Z8Flag_SCANKBD   0x08	// Z8 inputs pin direct from keypad
+#define Z8Flag_INITDES   0x01	// Init internal key memory for DES
+#define Z8Flag_KEYHASINDX 0x80	// Key contains internal key index(01h-0ch)
+
+
+
+//=============================================================================
+// Public data declarations
+//=============================================================================
+
+
+//=============================================================================
+// Public function declarations
+//=============================================================================
+extern void PinInit( void );
+extern void Rewind_Pin( void );
+extern Bool PinDisplayDiag( void );
+extern Bool PinGetPin( Bool useGenerateKey );
+extern Bool PinCardRead( void );
+extern Bool PinCardReadResp( void );
+extern void PinReset( void );
+extern Bool PinMessage( enum msg_id PinMsgNumber );
+extern void SaveEncPin( void );
+extern Bool DecPin( char *PinData );
+extern Bool Open_Config( void );
+extern Bool ReadFromS9( useGenerateKey ) ;
+
+#ifdef MAKE_EMV
+extern void PinExtOffline    ( void ) ;
+extern void PinExtEncOffline ( void ) ;
+#endif	// MAKE_EMV
+
+#if defined( MAKE_ISOMAC ) 
+extern Bool PinGenMac( UBYTE PinMacId, UBYTE *pMacKeyPtr, UBYTE *pMacDataPtr, UWORD MacDataLength, UBYTE *PinData );
+#endif // MAKE_ISOMAC
+
+
+#endif // _PINPAD_H_

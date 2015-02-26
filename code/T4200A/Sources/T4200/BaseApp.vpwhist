@@ -1,0 +1,77 @@
+[ActiveConfig]
+BaseApp.vpj=,Debug
+[Global]
+CurrentProject=BaseApp.vpj
+[ProjectDates]
+BaseApp.vpj=20080409162642588
+[TreeExpansion2]
+- BaseApp.vpj
+  - Source Files
+    + _Main
+    + Batch
+    + Comms
+    + Data
+    + EMV
+    + EmvL2
+    + Hosts
+    + HostUtil
+    + Images
+    + PinPad
+    + Printer
+    - T4200
+      + Main
+      + Comm
+      + UI
+      + Profile
+      + _PinPad
+    + Texts
+    - Txn_flow
+    + Utils
+    + _Farsi
+  + Resource Files
+scroll:0
+[State]
+SCREEN: 1280 800 88 116 960 577 0 0 M 0 0 0 0 974 636
+CWD: C:\Documents and Settings\mehmetd\Desktop\test\Source\T4200\T4200
+FILEHIST: 9
+UI\disproc.h
+UI\disproc.c
+UI\sprite.c
+..\Common\_Main\hypertcf.c
+..\Common\Txn_flow\app1.c
+..\Common\Txn_flow\forceSettlement.c
+..\Common\Hosts\flaghost.c
+..\NUCLEU~1\Main\events.h
+..\Common\Txn_flow\adjust.c
+BOOKMARK2: 2
+ALIGN():24841124911104169                CNTR,G:\projeler\Parsian\code\T4200A\Sources\Common\Printer\prtdef.c
+ALIGN():1951111958386408    //IF, NOT, CND_REJ,G:\projeler\Parsian\code\T4200A\Sources\Common\Printer\prtdef.c
+DEBUG: 8 16 1 0 3 0
+2JRBUF.TRDATA.TRSTAN0
+2JRBUF0
+1SelMatchJRBUF.TRDATA0
+1JSREC0
+1LineBuff0
+1GetStringLenghtInPixelFarsi_prnCodePage_table0
+1BuildFixedBufferFarsi_prnCodePage_table[ chr ].fpi_options0
+2*len0
+..\Common\_Main\
+..\NucleusInterface\Main\
+..\Common\Texts\
+UI\
+..\Common\Printer\
+..\Common\Txn_flow\
+..\Common\Hosts\
+..\Common\Data\
+..\Common\Utils\
+..\Common\Comms\
+..\Common\PinPad\
+..\NucleusInterface\Comms\
+PinPad\
+..\Common\EMV\
+..\Common\Batch\
+Farsi\
+00CvtAmt..\Common\Txn_flow\cvtamt.c7810x20ab30440
+printf
+strcpy
+std::*
